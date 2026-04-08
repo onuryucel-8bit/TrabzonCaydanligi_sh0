@@ -4,6 +4,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 \
 ![kup](resimler/kup.gif)
 
+<h2> Eklenilecek | Duzeltilecek Basliklar</h2>
+
 - SDL Kurulumu
 - Temel Yapi
 - Cizgi Algoritmalari

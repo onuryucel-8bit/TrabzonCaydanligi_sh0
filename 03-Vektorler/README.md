@@ -1,0 +1,2 @@
+- Vektor islemleri
+- Vektor ile iliskili ornekler ekle

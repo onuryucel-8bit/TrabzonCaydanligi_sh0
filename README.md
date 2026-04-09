@@ -6,6 +6,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
+- Yazim hatalarini duzelt
 - SDL Kurulumu
 - Temel Yapi
 - Cizgi Algoritmalari

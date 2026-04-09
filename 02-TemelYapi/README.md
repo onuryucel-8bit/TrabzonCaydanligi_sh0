@@ -1,5 +1,14 @@
 <h2>Piksel Cizimi</h2>
 
+```cpp
+using Color_t = uint32_t;
+Color_t* colorBuffer = nullptr;
+```
+- pikselleri koyup ekrana yollamak icn bir boyurtlu dizi olusturalim
+
+
+
+
 \
 ***main.cpp***
 ```cpp

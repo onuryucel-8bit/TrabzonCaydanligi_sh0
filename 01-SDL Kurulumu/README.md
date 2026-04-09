@@ -1,3 +1,4 @@
+<h2> SDL pencere olusturma </h2>
 - SDL kurulumu
 https://github.com/libsdl-org/SDL/releases
 
@@ -9,7 +10,7 @@ https://github.com/libsdl-org/SDL/releases
 
 ***CMakeLists.txt***
 ```Cmake
-    # 3.15 - 4.0 versiyon araliginda cmake varsa calistir
+# 3.15 - 4.0 versiyon araliginda cmake varsa calistir
 cmake_minimum_required(VERSION 3.15...4.0)
 
 # projenin ismi

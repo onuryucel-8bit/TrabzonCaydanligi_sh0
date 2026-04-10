@@ -86,6 +86,11 @@ void drawColorBuffer()
     //render canvas
     SDL_RenderTexture(renderer, canvas, NULL, NULL);
 }
+
+void drawPixel(int x, int y, Color_t color)
+{
+    colorBuffer[y * WindowWidth + x] = color;
+}
 ```
 
 

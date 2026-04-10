@@ -1,5 +1,9 @@
 <h2> SDL pencere olusturma </h2>
+
 - SDL kurulumu
+
+Kaynak kodu indiriyoruz ve asagidaki sekil 1.0 belirtilen dosyalar haric gerisini cop kutusuna yolluyoruz
+
 https://github.com/libsdl-org/SDL/releases
 
 
@@ -52,6 +56,8 @@ target_link_libraries(${PROJECT_NAME}
 
 
 ```
+
+
 
 ***main.cpp***
 ```cpp

@@ -1,19 +1,9 @@
 <h1> Temel atma</h1>
 
-![cmake](../resimler/cmake_0.png)
+[Windows icin kurulum](Windows/README.md)
 
-***sekil 0.0***
+[Linux icin kurulum](Linux/README.md)
 
-**Gerekli araclar**
-
-  - Visual Studio kurulum aracindan Sekil 0.0 da gorulmekte olan zimbirtiyi isaretleyip indiriyoruz
-
-- cmake https://cmake.org/download/
-     linke tiklayip cmake i kuruyoruz (Windows icin PATH eklenmesi gerekmektedir)
-
-![cmakePATH](../resimler/2026-04-09%2010-28-42.png)
-
-- makefile/ninja
 
 ## Proje Yapisi
 
@@ -21,9 +11,11 @@
 
 ***Sekil 0.1***
 
+Proje yapimiz sekil 0.1 goruldugu gibi olucak
 - src/ .cpp .h dosyalarin tutuldugu yer
 - res/ .obj, kaplamalar ve diger kaynaklarin tutuldugu yer
 - libsLocal/ SDL3 ve diger kutuphanelerin tutuldugu yer
+  
 
 **main.cpp**
 ```cpp
@@ -34,7 +26,6 @@ int main()
 }
 ```
 
-## Cmake
 **CMakeLists.txt**
 ```Cmake
 #3.15 - 4.0 versiyon araliginda cmake varsa calistir
@@ -60,10 +51,4 @@ add_executable(${PROJECT_NAME} ${MY_SOURCES})
 
 ![projeAcilimi](../resimler/Adsız.png)
 
-Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz
-
-![x64_release](../resimler/Adsız1.png)
-
-
-
-![x64_release](../resimler/2026-04-08%2010-09-57.png)
+Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.

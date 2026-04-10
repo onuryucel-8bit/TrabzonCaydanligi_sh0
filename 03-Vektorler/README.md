@@ -1,3 +1,0 @@
-- Vektor islemleri
-- Vektor ile iliskili ornekler ekle
-- Processing zimbirtisi ile ornek ekle(tasinabilirlik acisindan(cmake veya make ile ugrasmamak icin) veya.. lua love? | pyhton?)

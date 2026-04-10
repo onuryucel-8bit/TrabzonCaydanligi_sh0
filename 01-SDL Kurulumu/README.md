@@ -2,15 +2,28 @@
 
 - SDL kurulumu
 
-Kaynak kodu indiriyoruz ve asagidaki sekil 1.0 belirtilen dosyalar haric gerisini cop kutusuna yolluyoruz
+Kaynak kodu proje/libsLocal icine atip, asagidaki sekil 1.0 belirtilen dosyalar haric gerisini cop kutusuna yolluyoruz
 
 https://github.com/libsdl-org/SDL/releases
-
 
 \
 ***SDL dosyasi***
 \
 ![sdl_kurulum](../resimler/SDL_dosya.png)
+
+<h4> Proje yapisi </h4>
+
+```
+Proje
+|-src
+|-LibsLocal
+  |-SDL3
+     |-cmake
+     |-include
+     |-src
+     |-...
+```
+
 
 ***CMakeLists.txt***
 ```Cmake
@@ -32,6 +45,7 @@ set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libsLocal)
 #====================LIBS=============================================#
 #=====================================================================#
 
+# SDL kutuphanesini ekle
 add_subdirectory(${LIBS_LOCAL_DIR}/SDL3 SDL_build)
 
 #=====================================================================#
@@ -46,6 +60,7 @@ add_executable(${PROJECT_NAME} ${MY_SOURCES})
 #====================LIBS=============================================#
 #=====================================================================#
 
+# Kutuphaneyi projeye bagla
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     SDL3::SDL3

@@ -46,6 +46,10 @@ int main()
 
 ```cpp
 
+/*
+* @brief Renk tamponundaki tum pikseller belirtilen renk ile temizlenir
+* @param color renk degeri(uint32_t)
+*/
 void clearColorBuffer(Color_t color)
 {
     for (size_t i = 0; i < WindowWidth * WindowHeight; i++)
@@ -75,6 +79,8 @@ void initSDL()
     }
 }
 ```
+
+
 
 
 ```cpp
@@ -131,6 +137,60 @@ int main()
         //------------------------------//
     }
 }
+
+```
+kod yapisini duzelt
+
+***main.cpp***
+```cpp
+
+void draw()
+{
+    //------------------------------//
+    SDL_RenderClear(renderer);
+
+    clearColorBuffer(0xff00'00ff);
+
+    drawColorBuffer();
+
+    //swap buffers
+    SDL_RenderPresent(renderer);
+    //------------------------------//
+}
+
+void inputs()
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_EVENT_QUIT)
+        {
+            f_running = false;
+        }
+
+        switch (event.key.key)
+        {
+        case SDLK_ESCAPE:
+            f_running = false;
+            break;
+        }
+    }
+}
+
+int main()
+{
+    initSDL();
+
+    colorBuffer = new Color_t[WindowWidth * WindowHeight];
+    
+    while(f_running)
+    {
+        inputs();
+       
+        draw();                        
+    }
+}
+
 ```
 
 ***main.cpp***
@@ -144,13 +204,19 @@ enum Color : uint32_t
     BLUE  = 0xff00'00ff
 };
 
-int main()
+int draw()
 {
-    while(f_running)
-    {
-        ...
-        clearColorBuffer(Color::GREEN);
-    }
+    //------------------------------//
+    SDL_RenderClear(renderer);
+    
+    clearColorBuffer(Color::GREEN);
+
+    drawColorBuffer();
+
+    //swap buffers
+    SDL_RenderPresent(renderer);
+    //------------------------------//
+    
 }
 ```
 

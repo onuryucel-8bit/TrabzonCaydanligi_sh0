@@ -18,6 +18,8 @@ void drawLine(int x0, int y0, int x1, int y1, Color_t color)
 
 <h2> DDA algoritmasi </h2>
 
+![cizgi](../resimler/2026-04-10%2020-28-49.png)
+
 ```cpp
 
 void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
@@ -48,3 +50,26 @@ void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
     }
 }
 ```
+
+
+
+```cpp
+
+void draw()
+{
+    //------------------------------//
+    SDL_RenderClear(renderer);
+
+    clearColorBuffer(Color::BLACK);
+
+    drawLine(100, 100, 200, 200, Color::GREEN);
+
+    drawColorBuffer();
+
+    //swap buffers
+    SDL_RenderPresent(renderer);
+    //------------------------------//
+}
+
+```
+

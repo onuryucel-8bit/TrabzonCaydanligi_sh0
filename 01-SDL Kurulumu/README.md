@@ -147,3 +147,5 @@ int main()
     }
 }
 ```
+
+[sonraki bolum](../02-TemelYapi/README.md)

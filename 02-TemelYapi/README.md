@@ -334,3 +334,5 @@ int main()
     }
 }
 ```
+
+[sonraki bolum](../03-Cizimler/README.md)

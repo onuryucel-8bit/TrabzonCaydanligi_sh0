@@ -11,9 +11,9 @@
 
 ***Sekil 0.1***
 
-Proje yapimiz sekil 0.1 goruldugu gibi olucak
-- src/ .cpp .h dosyalarin tutuldugu yer
-- res/ .obj, kaplamalar ve diger kaynaklarin tutuldugu yer
+Proje yapımızı şekil 0.1 görüldüğü gibi olacak
+- src/ .cpp .h dosyaların tutulduğu yer
+- res/ .obj, kaplamalar ve diğer kaynakların tutulduğu yer
 - libsLocal/ SDL3 ve diger kutuphanelerin tutuldugu yer
   
 
@@ -52,3 +52,5 @@ add_executable(${PROJECT_NAME} ${MY_SOURCES})
 ![projeAcilimi](../resimler/Adsız.png)
 
 Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.
+
+[sonraki bolum](../01-SDL%20Kurulumu/README.md)

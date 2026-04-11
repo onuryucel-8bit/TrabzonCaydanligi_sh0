@@ -43,3 +43,5 @@ for (size_t x = 0; x < WindowWidth; x++)
 ```
 
 ![sinxy](../resimler/2026-04-10%2014-05-51.png)
+
+[sonraki bolum](../04-Cizgi%20Algoritmalari/README.md)

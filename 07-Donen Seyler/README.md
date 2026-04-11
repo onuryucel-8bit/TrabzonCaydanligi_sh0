@@ -1,5 +1,8 @@
 ![donenNokta](../resimler/donenNokta.gif)
 
+#### [desmos ucgen ornegi](https://www.desmos.com/calculator/cemr6p7ctp)
+
+
 ```cpp
 void update()
 {

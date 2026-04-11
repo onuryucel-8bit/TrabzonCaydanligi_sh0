@@ -1,4 +1,6 @@
 #include "Graphics.h"
+#include "Graphics.h"
+#include "Graphics.h"
 
 Graphics::Graphics(RenderContext& context)
 {
@@ -81,6 +83,31 @@ void Graphics::drawFilledRectangle(int x, int y, int width, int height, Color_t 
         for (size_t posx = x; posx < width + x; posx++)
         {
             drawPixel(posx, posy, color);
+        }
+    }
+}
+
+void Graphics::drawGrid(Color_t color)
+{
+    for (size_t y = 0; y < m_context->WindowHeight; y++)
+    {
+        for (size_t x = 0; x < m_context->WindowWidth; x++)
+        {
+            if (x % 64 == 0 || y % 64 == 0)
+            {
+                m_context->colorBuffer[y * m_context->WindowWidth + x] = color;
+            }
+        }
+    }
+}
+
+void Graphics::drawDots(Color_t color)
+{
+    for (size_t y = 0; y < m_context->WindowHeight; y+= 40)
+    {
+        for (size_t x = 0; x < m_context->WindowWidth; x+= 40)
+        {
+            m_context->colorBuffer[y * m_context->WindowWidth + x] = color;
         }
     }
 }

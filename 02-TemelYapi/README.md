@@ -4,8 +4,7 @@
 using Color_t = uint32_t;
 Color_t* colorBuffer = nullptr;
 ```
-- pikselleri koyup ekrana yollamak icn bir boyurtlu dizi olusturalim
-
+ pikselleri koyup ekrana yollamak icn bir boyutlu dizi olusturalim
 
 
 
@@ -42,23 +41,8 @@ int main()
 ```
 
 
-***main.cpp***
+![renk](../resimler/renkler.png)
 
-```cpp
-
-/*
-* @brief Renk tamponundaki tum pikseller belirtilen renk ile temizlenir
-* @param color renk degeri(uint32_t)
-*/
-void clearColorBuffer(Color_t color)
-{
-    for (size_t i = 0; i < WindowWidth * WindowHeight; i++)
-    {
-        colorBuffer[i] = color;
-    }
-}
-
-```
 
 ***main.cpp***
 ```cpp
@@ -79,6 +63,23 @@ void initSDL()
     }
 }
 ```
+
+```cpp
+
+/*
+* @brief Renk tamponundaki tum pikseller belirtilen renk ile temizlenir
+* @param color renk degeri(uint32_t)
+*/
+void clearColorBuffer(Color_t color)
+{
+    for (size_t i = 0; i < WindowWidth * WindowHeight; i++)
+    {
+        colorBuffer[i] = color;
+    }
+}
+
+```
+
 
 
 
@@ -221,6 +222,7 @@ int draw()
 ```
 
 
+**main.cpp**
 ```cpp
 #include <iostream>
 #include <cstdint>

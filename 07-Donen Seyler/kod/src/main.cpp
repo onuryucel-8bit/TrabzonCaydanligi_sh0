@@ -5,14 +5,15 @@
 
 #include "Graphics.h"
 #include "Defs.h"
-#include "Vector2.h"
+#include "math/Vector2.h"
 
 RenderContext rcontext;
 Graphics gp(rcontext);
 
 bool f_running = true;
 
-float x = 400, y = 400;
+Vector2 trig[3] = { {390,290} , {370,250}, {350,290} };
+
 float alfa = 0;
 
 
@@ -84,24 +85,29 @@ void update()
     float cx = rcontext.WindowWidth / 2.0f;
     float cy = rcontext.WindowHeight / 2.0f;
 
-    //noktayi ekranin ortasina tasi
-    float px = x - cx;
-    float py = y - cy;
+    for (size_t i = 0; i < 3; i++)
+    {
+        //noktayi ekranin ortasina tasi
+        float px = trig[i].x - cx;
+        float py = trig[i].y - cy;
 
-    //dondur
-    float rx = px * cos(alfa) - py * sin(alfa);
-    float ry = px * sin(alfa) + py * cos(alfa);
+        //dondur
+        float rx = px * cos(alfa) - py * sin(alfa);
+        float ry = px * sin(alfa) + py * cos(alfa);
 
-    //noktayi ekran uzayina geri donustur
-    x = rx + cx;
-    y = ry + cy;
+        //noktayi ekran uzayina geri donustur
+        trig[i].x = rx + cx;
+        trig[i].y = ry + cy;
+    }
+
+    
 
 
     //usengeclikten f(x) => alfa++ => g(x)
     //normalde alfa += RADIAN_D90 gibi bisey yazilmasi daha iyi olur
     alfa = radToDeg(alfa);
 
-    alfa += 0.00001;
+    alfa += 0.00001f;
 
     alfa = degToRad(alfa);
     
@@ -110,18 +116,25 @@ void update()
 void draw()
 {
 
-   
-
     //------------------------------//
     SDL_RenderClear(rcontext.renderer);
 
     gp.clearColorBuffer(Color::BLACK);
 
-    gp.drawPixel((int)x, (int)y, Color::WHITE);
+    gp.drawTriangle(
+        trig[0].x, trig[0].y,
+        trig[1].x, trig[1].y,
+        trig[2].x, trig[2].y,
+        Color::WHITE);
+
+
+
 
     gp.drawLine(0, rcontext.WindowHeight / 2, rcontext.WindowWidth, rcontext.WindowHeight / 2, Color::GREEN);
 
     gp.drawLine(rcontext.WindowWidth / 2,0, rcontext.WindowWidth / 2, rcontext.WindowHeight, Color::GREEN);
+
+    gp.drawDots(Color::GREEN);
 
     gp.drawColorBuffer();
 

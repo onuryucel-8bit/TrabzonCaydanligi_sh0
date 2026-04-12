@@ -36,7 +36,7 @@ public:
 	
 	void drawRectangle(int x, int y, int width, int height, Color_t color);
 	void drawFilledRectangle(int x, int y, int width, int height, Color_t color);
-	
+
 	void drawGrid(Color_t color);
 	void drawDots(Color_t color);
 	

@@ -1,3 +1,5 @@
+
+gecenin korunde gozumu aldi degistir sunu
 ![yapi](../resimler/yapi.png)
 
 ![ucgen](../resimler/2026-04-10%2021-16-43.png)

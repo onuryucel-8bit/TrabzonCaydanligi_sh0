@@ -148,4 +148,7 @@ int main()
 }
 ```
 
-[sonraki bolum](../02-TemelYapi/README.md)
+<== [onceki bolum](../00-Proje/README.md) 
+
+
+[sonraki bolum](../02-TemelYapi/README.md) ==>

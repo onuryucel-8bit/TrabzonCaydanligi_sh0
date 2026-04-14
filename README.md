@@ -4,6 +4,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 \
 ![kup](resimler/kup.gif)
 
+<h2> </h2>
+
 - [x] 00-Proje
 - [x] 01-SDL kurulumu
 - [ ] 02-kodu kontrol et
@@ -11,6 +13,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
 - Yazim hatalarini duzelt
+- 00-Proje/Linux kismi eksik
+
 - SDL Kurulumu
 - Temel Yapi
 - Cizgi Algoritmalari

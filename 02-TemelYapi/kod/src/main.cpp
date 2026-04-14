@@ -65,6 +65,7 @@ void initSDL()
         f_running = false;
     }
 
+    //argb_8888 formatinda ve 800x600 boyutunda kaplama(texture) olusturuluyor    
     canvas = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, WindowWidth, WindowHeight);
 
     if(canvas == nullptr)
@@ -101,6 +102,7 @@ int main()
             }
         }
 
+        //------------------------------//
         SDL_RenderClear(renderer);
 
         clearColorBuffer(Color::GREEN);
@@ -109,5 +111,6 @@ int main()
 
         //swap buffers
         SDL_RenderPresent(renderer);
+        //------------------------------//
     }
 }

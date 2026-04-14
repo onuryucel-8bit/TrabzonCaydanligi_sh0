@@ -53,4 +53,4 @@ add_executable(${PROJECT_NAME} ${MY_SOURCES})
 
 Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.
 
-[sonraki bolum](../01-SDL%20Kurulumu/README.md)
+[sonraki bolum](../01-SDL%20Kurulumu/README.md) ==>

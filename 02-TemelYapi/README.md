@@ -3,8 +3,8 @@
 ```cpp
 using Color_t = uint32_t;
 Color_t* colorBuffer = nullptr;
-```
- pikselleri koyup ekrana yollamak icn bir boyutlu dizi olusturalim
+``` 
+ Ekranda görüntülenecek piksellerin renk verisini tutacak bir boyutlu dizi oluşturalım. Bu dizideki verileri(renk degerlerini) alıp SDL kaplamasına(SDL_Texture) aktararak ekrana çizeceğiz
 
 
 
@@ -40,8 +40,7 @@ int main()
 
 ```
 
-
-![renk](../resimler/renkler.png)
+![renk](../resimler/anim_t3.png)
 
 
 ***main.cpp***
@@ -54,18 +53,22 @@ void initSDL()
     ...
     ...
 
+    //RAM'de tuttuğumuz renk değerlerini(colorBuffer) ekrana çizmek için kaplama(texture) oluşturuyoruz
     canvas = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, WindowWidth, WindowHeight);
 
     if(canvas == nullptr)
     {
         std::cout << "Error:: Texture initializing failed\n";
-        //return false;
+        f_running = false;
     }
+
+    //Kaplamanin piksel gorunume sahip olmasi icin
+    SDL_SetTextureScaleMode(canvas, SDL_SCALEMODE_NEAREST);
 }
 ```
 
+**main.cpp**
 ```cpp
-
 /*
 * @brief Renk tamponundaki tum pikseller belirtilen renk ile temizlenir
 * @param color renk degeri(uint32_t)
@@ -78,24 +81,22 @@ void clearColorBuffer(Color_t color)
     }
 }
 
-```
-
-
-
-
-
-```cpp
 void drawColorBuffer()
 {
-    //load colorbuffer
+    //Hazirladigimiz piksel dizisini ekrana cizmek icin kaplamaya(SDL_Texture* canvas) kopyaliyoruz
+    
+    //SDL_Texture*    : Guncellenecek hedef kaplama
+    //const SDL_Rect* : Guncellenecek alan, NULL ise alanin hepsi guncellenir
+    //const void*     : Piksel verisinin adresi
+    //int             : Piksel verisinin bayt cinsinden satir uzunlugu
     SDL_UpdateTexture(canvas, NULL, colorBuffer, (int)(WindowWidth * sizeof(Color_t)));
     
-    //render canvas
+    //Kaplamayi cizdir    
     SDL_RenderTexture(renderer, canvas, NULL, NULL);
 }
 
 void drawPixel(int x, int y, Color_t color)
-{
+{        
     colorBuffer[y * WindowWidth + x] = color;
 }
 ```
@@ -139,8 +140,7 @@ int main()
     }
 }
 
-```
-kod yapisini duzelt
+``` 
 
 ***main.cpp***
 ```cpp
@@ -261,10 +261,15 @@ void clearColorBuffer(Color_t color)
 
 void drawColorBuffer()
 {
-    //load colorbuffer
+    //Hazirladigimiz piksel dizisini ekrana cizmek icin kaplamaya(SDL_Texture* canvas) kopyaliyoruz
+    
+    //SDL_Texture*    : Guncellenecek hedef kaplama
+    //const SDL_Rect* : Guncellenecek alan, NULL ise alanin hepsi guncellenir
+    //const void*     : Piksel verisinin adresi
+    //int             : Piksel verisinin bayt cinsinden satir uzunlugu
     SDL_UpdateTexture(canvas, NULL, colorBuffer, (int)(WindowWidth * sizeof(Color_t)));
     
-    //render canvas
+    //Kaplamayi cizdir    
     SDL_RenderTexture(renderer, canvas, NULL, NULL);
 
 }
@@ -287,6 +292,7 @@ void initSDL()
         f_running = false;
     }
 
+    //argb_8888 formatinda ve 800x600 boyutunda kaplama(texture) olusturuluyor    
     canvas = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, WindowWidth, WindowHeight);
 
     if(canvas == nullptr)
@@ -295,8 +301,8 @@ void initSDL()
         //return false;
     }
 
-    //make it pixaled
-    //SDL_SetTextureScaleMode(canvas, SDL_SCALEMODE_NEAREST);
+    //Kaplamanin piksel gorunume sahip olmasi icin
+    SDL_SetTextureScaleMode(canvas, SDL_SCALEMODE_NEAREST);
 }
 
 int main()
@@ -335,4 +341,6 @@ int main()
 }
 ```
 
-[sonraki bolum](../03-Cizimler/README.md)
+<== [onceki bolum](../01-SDL%20Kurulumu/README.md) 
+
+[sonraki bolum](../03-Cizimler/README.md) ==>

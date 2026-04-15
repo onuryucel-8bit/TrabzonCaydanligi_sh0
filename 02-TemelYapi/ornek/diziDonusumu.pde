@@ -91,6 +91,22 @@ void draw()
   strokeWeight(7);
   line(0, 32 * scale + 70, width, 32 * scale + 70);
   
+  drawTexts();
+  
+  rect(mouseX, mouseY, 5,5);  
+  
+  int posx = (int) ((mouseX - 50)  / (32 * scale) );
+  int posy = (int) ((mouseY - 200) / (32 * scale) );
+   
+  fill(200,200,200);
+  text("[y * width + x]", 350, 250);
+  text("[" + str(posy) +"* 3 + " + str(posx) + "]", 350, 300);
+  text("[" + str(posy * 3 + posx) + "]", 350, 350);  
+  
+}
+
+void drawTexts()
+{
   textSize(32);
   for(int i = 0; i < 9; i++)
   {
@@ -106,14 +122,4 @@ void draw()
   {
     text("["+ str(i) +"]", 10 , 250 + 32 * scale * i);
   }
-  rect(mouseX, mouseY, 5,5);  
-  
-  int posx = (int) ((mouseX - 50)  / (32 * scale) );
-  int posy = (int) ((mouseY - 200) / (32 * scale) );
-   
-  fill(200,200,200);
-  text("[y * width + x]", 350, 250);
-  text("[" + str(posy) +"* 3 + " + str(posx) + "]", 350, 300);
-  text("[" + str(posy * 3 + posx) + "]", 350, 350);  
-  
 }

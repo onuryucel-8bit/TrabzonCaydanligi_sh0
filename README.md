@@ -9,7 +9,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 00-Proje
 - [x] 01-SDL kurulumu
 - [x] 02-Temel yapi
-- [ ] 03-hmm biraz daha cizim ekle src? dosyasi
+- [x] 03-Piksel Cizimleri
+- [ ] 04-Cizgi Algoritmalari
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 

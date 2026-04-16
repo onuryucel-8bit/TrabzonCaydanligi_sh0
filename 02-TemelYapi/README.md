@@ -96,7 +96,9 @@ void drawColorBuffer()
 }
 
 void drawPixel(int x, int y, Color_t color)
-{        
+{   
+    //2 boyutlu dizideki piksel koordinatlarini 1 boyuta donusturup icine renk degerini atiyoruz
+    //Eger bu satir anlasilmadiysa, y * w + x donusumu ile iliskili processing ornegine bakiniz              
     colorBuffer[y * WindowWidth + x] = color;
 }
 ```
@@ -142,6 +144,10 @@ int main()
 
 ``` 
 
+<h2> </h2>
+
+Cizim ve girdi kisimlarini fonksiyonlarara ayiralim
+
 ***main.cpp***
 ```cpp
 
@@ -165,7 +171,7 @@ void inputs()
     while (SDL_PollEvent(&event))
     {
         if (event.type == SDL_EVENT_QUIT)
-        {
+         {
             f_running = false;
         }
 
@@ -196,6 +202,7 @@ int main()
 
 ***main.cpp***
 ```cpp
+//Hizlica ana renkleri yazmak icin 32bit renk enumu
 enum Color : uint32_t
 {
     BLACK = 0x0000'0000,
@@ -220,7 +227,9 @@ int draw()
     
 }
 ```
+<h2> </h2>
 
+Kodun son hali
 
 **main.cpp**
 ```cpp

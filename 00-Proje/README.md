@@ -4,6 +4,8 @@
 
 [Linux icin kurulum](Linux/README.md)
 
+[Processing](https://processing.org), proje icerisindeki bazi kisimlari aciklarken kullandigim programlari calistirmak icin yararlandigim arac (yuzeysel tanimi java + swing hizlica pencere, cizim ve girdi icin kullaniyorum)
+
 
 ## Proje Yapisi
 

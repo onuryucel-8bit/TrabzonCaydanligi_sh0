@@ -64,15 +64,24 @@ void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
     int deltaX = x1 - x0;
     int deltaY = y1 - y0;
 
-    /*
+   /*
+        =========================
         if |deltaX| >= |deltaY|
             sideLength = |deltaX|
 
         else
             sideLength = |deltaY|
+        =========================
+        
+        veya
+
+        =========================
+        sideLength = max( |deltax|, |deltay|)
+        =========================
     */
     int sideLength = abs(deltaX) >= abs(deltaY) ? abs(deltaX) : abs(deltaY);
 
+    //x,y koordinatlarinda adim sayisini hesapliyoruz
     float incX = deltaX / (float)sideLength;
     float incY = deltaY / (float)sideLength;
 

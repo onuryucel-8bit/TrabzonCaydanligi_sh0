@@ -10,7 +10,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 01-SDL kurulumu
 - [x] 02-Temel yapi
 - [x] 03-Piksel Cizimleri
-- [ ] 04-Cizgi Algoritmalari
+- [x] 04-Cizgi Algoritmalari
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 

@@ -1,14 +1,11 @@
-- DDA
+Cizgi cizdirme algoritmalari
+- DDA 
 - Bresenham
 - Xiaolin Wu
 - Gupta-Sproull 
 
 
 ```cpp
-void drawPixel(int x, int y, Color_t color)
-{
-    colorBuffer[y * WindowWidth + x] = color;
-}
 
 void drawLine(int x0, int y0, int x1, int y1, Color_t color)
 {
@@ -28,16 +25,26 @@ void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
     int deltaY = y1 - y0;
 
     /*
+        =========================
         if |deltaX| >= |deltaY|
             sideLength = |deltaX|
 
         else
             sideLength = |deltaY|
+        =========================
+        
+        veya
+
+        =========================
+        sideLength = max( |deltax|, |deltay|)
+        =========================
     */
     int sideLength = abs(deltaX) >= abs(deltaY) ? abs(deltaX) : abs(deltaY);
 
+    //x,y koordinatlarinda adim sayisini hesapliyoruz
     float incX = deltaX / (float)sideLength;
     float incY = deltaY / (float)sideLength;
+
 
     float currentX = x0;
     float currentY = y0;
@@ -72,4 +79,6 @@ void draw()
 }
 
 ```
+<== [onceki bolum](../03-Piksel%20Cizimleri/README.md)
 
+[sonraki bolum](../05-Temel%20Cizimler%20ve%20Yapi%20Guncellemesi/README.md) ==>

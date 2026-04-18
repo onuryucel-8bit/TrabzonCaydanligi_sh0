@@ -34,6 +34,11 @@ public:
 
 	void drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 	
+	/*
+	*	Merkez([x0][y0]) ucgenNoktalari( [x1][y1] [x2][y2] .... [xn][yn] )
+	*/
+	void drawTriangleFan(std::vector<int>& pointList, Color_t color);
+
 	void drawRectangle(int x, int y, int width, int height, Color_t color);
 	void drawFilledRectangle(int x, int y, int width, int height, Color_t color);
 	

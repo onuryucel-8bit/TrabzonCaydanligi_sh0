@@ -11,16 +11,14 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 02-Temel yapi
 - [x] 03-Piksel Cizimleri
 - [x] 04-Cizgi Algoritmalari
+- [x] 05-Temel Cizimler ve Yapi Guncellemesi
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
 - Yazim hatalarini duzelt
 - 00-Proje/Linux kismi eksik
+- 04-Cizgi Algoritmalari/ diger algoritmalari ekle
 
-- SDL Kurulumu
-- Temel Yapi
-- Cizgi Algoritmalari
-- Vektorler
 - Ucgen Cizimi
 - Indeks Tamponu
 - Perspektif

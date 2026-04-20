@@ -68,6 +68,26 @@ void Graphics::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Colo
     drawLine(x2, y2, x0, y0, color);
 }
 
+void Graphics::drawTriangleFan(std::vector<Vector2>& pointList, Color_t color)
+{
+    if (pointList.size() < 6)
+    {
+        return;
+    }
+
+    int mx = pointList[0].x;
+    int my = pointList[0].y;
+
+    for(int i = 1; i < pointList.size() - 1; i++)
+    {
+        drawTriangle(
+            mx, my, 
+            pointList[i].x, pointList[i].y, 
+            pointList[i + 1].x, pointList[i + 1].y, 
+            color);    
+    }
+}
+
 void Graphics::drawRectangle(int x, int y, int width, int height, Color_t color)
 {
     drawLine(x, y, x + width, y, color);

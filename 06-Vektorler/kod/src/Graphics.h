@@ -1,8 +1,10 @@
 #pragma once
 
 #include <cstdint>
+#include <vector>
 
 #include "Defs.h"
+#include "math/Vector2.h"
 
 enum Color : uint32_t
 {
@@ -34,9 +36,14 @@ public:
 
 	void drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 	
+	/*
+	*	Merkez(v0) ucgenNoktalari( v1, v2, v3, .... [vn][vn] )
+	*/
+	void drawTriangleFan(std::vector<Vector2>& pointList, Color_t color);
+	
 	void drawRectangle(int x, int y, int width, int height, Color_t color);
 	void drawFilledRectangle(int x, int y, int width, int height, Color_t color);
-	
+
 	void drawGrid(Color_t color);
 	void drawDots(Color_t color);
 	

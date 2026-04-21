@@ -1,0 +1,4 @@
+- ayri cmake dosyasi yazmam lazim
+- glut veya freeglut
+- cizgi cizdirme
+- ici bos ucgen cizdirme

@@ -1,6 +1,8 @@
 <h2>Amaç</h2> 
 software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çevirmektir
 
+...ne oldugunu acikla, half-life/quake/ eski oyunlardan ornekler yaz suraya
+
 \
 ![kup](resimler/kup.gif)
 
@@ -12,6 +14,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 03-Piksel Cizimleri
 - [x] 04-Cizgi Algoritmalari
 - [x] 05-Temel Cizimler ve Yapi Guncellemesi
+- [ ] 06-Vektorler
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 

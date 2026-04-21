@@ -114,12 +114,94 @@ void draw()
 ```
 
 <h2> </h2>
+V0.2
 
-dondurme kodunu bir sonraki basliga koy
+![donenNoktaBulutu](../resimler/NoktaBulutu.gif)
 
+```cpp
+Vector3 position(0, 0, 0);
+Vector3 scale(1.0f, 1.0f, 1.0f);
+Vector3 rotate(0, 0, 0);
+```
+
+```cpp
+void update()
+{        
+    for (size_t i = 0; i < modelPoints.size(); i++)
+    {
+        Vector3 point = modelPoints[i];
+
+        point.z -= camera.position.z;
+
+        //vektor carpimi ekle a * b operator*(...);
+        point.x = point.x * scale.x;
+        point.y = point.y * scale.y;
+        point.z = point.z * scale.z;
+
+        point = point.rotateX(rotate.x);
+        point = point.rotateY(rotate.y);
+        point = point.rotateZ(rotate.z);
+        
+
+
+        point = point + position;
+      
+        /*
+        * point = scale(point);
+        * point = rotate(point);
+        * point = translate(point);
+        */
+
+        projectedPoints[i] = project(point);
+
+        projectedPoints[i].x += rcontext.WindowWidth / 2;
+        projectedPoints[i].y += rcontext.WindowHeight / 2;
+    }
+}
+```
+
+```cpp
+void drawImgui()
+{
+    ImGui_ImplSDLRenderer3_NewFrame();
+    ImGui_ImplSDL3_NewFrame();
+    ImGui::NewFrame();
+    
+    ImGui::Begin("Kontrol Paneli");
+    
+    ImGui::Checkbox("Perspektif", &f_proj);
+
+    ImGui::NewLine();
+    ImGui::Text("fare mx,my %f , %f",mouseX , mouseY);
+
+    ImGui::SliderFloat("FOV_factor", &FOV_factor, 0, 600);
+
+    ImGui::SliderFloat("pozisyon.x", &position.x, -2, 2);
+    ImGui::SliderFloat("pozisyon.y", &position.y, -2, 2);
+    ImGui::SliderFloat("pozisyon.z", &position.z, -2, 2);
+  
+    ImGui::SliderFloat("boyut.x", &scale.x, -2, 2);
+    ImGui::SliderFloat("boyut.y", &scale.y, -2, 2);
+    ImGui::SliderFloat("boyut.z", &scale.z, -2, 2);
+
+    ImGui::SliderFloat("dondurme.x", &rotate.x, -2, 2);
+    ImGui::SliderFloat("dondurme.y", &rotate.y, -2, 2);
+    ImGui::SliderFloat("dondurme.z", &rotate.z, -2, 2);
+
+    ImGui::End();
+
+    ImGui::Render();
+    ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), rcontext.renderer);
+}
+```
+
+<h2> </h2>
+
+
+- koordinat duzlemini yazmayi unutma x-y-z sag-sol el kurali
 - dondurme
 - indeks tamponu ekle
 - obj dosya okuyucu
 - main yapisini tasi
 - derinlik siralamasi
-- eski legacy opengl ile baglantiyi anlat
+- eski legacy opengl ile baglantiyi anlat 

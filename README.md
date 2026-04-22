@@ -8,16 +8,19 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2> </h2>
 
-- [x] 00-Proje
+- [x] 00-Proje  
 - [x] 01-SDL kurulumu
 - [x] 02-Temel yapi
 - [x] 03-Piksel Cizimleri
 - [x] 04-Cizgi Algoritmalari
 - [x] 05-Temel Cizimler ve Yapi Guncellemesi
-- [ ] 06-Vektorler
+- [x] 06-Vektorler
+- [x] 07-Donen Seyler
+- [ ] 08-Imgui
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
+- 06-Vektorler ornek ekle
 - Yazim hatalarini duzelt
 - 00-Proje/Linux kismi eksik
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle

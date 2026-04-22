@@ -7,6 +7,7 @@
 
 - glad kurulumu ekle
 
+- cmake imgui/glad/glfw
 
 <h2> </h2>
 

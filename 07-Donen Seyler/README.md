@@ -1,7 +1,116 @@
+![sincos1](../resimler/sincos_1.png)
+
+Diyelimki elimizde A(ax, ay) noktasi olsun, merkez etrafinda saat yonunun tersine beta acisi kadar dondurmek istiyoruz nasil olacak bu is
+
+![sincos1](../resimler/sincos_2.png)
+
+1-) A noktasinin merkezden uzakligini trigonometrik fonksiyonlar ile bulup hesapliyoruz
+
+$$
+\begin{aligned}
+\large \sin(\alpha) = \frac{a_y}{R} \ \ \ => \ \ \ \large R * \sin(\alpha)= a_y
+\\                                    
+\large \cos(\alpha) = \frac{a_x}{R} \ \ \ => \ \ \ \large R * \cos(\alpha)= a_x 
+\end{aligned}
+$$
+
+![sincos1](../resimler/sincos_3.png)
+
+2-) 1.adimdaki ayni islem sadece A noktasinin acisina donus acisi(beta) ekleyerek uzakligi buluyoruz
+
+$$
+\begin{aligned}
+\large \sin(\alpha + \beta) = \frac{b_y}{R} \ \ \ => \ \ \ \large R * \sin(\alpha + \beta)  = b_y \\
+\\                                    
+\large \cos(\alpha + \beta) = \frac{b_x}{R} \ \ \ => \ \ \ \large R * \cos(\alpha + \beta)  = b_x \\
+\end{aligned}
+$$
+
+![sincos1](../resimler/sincos_4.png)
+
+<h2> </h2>
+
+[İspat: Kosinüs Açı Toplam Formülü](https://www.youtube.com/watch?v=SDLosQvgrns)
+
+[İspat: Sinüs Açı Toplam Formülü](https://www.youtube.com/watch?v=Ihz4-rAyW04)
+$$
+\begin{aligned}
+\large \sin(\alpha + \beta) = \sin(\alpha)\cos(\beta) + \cos(\alpha)\sin(\beta)
+\\
+\\
+\large \cos(\alpha + \beta) = \cos(\alpha)\cos(\beta) - \sin(\alpha)\sin(\beta)
+\end{aligned}
+$$
+
+<h2> </h2>
+
+Yukardaki sin cos toplam formullerini kullanarak denklemi acarsak
+
+$$
+\begin{aligned}
+
+\large b_x &= R * \cos(\alpha + \beta)\\
+\\
+\large b_x &= R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\
+\\
+\large b_x &= R\cos(\alpha)\cos(\beta) - R\sin(\alpha)\sin(\beta)\\
+\end{aligned}
+$$
+
+yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
+
+$$
+\begin{aligned}
+--&-------
+\\
+\large a_x &= R * \cos(\alpha)\\
+\large a_y &= R * \sin(\alpha)\\ 
+--&-------
+\\
+\large b_x &= a_x\cos(\beta) - a_y\sin(\beta)\\
+
+\end{aligned}
+$$
+
+A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine donduren formulu elde etmis oluruz
+
+$$
+\begin{aligned}
+
+\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
+\large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
+
+\end{aligned}
+$$
+
+$$
+
+\begin{bmatrix}
+b_x \\
+b_y
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+\cos(\beta) & -\sin(\beta) \\
+\sin(\beta) & \cos(\beta)
+\end{bmatrix}
+
+\begin{bmatrix}
+a_x \\
+a_y
+\end{bmatrix}
+
+$$
+
+ 
+
+<h2> </h2>
+
 ![donenNokta](../resimler/donenNokta.gif)
 
 #### [desmos ucgen ornegi](https://www.desmos.com/calculator/cemr6p7ctp)
-
 
 **main.cpp**
 ```cpp

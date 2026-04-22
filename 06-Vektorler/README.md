@@ -36,11 +36,12 @@ int dusmanCan = 100;
 Vector2 oyuncuYon(1, 0);
 Vector2 dusmanYon(1, 0);
 
+//sonuc = a.x * b.x + a.y * b.y
 float sonuc = oyuncu.dot(dusmanYon);
 
 if(sonuc > 0.0f)
 {
-    can = 0;
+    dusmanCan = 0;
     //diger zimbirtilar animasyon, ses vb. cagrimlari
 }
 

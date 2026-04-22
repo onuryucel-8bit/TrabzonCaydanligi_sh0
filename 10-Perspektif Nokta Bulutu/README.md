@@ -1,3 +1,6 @@
+<h2> </h2>
+
+***v0.1***
 ![nokta bulutu](../resimler/2026-04-20%2021-34-37.png)
 
 
@@ -114,7 +117,8 @@ void draw()
 ```
 
 <h2> </h2>
-V0.2
+
+***v0.2***
 
 ![donenNoktaBulutu](../resimler/NoktaBulutu.gif)
 
@@ -197,6 +201,17 @@ void drawImgui()
 
 <h2> </h2>
 
+***V0.3***
+
+cizgiler ile kup cizimi
+
+![cizgikup](../resimler/cizgiKup.gif)
+
+
+<h2> </h2>
+ucgenler ile kup cizimi
+
+<h2> </h2>
 
 - koordinat duzlemini yazmayi unutma x-y-z sag-sol el kurali
 - dondurme

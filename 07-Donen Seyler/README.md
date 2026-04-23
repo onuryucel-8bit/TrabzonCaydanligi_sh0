@@ -33,6 +33,8 @@ $$
 [İspat: Kosinüs Açı Toplam Formülü](https://www.youtube.com/watch?v=SDLosQvgrns)
 
 [İspat: Sinüs Açı Toplam Formülü](https://www.youtube.com/watch?v=Ihz4-rAyW04)
+
+
 $$
 \begin{aligned}
 \large \sin(\alpha + \beta) = \sin(\alpha)\cos(\beta) + \cos(\alpha)\sin(\beta)

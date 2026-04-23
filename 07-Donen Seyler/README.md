@@ -63,6 +63,7 @@ $$
 
 yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
 
+<br>
 
 $$
 \begin{aligned}
@@ -77,6 +78,7 @@ $$
 \end{aligned}
 $$
 
+<br>
 
 A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine donduren formulu elde etmis oluruz
 

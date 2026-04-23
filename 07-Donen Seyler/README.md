@@ -99,28 +99,7 @@ $$
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 
-$$
-\large
-
-\begin{bmatrix}
-b_x \\
-b_y
-\end{bmatrix}
-=
-
-\begin{bmatrix}
-\cos(\beta) & -\sin(\beta) \\
-\sin(\beta) & \cos(\beta)
-\end{bmatrix}
-
-\begin{bmatrix}
-a_x \\
-a_y
-\end{bmatrix}
-$$
-
-
-=====
+![mt](../resimler/CodeCogsEqn%20.png)
 
 <h2> </h2>
 

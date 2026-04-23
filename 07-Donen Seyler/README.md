@@ -79,6 +79,8 @@ $$
 $$
 ------------
 
+<br>
+
 $$
 \large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
 $$
@@ -95,9 +97,10 @@ $$
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 
+<h2> </h2>
+<br>
 
 $$
-
 \begin{bmatrix}
 b_x \\
 b_y
@@ -114,12 +117,11 @@ b_y
 a_x \\
 a_y
 \end{bmatrix}
-
 $$
 
 
  
-
+<br>
 <h2> </h2>
 
 ![donenNokta](../resimler/donenNokta.gif)

@@ -100,7 +100,7 @@ $$
 $$
 
 <h2> </h2>
-<br>
+
 
 $$
 \begin{bmatrix}
@@ -122,8 +122,6 @@ a_y
 $$
 
 
- 
-<br>
 <h2> </h2>
 
 ![donenNokta](../resimler/donenNokta.gif)

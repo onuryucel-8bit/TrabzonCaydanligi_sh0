@@ -50,14 +50,19 @@ Yukardaki sin cos toplam formullerini kullanarak denklemi acarsak
 
 
 $$
-\begin{aligned}
+\large
+b_x = R * \cos(\alpha + \beta)\\
+$$
 
-\large b_x &= R * \cos(\alpha + \beta)\\
-\\
-\large b_x &= R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\
-\\
-\large b_x &= R\cos(\alpha)\cos(\beta) - R\sin(\alpha)\sin(\beta)\\
-\end{aligned}
+$$
+\large
+b_x = R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\
+$$
+
+$$
+\large
+b_x = R\cos(\alpha)\cos(\beta) - R\sin(\alpha)\sin(\beta)\\
+
 $$
 
 

@@ -48,18 +48,24 @@ $$
 
 Yukardaki sin cos toplam formullerini kullanarak denklemi acarsak
 
+<br>
 
 $$
 \large
-b_x = R * \cos(\alpha + \beta)\\[5pt]
+b_x = R * \cos(\alpha + \beta)\\
+$$
 
+$$
 \large
-b_x = R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\[5pt]
+b_x = R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\
+$$
 
+$$
 \large
 b_x = R\cos(\alpha)\cos(\beta) - R\sin(\alpha)\sin(\beta)\\
 $$
 
+<br>
 
 yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
 
@@ -79,7 +85,7 @@ A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine do
 
 
 $$
-\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\[3pt]
+\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 

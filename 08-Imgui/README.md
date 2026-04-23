@@ -1,4 +1,8 @@
+<h2> imgui kurulumu</h2>
+
 https://github.com/ocornut/imgui/releases/tag/v1.92.7-docking
+
+imgui indirip libsLocal icine yerlestiriyoruz
 
 ```
 |-libsLocal
@@ -8,6 +12,8 @@ https://github.com/ocornut/imgui/releases/tag/v1.92.7-docking
 ```
 
 **imgui-docking/CMakeLists.txt**
+
+Olusturmus oldugumuz bu cmake dosyasini imgui-docking/ icine yerlestirip ana cmake dosyasindan cagriyoruz
 
 ```cmake
 cmake_minimum_required(VERSION 3.15...4.0)
@@ -31,6 +37,9 @@ target_link_libraries(imgui PUBLIC SDL3::SDL3)
 ```
 
 ***Proje/CMakeLists.txt***
+
+imgui kutuphanesini projeye ekliyoruz
+
 ```cmake
 # 3.15 - 4.0 versiyon araliginda cmake varsa calistir
 cmake_minimum_required(VERSION 3.15...4.0)
@@ -75,6 +84,8 @@ target_link_libraries(${PROJECT_NAME}
 #=====================================================================#
 #=====================================================================#
 ```
+
+<h2> Imgui deneme</h2>
 
 ```cpp
 int main()

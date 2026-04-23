@@ -16,7 +16,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 05-Temel Cizimler ve Yapi Guncellemesi
 - [x] 06-Vektorler
 - [x] 07-Donen Seyler
-- [ ] 08-Imgui
+- [x] 08-Imgui
+- [ ] 09-
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
@@ -27,7 +28,6 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 - Ucgen Cizimi
 - Indeks Tamponu
-- Perspektif
 - OBJ Dosyasi
 - Derinlik
 - Kaplamalar

@@ -72,10 +72,13 @@ yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirs
 $$
 ------------\\
 \large a_x = R * \cos(\alpha)\\[3pt]
+$$
 
+$$
 \large a_y = R * \sin(\alpha)\\ 
 ------------\\
-
+$$
+$$
 \large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
 $$
 
@@ -86,6 +89,8 @@ A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine do
 
 $$
 \large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
+$$
+$$
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 

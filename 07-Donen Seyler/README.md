@@ -48,6 +48,7 @@ $$
 
 Yukardaki sin cos toplam formullerini kullanarak denklemi acarsak
 
+
 $$
 \begin{aligned}
 
@@ -59,7 +60,9 @@ $$
 \end{aligned}
 $$
 
+
 yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
+
 
 $$
 \begin{aligned}
@@ -74,7 +77,9 @@ $$
 \end{aligned}
 $$
 
+
 A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine donduren formulu elde etmis oluruz
+
 
 $$
 \begin{aligned}
@@ -84,6 +89,7 @@ $$
 
 \end{aligned}
 $$
+
 
 $$
 
@@ -105,6 +111,7 @@ a_y
 \end{bmatrix}
 
 $$
+
 
  
 

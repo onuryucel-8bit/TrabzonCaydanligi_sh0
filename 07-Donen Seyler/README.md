@@ -107,7 +107,9 @@ $$
 b_x \\
 b_y
 \end{bmatrix}
+$$
 
+$$
 =
 
 \begin{bmatrix}

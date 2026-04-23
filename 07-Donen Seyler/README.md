@@ -51,36 +51,26 @@ Yukardaki sin cos toplam formullerini kullanarak denklemi acarsak
 
 $$
 \large
-b_x = R * \cos(\alpha + \beta)\\
-$$
+b_x = R * \cos(\alpha + \beta)\\[5pt]
 
-$$
 \large
-b_x = R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\
-$$
+b_x = R * (\cos(\alpha)\cos(\beta) - \cos(\alpha)\sin(\beta))\\[5pt]
 
-$$
 \large
 b_x = R\cos(\alpha)\cos(\beta) - R\sin(\alpha)\sin(\beta)\\
-
 $$
 
 
 yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
 
-<br>
-
 $$
-\begin{aligned}
---&-------
-\\
-\large a_x &= R * \cos(\alpha)\\
-\large a_y &= R * \sin(\alpha)\\ 
---&-------
-\\
-\large b_x &= a_x\cos(\beta) - a_y\sin(\beta)\\
+------------\\
+\large a_x = R * \cos(\alpha)\\[3pt]
 
-\end{aligned}
+\large a_y = R * \sin(\alpha)\\ 
+------------\\
+
+\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
 $$
 
 <br>
@@ -89,12 +79,8 @@ A noktasini ve donus acisini verdigimizde noktamizi alip saat yonunun tersine do
 
 
 $$
-\begin{aligned}
-
-\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\
+\large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\[3pt]
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
-
-\end{aligned}
 $$
 
 

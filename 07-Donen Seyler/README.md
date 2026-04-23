@@ -69,17 +69,19 @@ $$
 
 yukarda A noktasi icin bulmus oldugumuz degerleri (x0 ve y0) yerine yerlestirirsek
 
-------------
+<h2> </h2>
+
 $$
 \large a_x = R * \cos(\alpha)\\
 $$
 
 $$
-\large a_y = R * \sin(\alpha)\\ 
+\large a_y = R * \sin(\alpha)\\
 $$
-------------
 
-<br>
+<h2> </h2>
+
+
 
 $$
 \large b_x = a_x\cos(\beta) - a_y\sin(\beta)\\

@@ -99,17 +99,13 @@ $$
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 
-<h2> </h2>
-
-
 $$
+\large
+
 \begin{bmatrix}
 b_x \\
 b_y
 \end{bmatrix}
-$$
-
-$$
 =
 
 \begin{bmatrix}
@@ -123,6 +119,8 @@ a_y
 \end{bmatrix}
 $$
 
+
+=====
 
 <h2> </h2>
 

@@ -18,16 +18,18 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 07-Donen Seyler
 - [x] 08-Imgui
 - [ ] 09-Perspektif ve Nokta Bulutu
-- [ ] 10-OBJ dosyasi
-- [ ] 11-ShaderToy ?
+- [ ] 10-Kup Cizimi
+- [ ] 11-OBJ dosyasi
+- [ ] 12-Delta-t (update(dt))
 
 - bolum 2?
 
+- [ ] 12-ShaderToy ?
 - [ ] 11-ImguiV0.2 (cmake guncelleme)
 - [ ] 12-OpenGL ile Basit Cizimler
 - [ ] 13-Ici Dolu Ucgen Cizimi
 - [ ] 14-Donen Kup
-- [ ] 15-Derinlik (Backface Culling)
+- [ ] 15-Arka Yuzey Elemesi(Backface Culling)
 - [ ] 16-Isik
 - [ ] 17-Kamera
 - [ ] 18-GLM

@@ -170,7 +170,7 @@ void inputs()
 
 <h2>Kontrol Paneli </h2>
 
-![](../resimler/2026-04-13%2013-49-30.png)
+![](resimler/2026-04-13%2013-49-30.png)
 
 
 ```

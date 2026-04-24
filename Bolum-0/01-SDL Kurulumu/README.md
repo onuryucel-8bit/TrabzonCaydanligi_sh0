@@ -9,7 +9,7 @@ https://github.com/libsdl-org/SDL/releases
 \
 ***SDL dosyasi***
 \
-![sdl_kurulum](../resimler/SDL_dosya.png)
+![sdl_kurulum](resimler/SDL_dosya.png)
 
 <h4> Proje yapisi </h4>
 

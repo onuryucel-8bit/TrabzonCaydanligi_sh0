@@ -10,11 +10,7 @@ while(f_running)
 }
 ```
 
-
-kareler arası geçen süre
-$$
-\Delta t
-$$
+Kareler arası geçen süre Delta t
 
 ```cpp
 uti::Timer timer;

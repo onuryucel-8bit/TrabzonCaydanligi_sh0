@@ -9,7 +9,7 @@
 
 ## Proje Yapisi
 
-![projeYapisi](../resimler/projeY.png)
+![projeYapisi](resimler/projeY.png)
 
 ***Sekil 0.1***
 
@@ -51,7 +51,7 @@ add_executable(${PROJECT_NAME} ${MY_SOURCES})
 
 ```
 
-![projeAcilimi](../resimler/Adsız.png)
+![projeAcilimi](resimler/Adsız.png)
 
 Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.
 

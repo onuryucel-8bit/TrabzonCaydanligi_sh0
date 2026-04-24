@@ -40,7 +40,7 @@ int main()
 
 ```
 
-![renk](../resimler/anim_t3.png)
+![renk](resimler/anim_t3.png)
 
 
 ***main.cpp***

@@ -1,1 +1,1 @@
-![modeller](../resimler/modeller.gif)
+![modeller](resimler/modeller.gif)

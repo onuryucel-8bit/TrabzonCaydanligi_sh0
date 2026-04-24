@@ -11,7 +11,7 @@
 
 <h2> </h2>
 
-![openglCizgiCizimi](../resimler/2026-04-22%2008-58-03.png)
+![openglCizgiCizimi](resimler/2026-04-22%2008-58-03.png)
 
 - cizgi cizdirme
 
@@ -37,7 +37,7 @@ void draw()
 
 - ici bos ucgen cizdirme
 
-![ucgen](../resimler/2026-04-22%2009-04-29.png)
+![ucgen](resimler/2026-04-22%2009-04-29.png)
 
 ```cpp
 void draw()

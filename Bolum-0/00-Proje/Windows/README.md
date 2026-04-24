@@ -1,6 +1,6 @@
 **Gerekli araclar**
 
-![cmake](../../resimler/cmake_0.png)
+![cmake](../resimler/cmake_0.png)
 
 ***sekil 0.0***
 
@@ -9,7 +9,7 @@
 - cmake https://cmake.org/download/
      linke tiklayip cmake i kuruyoruz (Windows icin PATH eklenmesi gerekmektedir)
 
-![cmakePATH](../../resimler/2026-04-09%2010-28-42.png)
+![cmakePATH](../resimler/2026-04-09%2010-28-42.png)
 
 - makefile/ninja
   https://chocolatey.org/install

@@ -17,7 +17,7 @@ $$
 \large \text{Nokta çarpımı} = \large a \cdot b = a_x b_x + a_y b_y
 $$
 
-![noktaCarpimi](../resimler/noktaCarpimi.png)
+![noktaCarpimi](resimler/noktaCarpimi.png)
 
 <h2> </h2>
 - Nokta carpimi iki vektor arasindaki yon iliskisini verir. Eger vektorler ayni yone(dar aci ile) bakiyorsa sonuc pozitif
@@ -46,16 +46,16 @@ if(sonuc > 0.0f)
 }
 
 ```
-![a.b](../resimler/ornekab.png)
+![a.b](resimler/ornekab.png)
 
 [tf2 arkadan bicaklama mekanigi](https://wiki.teamfortress.com/wiki/Backstab)
 
 <h2> </h2>
 - yaris pisti ornegi
 
-![araba](../resimler/Araba.png)
+![araba](resimler/Araba.png)
 
-![arabaUst](../resimler/ArabaUst.png)
+![arabaUst](resimler/ArabaUst.png)
 
 <h2> </h2>
 - nfs2 underground drift

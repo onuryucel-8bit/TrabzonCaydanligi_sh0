@@ -19,7 +19,7 @@ for (size_t x = 0; x < WindowWidth; x++)
 
 ```
 
-![xorKaplama](../resimler/Adsız3.png)
+![xorKaplama](resimler/Adsız3.png)
 
 ```cpp
 
@@ -40,7 +40,7 @@ for (size_t x = 0; x < WindowWidth; x++)
  }
 ```
 
-![sinxy](../resimler/2026-04-10%2014-05-51.png)
+![sinxy](resimler/2026-04-10%2014-05-51.png)
 
 ```cpp
 
@@ -55,7 +55,7 @@ for (int y = 0; y < rcontext.WindowHeight; y++)
 
 ```
 
-![](../resimler/2026-04-16%2020-16-53.png)
+![](resimler/2026-04-16%2020-16-53.png)
 
 ```cpp
 for (int y = 0; y < rcontext.WindowHeight; y++) 
@@ -68,7 +68,7 @@ for (int y = 0; y < rcontext.WindowHeight; y++)
 }
 ```
 
-![](../resimler/2026-04-16%2020-18-13.png)
+![](resimler/2026-04-16%2020-18-13.png)
 
 ```cpp
 for (int y = 0; y < rcontext.WindowHeight; y++) 
@@ -81,7 +81,7 @@ for (int y = 0; y < rcontext.WindowHeight; y++)
 }
 ```
 
-![](../resimler/2026-04-16%2020-19-45.png)
+![](resimler/2026-04-16%2020-19-45.png)
 
 ```cpp
 
@@ -96,7 +96,7 @@ for (int y = 0; y < rcontext.WindowHeight; y++)
 
 ```
 
-![](../resimler/2026-04-16%2020-21-40.png)
+![](resimler/2026-04-16%2020-21-40.png)
 
 <== [onceki bolum](../02-TemelYapi/README.md)
 

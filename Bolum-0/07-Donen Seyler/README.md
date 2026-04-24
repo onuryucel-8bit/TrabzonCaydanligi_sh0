@@ -1,8 +1,8 @@
-![sincos1](../resimler/sincos_1.png)
+![sincos1](resimler/sincos_1.png)
 
 Diyelimki elimizde A(ax, ay) noktasi olsun, merkez etrafinda saat yonunun tersine beta acisi kadar dondurmek istiyoruz nasil olacak bu is
 
-![sincos1](../resimler/sincos_2.png)
+![sincos1](resimler/sincos_2.png)
 
 1-) A noktasinin merkezden uzakligini trigonometrik fonksiyonlar ile bulup hesapliyoruz
 
@@ -14,7 +14,7 @@ $$
 \end{aligned}
 $$
 
-![sincos1](../resimler/sincos_3.png)
+![sincos1](resimler/sincos_3.png)
 
 2-) 1.adimdaki ayni islem sadece A noktasinin acisina donus acisi(beta) ekleyerek uzakligi buluyoruz
 
@@ -26,7 +26,7 @@ $$
 \end{aligned}
 $$
 
-![sincos1](../resimler/sincos_4.png)
+![sincos1](resimler/sincos_4.png)
 
 <h2> </h2>
 
@@ -99,11 +99,11 @@ $$
 \large b_y = a_x\sin(\beta) + a_y\cos(\beta)\\
 $$
 
-![mt](../resimler/CodeCogsEqn%20.png)
+![mt](resimler/CodeCogsEqn%20.png)
 
 <h2> </h2>
 
-![donenNokta](../resimler/donenNokta.gif)
+![donenNokta](resimler/donenNokta.gif)
 
 #### [desmos ucgen ornegi](https://www.desmos.com/calculator/cemr6p7ctp)
 
@@ -144,7 +144,7 @@ void update()
     alfa = degToRad(alfa);
 }
 ```
-![donenUcgen](../resimler/donenUcgen.gif)
+![donenUcgen](resimler/donenUcgen.gif)
 
 ```cpp
 

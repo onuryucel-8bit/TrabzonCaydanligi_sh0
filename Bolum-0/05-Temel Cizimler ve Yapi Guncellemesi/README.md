@@ -44,12 +44,12 @@ struct RenderContext
 - Graphics: piksel, cizgi cizme, ucgen cizme ve benzeri grafiksel fonksiyonlarin bulundugu yapi olacaktir
 
 \
-![yapi](../resimler/yapi.png)
+![yapi](resimler/yapi.png)
 
 
 <h2>Cizimler</h2>
 
-![ucgen](../resimler/2026-04-10%2021-16-43.png)
+![ucgen](resimler/2026-04-10%2021-16-43.png)
 
 ```cpp
 /*
@@ -71,7 +71,7 @@ void Graphics::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Colo
 
 ```
 
-![kare](../resimler/2026-04-10%2021-29-09.png)
+![kare](resimler/2026-04-10%2021-29-09.png)
 
 ```cpp
 /*
@@ -91,7 +91,7 @@ void Graphics::drawRectangle(int x, int y, int width, int height, Color_t color)
 }
 ```
 
-![ici dolu kare](../resimler/2026-04-10%2021-35-36.png
+![ici dolu kare](resimler/2026-04-10%2021-35-36.png
 )
 
 ```cpp
@@ -109,7 +109,7 @@ void Graphics::drawFilledRectangle(int x, int y, int width, int height, Color_t 
 
 ```
 
-![yelpaze](../resimler/2026-04-18%2015-32-08.png)
+![yelpaze](resimler/2026-04-18%2015-32-08.png)
 
 ```cpp
 

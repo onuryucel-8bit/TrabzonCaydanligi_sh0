@@ -15,7 +15,7 @@ void drawLine(int x0, int y0, int x1, int y1, Color_t color)
 
 <h2> DDA algoritmasi </h2>
 
-![cizgi](../resimler/2026-04-10%2020-28-49.png)
+![cizgi](resimler/2026-04-10%2020-28-49.png)
 
 ```cpp
 

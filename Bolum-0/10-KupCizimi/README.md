@@ -1,2 +1,2 @@
-![donenkup](../resimler/donenkup_2.gif)
+![donenkup](resimler/donenkup_2.gif)
 

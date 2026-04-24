@@ -17,7 +17,22 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 06-Vektorler
 - [x] 07-Donen Seyler
 - [x] 08-Imgui
-- [ ] 09-
+- [ ] 09-Perspektif ve Nokta Bulutu
+- [ ] 10-OBJ dosyasi
+- [ ] 11-ShaderToy ?
+
+- bolum 2?
+
+- [ ] 11-ImguiV0.2 (cmake guncelleme)
+- [ ] 12-OpenGL ile Basit Cizimler
+- [ ] 13-Ici Dolu Ucgen Cizimi
+- [ ] 14-Donen Kup
+- [ ] 15-Derinlik (Backface Culling)
+- [ ] 16-Isik
+- [ ] 17-Kamera
+- [ ] 18-GLM
+- [ ] 19-Kaplamalar
+
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
@@ -25,11 +40,3 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - Yazim hatalarini duzelt
 - 00-Proje/Linux kismi eksik
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle
-
-- Ucgen Cizimi
-- Indeks Tamponu
-- OBJ Dosyasi
-- Derinlik
-- Kaplamalar
-- GLM
-- Isik

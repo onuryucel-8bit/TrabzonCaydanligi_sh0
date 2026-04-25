@@ -1,7 +1,16 @@
+![perspektif_1](resimler/perspektif_1.png)
+
+<h2>Noktanin Ekrana Izdusumu</h2>
+
+![pers_2](resimler/perspektif_2.png)
+![pers_3](resimler/perspektif_3.png)
+![pers_4](resimler/perspektif_4.png)
+
+
 <h2> </h2>
 
 ***v0.1***
-![nokta bulutu](../resimler/2026-04-20%2021-34-37.png)
+![nokta bulutu](resimler/2026-04-20%2021-34-37.png)
 
 
 nokta koordinalari yukleniyor
@@ -120,7 +129,7 @@ void draw()
 
 ***v0.2***
 
-![donenNoktaBulutu](../resimler/NoktaBulutu.gif)
+![donenNoktaBulutu](resimler/NoktaBulutu.gif)
 
 ```cpp
 Vector3 position(0, 0, 0);
@@ -205,7 +214,7 @@ void drawImgui()
 
 cizgiler ile kup cizimi
 
-![cizgikup](../resimler/cizgiKup.gif)
+![cizgikup](resimler/cizgiKup.gif)
 
 
 <h2> </h2>

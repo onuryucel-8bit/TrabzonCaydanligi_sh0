@@ -3,6 +3,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 ...ne oldugunu acikla, half-life/quake/ eski oyunlardan ornekler yaz suraya
 
+
 \
 ![kup](resimler/kup.gif)
 

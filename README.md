@@ -7,6 +7,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 \
 ![kup](resimler/kup.gif)
 
+![donenElma](resimler/donenElma.gif)
+
 <h2> </h2>
 
 - [x] 00-Proje  
@@ -39,6 +41,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
+- kodlari kontrol et gereksiz kisimlari cikart
+- baku/ dosyalarini atmayi unutma
 - 06-Vektorler ornek ekle
 - Yazim hatalarini duzelt
 - 00-Proje/Linux kismi eksik

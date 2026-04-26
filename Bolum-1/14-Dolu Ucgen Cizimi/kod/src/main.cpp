@@ -47,7 +47,8 @@ enum RenderMode
 {
     RENDER_WIREFRAME,
     RENDER_VERTEX,
-    RENDER_WIREFRAME_VERTEX
+    RENDER_WIREFRAME_VERTEX,
+    RENDER_FILLED
 };
 
 enum class CullMode
@@ -453,6 +454,7 @@ void drawImgui()
 
     ImGui::RadioButton("Wireframe", (int*)&currentRenderMode, (int)RenderMode::RENDER_WIREFRAME);
     ImGui::RadioButton("vertex", (int*)&currentRenderMode, (int)RenderMode::RENDER_VERTEX);
+    ImGui::RadioButton("filled", (int*)&currentRenderMode, (int)RenderMode::RENDER_FILLED);
     ImGui::RadioButton("vertexWireframe", (int*)&currentRenderMode, (int)RenderMode::RENDER_WIREFRAME_VERTEX);
     ImGui::RadioButton("cull", (int*)&cullmode, (int)CullMode::NONE);
     ImGui::RadioButton("cull active", (int*)&cullmode, (int)CullMode::ACTIVE);
@@ -519,6 +521,18 @@ void draw()
     {
         switch (currentRenderMode)
         {
+        case RenderMode::RENDER_FILLED:
+            gp.drawFilledTriangle(
+                renderTrigs[i].points[0].x,
+                renderTrigs[i].points[0].y,
+                renderTrigs[i].points[1].x,
+                renderTrigs[i].points[1].y,
+                renderTrigs[i].points[2].x,
+                renderTrigs[i].points[2].y,
+                Color::GREEN
+            );
+            break;
+
         case RenderMode::RENDER_WIREFRAME:
             gp.drawTriangle(
                 renderTrigs[i].points[0].x,
@@ -530,6 +544,7 @@ void draw()
                 Color::GREEN
             );
             break;
+
         case RenderMode::RENDER_VERTEX:
             gp.drawRectangle(renderTrigs[i].points[0].x, renderTrigs[i].points[0].y, 1, 1, Color::BLUE);
             gp.drawRectangle(renderTrigs[i].points[1].x, renderTrigs[i].points[1].y, 1, 1, Color::BLUE);
@@ -560,7 +575,7 @@ void draw()
 
     
 
-   
+    //gp.drawFilledTriangle(100, 100, 150, 130, 80, 150, Color::GREEN);
 
     
 

@@ -1,0 +1,1 @@
+![doluUcgen](resimler/ucgenler.gif)

@@ -1,0 +1,1 @@
+![renklikup](resimler/renkliKup.gif)

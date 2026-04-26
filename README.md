@@ -29,16 +29,17 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 - [ ] 13-ObjLoader
 - [ ] 14-Arka Yuzey Elemesi(Backface Culling)
-- [ ] 15-Derinlik
+- [ ] 15-Ici Dolu Ucgen Cizimi
+- [ ] 16-Derinlik
+- [ ] 17-Renkli Kup(Materyaller)
+- [ ] 18-OpenGL ile Basit Cizimler
+- [ ] 19-Isik
+- [ ] 20-Kamera
+
+
 
 - [ ] 12-ShaderToy ?
 - [ ] 11-ImguiV0.2 (cmake guncelleme)
-- [ ] 12-OpenGL ile Basit Cizimler
-- [ ] 13-Ici Dolu Ucgen Cizimi
-- [ ] 14-Donen Kup
-
-- [ ] 16-Isik
-- [ ] 17-Kamera
 - [ ] 18-GLM
 - [ ] 19-Kaplamalar
 

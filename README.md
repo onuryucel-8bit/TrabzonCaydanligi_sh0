@@ -27,12 +27,16 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 - bolum 2?
 
+- [ ] 13-ObjLoader
+- [ ] 14-Arka Yuzey Elemesi(Backface Culling)
+- [ ] 15-Derinlik
+
 - [ ] 12-ShaderToy ?
 - [ ] 11-ImguiV0.2 (cmake guncelleme)
 - [ ] 12-OpenGL ile Basit Cizimler
 - [ ] 13-Ici Dolu Ucgen Cizimi
 - [ ] 14-Donen Kup
-- [ ] 15-Arka Yuzey Elemesi(Backface Culling)
+
 - [ ] 16-Isik
 - [ ] 17-Kamera
 - [ ] 18-GLM

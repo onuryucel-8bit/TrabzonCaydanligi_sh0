@@ -1,0 +1,1 @@
+![arkayuzeleme](resimler/arkaYuzEleme.gif)

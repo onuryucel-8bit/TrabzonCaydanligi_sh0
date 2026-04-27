@@ -52,3 +52,26 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - Yazim hatalarini duzelt
 - 00-Proje/Linux kismi eksik
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle
+
+<h2>kaynakca</h2>
+
+https://gabrielgambetta.com/computer-graphics-from-scratch/
+
+https://www.youtube.com/watch?v=qRdjl7oj9Mo
+
+https://www.youtube.com/watch?v=nvWDgBGcAIM
+
+https://learnopengl.com/Introduction
+
+https://natethegreat2525.github.io/projects/software_renderer/main/
+
+https://www.youtube.com/watch?v=LmQKZmQh1ZQ&list=PLpM-Dvs8t0Va-Gb0Dp4d9t8yvNFHaKH6N
+
+https://github.com/ssloy/tinyrenderer
+
+https://pikuma.com/courses/learn-3d-computer-graphics-programming
+
+https://www.scratchapixel.com
+
+https://www.youtube.com/watch?v=qSrGbVxCYeo&list=WL&index=5&t=505s
+

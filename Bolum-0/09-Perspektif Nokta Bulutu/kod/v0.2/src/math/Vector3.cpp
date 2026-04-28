@@ -38,6 +38,12 @@ Vector3 Vector3::operator/(float s)
 	return Vector3(x / s, y / s, z / s);
 }
 
+
+float Vector3::length()
+{
+	return std::sqrt(x * x + y * y + z * z);
+}
+
 Vector3 Vector3::rotateX(float alfa)
 {
 	return Vector3
@@ -52,9 +58,9 @@ Vector3 Vector3::rotateY(float alfa)
 {
 	return Vector3
 	(
-		x * cos(alfa) - z * sin(alfa),
+		x * cos(alfa) + z * sin(alfa),
 		y,
-		x * sin(alfa) + z * cos(alfa)
+		x * -sin(alfa) + z * cos(alfa)
 	);
 }
 
@@ -67,13 +73,6 @@ Vector3 Vector3::rotateZ(float alfa)
 		z
 	);
 }
-
-
-float Vector3::length()
-{
-	return std::sqrt(x * x + y * y + z * z);
-}
-
 
 void Vector3::normalize()
 {

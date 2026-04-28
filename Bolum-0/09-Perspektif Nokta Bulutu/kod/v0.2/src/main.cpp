@@ -21,14 +21,28 @@ ImGuiIO* io;
 
 struct Camera
 {
+    //Kamerayi kup bulutundan 3 birim geriye aliyoruz
     Vector3 position = {0.0f, 0.0f, -3.0f};
-    //float alfa = 0.0f;
+    float FOV_factor = 300;
 };
 
 Camera camera;
 
+Vector3 position(0, 0, 0);
+Vector3 scale(1.0f, 1.0f, 1.0f);
+Vector3 rotate(0, 0, 0);
+
+Color_t cubeColor = Color::WHITE;
+
 bool f_running = true;
-bool f_proj = true;
+
+enum class ProjectMod
+{
+    Ortho,
+    Perspective
+};
+
+ProjectMod projectMod = ProjectMod::Perspective;
 
 //====================================//
 float mouseX = 0, mouseY = 0;
@@ -38,20 +52,20 @@ int screenWidth, screenHeight;
 
 std::vector<Vector3> modelPoints;
 std::vector<Vector2> projectedPoints;
- 
-float FOV_factor = 300;
 
-Vector3 position(0, 0, 0);
-Vector3 scale(1.0f, 1.0f, 1.0f);
-Vector3 rotate(0, 0, 0);
+void loadCube(float inc)
+{   
+    modelPoints.clear();
 
-void loadCube(Vector3 position, float inc)
-{
-    for (float z = position.z; z <= 1.0f; z += inc)
+    float incz = inc;
+    float incy = inc;
+    float incx = inc;
+
+    for (float z = -1; z <= 1.0f; z += incz)
     {
-        for (float y = position.y; y <= 1.0f; y += inc)
+        for (float y = -1; y <= 1.0f; y += incy)
         {
-            for (float x = position.x; x <= 1.0f; x+= inc)
+            for (float x = -1; x <= 1.0f; x+= incx)
             {
                 Vector3 vec(x, y, z);
 
@@ -63,10 +77,12 @@ void loadCube(Vector3 position, float inc)
 
 Vector2 projectOrtho(Vector3 vec)
 {
+    //FOV_factor: gelen koordinatlar -1,1 gibi dar bir aralikta olucagi icin
+    //bu degerleri ekrana uygun sekilde buyutmemiz gerekiyor
     return Vector2
     { 
-        vec.x * FOV_factor,
-        vec.y * FOV_factor
+        vec.x * camera.FOV_factor,
+        vec.y * camera.FOV_factor
     };
 }
 
@@ -74,29 +90,18 @@ Vector2 projectPerspective(Vector3 vec)
 {
     return Vector2
     {
-        (vec.x * FOV_factor) / vec.z,
-        (vec.y * FOV_factor) / vec.z
+        (vec.x * camera.FOV_factor) / vec.z,
+        (vec.y * camera.FOV_factor) / vec.z
     };
 }
 
 Vector2 project(Vector3 vec)
 {
-    if (f_proj)
+    if (projectMod == ProjectMod::Perspective)
     {
         return projectPerspective(vec);
     }
     return projectOrtho(vec);
-}
-
-
-float degToRad(float deg)
-{
-    return deg * std::numbers::pi / 180.0;
-}
-
-float radToDeg(float rad)
-{
-    return rad * 180.0 / std::numbers::pi;
 }
 
 void initImgui()
@@ -145,13 +150,13 @@ void initSDL()
         //return false;
     }
     
-    //make it pixaled
-    SDL_SetTextureScaleMode(rcontext.canvas, SDL_SCALEMODE_NEAREST);
-
-    loadCube(Vector3(-1,-1,-1), 0.25f);
-    projectedPoints.resize(modelPoints.size());
-
+    //Ciktiyi piksellestir
+    SDL_SetTextureScaleMode(rcontext.canvas, SDL_SCALEMODE_NEAREST);    
 }
+
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
 
 void inputs()
 {
@@ -192,12 +197,12 @@ void inputs()
 
 void update()
 {        
+    projectedPoints.clear();
+
     for (size_t i = 0; i < modelPoints.size(); i++)
     {
         Vector3 point = modelPoints[i];
-
-        point.z -= camera.position.z;
-
+                                                             
         //vektor carpimi ekle a * b operator*(...);
         point.x = point.x * scale.x;
         point.y = point.y * scale.y;
@@ -206,21 +211,20 @@ void update()
         point = point.rotateX(rotate.x);
         point = point.rotateY(rotate.y);
         point = point.rotateZ(rotate.z);
-        
-
 
         point = point + position;
-      
-        /*
-        * point = scale(point);
-        * point = rotate(point);
-        * point = translate(point);
-        */
 
-        projectedPoints[i] = project(point);
+        //Noktalari 3 birim kameradan uzaklastiriyoruz
+        point.z -= camera.position.z;
 
-        projectedPoints[i].x += rcontext.WindowWidth / 2;
-        projectedPoints[i].y += rcontext.WindowHeight / 2;
+        //Ekrana nokta bulutunun noktalari yansitiliyor
+        Vector2 projPoint = project(point);
+
+        //Yansitilan noktalar ekrana ortalaniyor
+        projPoint.x += rcontext.WindowWidth / 2;
+        projPoint.y += rcontext.WindowHeight / 2;
+
+        projectedPoints.emplace_back(projPoint);
     }
 }
 
@@ -230,28 +234,93 @@ void drawImgui()
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
     
-    ImGui::Begin("Kontrol Paneli");
+
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    ImGui::Begin("Kamera");
     
-    ImGui::Checkbox("Perspektif", &f_proj);
+    ImGui::RadioButton("Perspektif", (int*)&projectMod, (int)ProjectMod::Perspective);
+    ImGui::RadioButton("Ortografik", (int*)&projectMod, (int)ProjectMod::Ortho);
+
+    ImGui::Text("Ekran Boyutu (%i, %i)", screenWidth, screenHeight);
 
     ImGui::NewLine();
-    ImGui::Text("fare mx,my %f , %f",mouseX , mouseY);
+    ImGui::Text("Fare fx,fy (%f, %f)",mouseX , mouseY);
 
-    ImGui::SliderFloat("FOV_factor", &FOV_factor, 0, 600);
-
-    ImGui::SliderFloat("pozisyon.x", &position.x, -2, 2);
-    ImGui::SliderFloat("pozisyon.y", &position.y, -2, 2);
-    ImGui::SliderFloat("pozisyon.z", &position.z, -2, 2);
+    ImGui::SliderFloat("FOV", &camera.FOV_factor, 0, 600);    
   
-    ImGui::SliderFloat("boyut.x", &scale.x, -2, 2);
-    ImGui::SliderFloat("boyut.y", &scale.y, -2, 2);
-    ImGui::SliderFloat("boyut.z", &scale.z, -2, 2);
-
-    ImGui::SliderFloat("dondurme.x", &rotate.x, -2, 2);
-    ImGui::SliderFloat("dondurme.y", &rotate.y, -2, 2);
-    ImGui::SliderFloat("dondurme.z", &rotate.z, -2, 2);
-
     ImGui::End();
+
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+
+    ImGui::Begin("Kontrol Paneli");
+
+    static float color[4] = { 1, 0, 1, 0 };
+
+    ImGui::ColorEdit4("Color", color);
+    ImGui::ColorPicker4("Color Picker", color);
+
+    uint8_t r = (uint8_t)(color[0] * 255);
+    uint8_t g = (uint8_t)(color[1] * 255);
+    uint8_t b = (uint8_t)(color[2] * 255);
+    uint8_t a = (uint8_t)(color[3] * 255);
+    
+    cubeColor = (0xff << 24) | (r << 16) | (g << 8) | b;
+    
+    ImGui::Text("Kup renk 0x%08X", cubeColor);
+
+    ImGui::NewLine();
+
+    static float cubeinc = 0.25;
+    ImGui::SliderFloat("Kup Boyutu", &cubeinc, 0.01, 0.9, "%0.9f");
+    
+    if (ImGui::Button("Sifirla"))
+    {
+        loadCube(0.25f);
+    }
+
+    if (ImGui::Button("Yeni Nokta Bulutu"))
+    {
+        loadCube(cubeinc);
+    }
+    
+    if (ImGui::Button("R##0"))
+    {
+        position.x = 0;
+        position.y = 0;
+        position.z = 0;
+    }
+    ImGui::SliderFloat("pozisyon.x", &position.x, -20, 20);
+    ImGui::SliderFloat("pozisyon.y", &position.y, -20, 20);
+    ImGui::SliderFloat("pozisyon.z", &position.z, -20, 20);
+
+    if (ImGui::Button("R##1"))
+    {
+        scale.x = 1;
+        scale.y = 1;
+        scale.z = 1;
+    }
+    ImGui::SliderFloat("boyut.x", &scale.x, -20, 20);
+    ImGui::SliderFloat("boyut.y", &scale.y, -20, 20);
+    ImGui::SliderFloat("boyut.z", &scale.z, -20, 20);
+
+    if (ImGui::Button("R##2"))
+    {
+        rotate.x = 0;
+        rotate.y = 0;
+        rotate.z = 0;
+    }
+    ImGui::SliderFloat("dondurme.x", &rotate.x, -8, 8);
+    ImGui::SliderFloat("dondurme.y", &rotate.y, -8, 8);
+    ImGui::SliderFloat("dondurme.z", &rotate.z, -8, 8);
+    
+    ImGui::End();
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
 
     ImGui::Render();
     ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), rcontext.renderer);
@@ -262,9 +331,7 @@ void draw()
     //------------------------------//    
 
     gp.clearColorBuffer(Color::BLACK);    
-
-    //gp.drawDots(Color::GREEN);
-
+    
     for (size_t i = 0; i < projectedPoints.size(); i++)
     {
         gp.drawFilledRectangle(
@@ -272,8 +339,8 @@ void draw()
             projectedPoints[i].y,
             3,
             3,
-            Color::GREEN
-        );
+            cubeColor
+        );       
     }
 
     gp.drawColorBuffer();
@@ -285,6 +352,9 @@ int main()
 {        
     initSDL();
     initImgui();
+
+    loadCube(0.25f);
+    projectedPoints.resize(100);
 
     rcontext.colorBuffer = new Color_t[rcontext.WindowWidth * rcontext.WindowHeight];
        

@@ -158,12 +158,24 @@ $$
 <h2> </h2>
 
 ```cpp
+
+enum class ProjectMod
+{
+    Ortho,
+    Perspective
+};
+
+ProjectMod projectMod = ProjectMod::Perspective;
+
+
 Vector2 projectOrtho(Vector3 vec)
 {
+    //FOV_factor: gelen koordinatlar -1,1 gibi dar bir aralikta olucagi icin
+    //bu degerleri ekrana uygun sekilde buyutmemiz gerekiyor
     return Vector2
     { 
-        vec.x * FOV_factor,
-        vec.y * FOV_factor
+        vec.x * camera.FOV_factor,
+        vec.y * camera.FOV_factor
     };
 }
 
@@ -171,83 +183,26 @@ Vector2 projectPerspective(Vector3 vec)
 {
     return Vector2
     {
-        (vec.x * FOV_factor) / vec.z,
-        (vec.y * FOV_factor) / vec.z
+        (vec.x * camera.FOV_factor) / vec.z,
+        (vec.y * camera.FOV_factor) / vec.z
     };
 }
 
 Vector2 project(Vector3 vec)
 {
-    if (f_proj)
+    if (projectMod == ProjectMod::Perspective)
     {
         return projectPerspective(vec);
     }
     return projectOrtho(vec);
 }
-
-void drawImgui()
-{
-    ImGui_ImplSDLRenderer3_NewFrame();
-    ImGui_ImplSDL3_NewFrame();
-    ImGui::NewFrame();
-    
-    ImGui::Begin("Kontrol Paneli");
-        
-    ImGui::Checkbox("Perspektif", &f_proj);
-
-    ImGui::NewLine();
-    ImGui::Text("Ekran mx,my %f , %f",mouseX , mouseY);
-  
-    ImGui::End();
-
-    ImGui::Render();
-    ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), rcontext.renderer);
-}
-```
-
-```cpp
-initSDL()
-{
-    ...
-    ...
-
-    loadCube();
-    projectedPoints.resize(modelPoints.size());
-
-}
-```
-
-```cpp
-void draw()
-{
-    //------------------------------//    
-
-    gp.clearColorBuffer(Color::BLACK);    
-
-    //gp.drawDots(Color::GREEN);
-
-    for (size_t i = 0; i < projectedPoints.size(); i++)
-    {
-        gp.drawFilledRectangle(
-            projectedPoints[i].x,
-            projectedPoints[i].y,
-            3,
-            3,
-            Color::GREEN
-        );
-    }
-
-    gp.drawColorBuffer();
-    
-    //------------------------------//
-} 
 ```
 
 <h2> </h2>
 
 ***v0.2***
 
-![donenNoktaBulutu](resimler/NoktaBulutu.gif)
+![donenNoktaBulutu](resimler/izdusum_2.gif)
 
 ```cpp
 Vector3 position(0, 0, 0);

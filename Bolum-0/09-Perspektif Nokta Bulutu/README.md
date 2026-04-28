@@ -2,7 +2,12 @@
 
 <h2>Noktanin Ekrana Izdusumu</h2>
 
-Elimizde bir nokta bulutu bulutu, kup veya kete modeli olsun bunu iki boyutlu ekrana yansitmak icin kullanilan iki yontem vardir
+Elimizde bir nokta bulutu bulutu, kup veya kete modeli olsun bunu iki boyutlu ekrana yansitmak icin kullanilan iki yontem vardir (balik gozu, izometrik izdusum gibi farkli yontemler bulunsa da genellikle bu ikisi kullanilir)
+
+1. Ortografik Izdusum
+2. Perspektif Izdusum
+
+<h2>Koordinat Duzlemi</h2>
 
 Noktalari ekrana yansitmadan once koordinat duzlemimiz asagida goruldugu gibi 
 - X ekseni **saga** dogru pozitif

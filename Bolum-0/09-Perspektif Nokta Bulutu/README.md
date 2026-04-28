@@ -120,24 +120,42 @@ void draw()
 
 Proje boyunca asagidaki gibi model noktalari dinamik **vector3** dizisi icine konulup izdusum(ortografik veya perspektif) fonksiyonlarina aktarilacak, elde edilen izdusum noktalari **vector2** dinamik dizisi icine yerlestirilip  ekrana cizilicektir
 ![noktalar](resimler/2026-04-28%2010-54-02.png)
-***v0.1***
-![nokta bulutu](resimler/2026-04-20%2021-34-37.png)
+
+***0-Perpektif ve Ortografik Izdusum***
+
+![pers_2](resimler/izdusum_1.gif)
 
 <h2>2-) Perspektif Izdusumu</h2>
 
+A noktasindan ekrana uzakligimiz 1 olsun 
+- P noktasi karelerden birinin pozisyonu 
+- P` ise ekrana izdusumu
+
+![nokta](resimler/nokta.png)
 
 ![pers_2](resimler/perspektif_2.png)
 
+P` noktasinin ekrandaki x koordinati Aci-Aci benzerligi ile buluruz
+
+![pers_5](resimler/perspektif_5.png)
+
 ![pers_3](resimler/perspektif_3.png)
+
+Ayni islemi noktanin Y izdusumu icin de yapiyoruz
+
 ![pers_4](resimler/perspektif_4.png)
 
+**Perspektif Izdusum Denklemi**
+
+$$
+\Large P`_x = \frac{P_x}{P_z} 
+$$
+
+$$
+\Large P`_y = \frac{P_y}{P_z} 
+$$
 
 <h2> </h2>
-
-
-
-Blender perspektif ornegi ekle
-
 
 ```cpp
 Vector2 projectOrtho(Vector3 vec)

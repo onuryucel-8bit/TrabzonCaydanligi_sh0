@@ -203,11 +203,8 @@ void update()
     {
         Vector3 point = modelPoints[i];
                                                              
-        //vektor carpimi ekle a * b operator*(...);
-        point.x = point.x * scale.x;
-        point.y = point.y * scale.y;
-        point.z = point.z * scale.z;
-
+        point.multiply(scale);
+        
         point = point.rotateX(rotate.x);
         point = point.rotateY(rotate.y);
         point = point.rotateZ(rotate.z);

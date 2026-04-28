@@ -11,8 +11,10 @@ public:
 
 	[[nodiscard]] Vector3 operator+ (const Vector3& vec);
 	[[nodiscard]] Vector3 operator- (const Vector3& vec);
-	[[nodiscard]] Vector3 operator* (float s);
+	[[nodiscard]] Vector3 operator* (float s);	
 	[[nodiscard]] Vector3 operator/ (float s);
+
+	void multiply(const Vector3& vec);
 
 	Vector3 rotateX(float alfa);
 	Vector3 rotateY(float alfa);

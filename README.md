@@ -20,7 +20,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 06-Vektorler
 - [x] 07-Donen Seyler
 - [x] 08-Imgui
-- [ ] 09-Perspektif ve Nokta Bulutu
+- [x] 09-Perspektif ve Nokta Bulutu
 - [ ] 10-Kup Cizimi
 - [ ] 11-OBJ dosyasi
 - [ ] 12-Delta-t (update(dt))

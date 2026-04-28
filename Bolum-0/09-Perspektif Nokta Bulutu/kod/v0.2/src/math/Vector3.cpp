@@ -38,6 +38,13 @@ Vector3 Vector3::operator/(float s)
 	return Vector3(x / s, y / s, z / s);
 }
 
+void Vector3::multiply(const Vector3& vec)
+{
+	x = x * vec.x;
+	y = y * vec.y;
+	z = z * vec.z;
+}
+
 
 float Vector3::length()
 {

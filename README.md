@@ -55,6 +55,10 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2>kaynakca</h2>
 
+https://plaut.github.io/fisheye_tutorial/
+
+https://www.youtube.com/@Dr.Vlasanek
+
 https://gabrielgambetta.com/computer-graphics-from-scratch/
 
 https://www.youtube.com/watch?v=qRdjl7oj9Mo

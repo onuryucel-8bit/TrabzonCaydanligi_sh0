@@ -21,14 +21,22 @@ ImGuiIO* io;
 
 struct Camera
 {
+    //Kamerayi kup bulutundan 3 birim geriye aliyoruz
     Vector3 position = {0.0f, 0.0f, -3.0f};
-    //float alfa = 0.0f;
+    float FOV_factor = 300;
 };
 
 Camera camera;
 
 bool f_running = true;
-bool f_proj = true;
+
+enum class ProjectMod
+{
+    Ortho,
+    Perspective
+};
+
+ProjectMod projectMod = ProjectMod::Perspective;
 
 //====================================//
 float mouseX = 0, mouseY = 0;
@@ -39,10 +47,8 @@ int screenWidth, screenHeight;
 std::vector<Vector3> modelPoints;
 std::vector<Vector2> projectedPoints;
 
-float FOV_factor = 300;
-
 void loadCube()
-{
+{   
     float incz = 0.20f;
     float incy = 0.20f;
     float incx = 0.20f;
@@ -63,10 +69,12 @@ void loadCube()
 
 Vector2 projectOrtho(Vector3 vec)
 {
+    //FOV_factor: gelen koordinatlar -1,1 gibi dar bir aralikta olucagi icin
+    //bu degerleri ekrana uygun sekilde buyutmemiz gerekiyor
     return Vector2
     { 
-        vec.x * FOV_factor,
-        vec.y * FOV_factor
+        vec.x * camera.FOV_factor,
+        vec.y * camera.FOV_factor
     };
 }
 
@@ -74,29 +82,18 @@ Vector2 projectPerspective(Vector3 vec)
 {
     return Vector2
     {
-        (vec.x * FOV_factor) / vec.z,
-        (vec.y * FOV_factor) / vec.z
+        (vec.x * camera.FOV_factor) / vec.z,
+        (vec.y * camera.FOV_factor) / vec.z
     };
 }
 
 Vector2 project(Vector3 vec)
 {
-    if (f_proj)
+    if (projectMod == ProjectMod::Perspective)
     {
         return projectPerspective(vec);
     }
     return projectOrtho(vec);
-}
-
-
-float degToRad(float deg)
-{
-    return deg * std::numbers::pi / 180.0;
-}
-
-float radToDeg(float rad)
-{
-    return rad * 180.0 / std::numbers::pi;
 }
 
 void initImgui()
@@ -144,16 +141,14 @@ void initSDL()
         std::cout << "Error:: Texture initializing failed\n";
         //return false;
     }
-
     
-
-    //make it pixaled
-    SDL_SetTextureScaleMode(rcontext.canvas, SDL_SCALEMODE_NEAREST);
-
-    loadCube();
-    projectedPoints.resize(modelPoints.size());
-
+    //Ciktiyi piksellestir
+    SDL_SetTextureScaleMode(rcontext.canvas, SDL_SCALEMODE_NEAREST);    
 }
+
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
+//----------------------------------------------------------------------------//
 
 void inputs()
 {
@@ -194,16 +189,23 @@ void inputs()
 
 void update()
 {        
+    projectedPoints.clear();
+
     for (size_t i = 0; i < modelPoints.size(); i++)
     {
         Vector3 point = modelPoints[i];
-
+                
+        //Noktalari 3 birim kameradan uzaklastiriyoruz
         point.z -= camera.position.z;
 
+        //Ekrana nokta bulutunun noktalari yansitiliyor
         projectedPoints[i] = project(point);
 
-        projectedPoints[i].x += rcontext.WindowWidth / 2;
-        projectedPoints[i].y += rcontext.WindowHeight / 2;
+        //Yansitilan noktalar ekrana ortalaniyor
+        projPoint.x += rcontext.WindowWidth / 2;
+        projPoint.y += rcontext.WindowHeight / 2;
+
+        projectedPoints.emplace_back(projPoint);
     }
 }
 
@@ -213,12 +215,17 @@ void drawImgui()
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
     
-    ImGui::Begin("Kontrol Paneli");
+    ImGui::Begin("Kamera");
     
-    ImGui::Checkbox("Perspektif", &f_proj);
+    ImGui::RadioButton("Perspektif", (int*)&projectMod, (int)ProjectMod::Perspective);
+    ImGui::RadioButton("Ortografik", (int*)&projectMod, (int)ProjectMod::Ortho);
+
+    ImGui::Text("Ekran Boyutu (%i, %i)", screenWidth, screenHeight);
 
     ImGui::NewLine();
-    ImGui::Text("Ekran mx,my %f , %f",mouseX , mouseY);
+    ImGui::Text("Fare fx,fy (%f, %f)",mouseX , mouseY);
+
+    ImGui::SliderFloat("FOV", &camera.FOV_factor, 0, 600);    
   
     ImGui::End();
 
@@ -231,9 +238,7 @@ void draw()
     //------------------------------//    
 
     gp.clearColorBuffer(Color::BLACK);    
-
-    //gp.drawDots(Color::GREEN);
-
+    
     for (size_t i = 0; i < projectedPoints.size(); i++)
     {
         gp.drawFilledRectangle(
@@ -254,6 +259,9 @@ int main()
 {        
     initSDL();
     initImgui();
+
+    loadCube();
+    projectedPoints.resize(100);
 
     rcontext.colorBuffer = new Color_t[rcontext.WindowWidth * rcontext.WindowHeight];
        

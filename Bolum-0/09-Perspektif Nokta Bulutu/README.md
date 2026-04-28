@@ -2,19 +2,19 @@
 
 <h2>Noktanin Ekrana Izdusumu</h2>
 
-![pers_2](resimler/perspektif_2.png)
-![pers_3](resimler/perspektif_3.png)
-![pers_4](resimler/perspektif_4.png)
+Elimizde bir nokta bulutu bulutu, kup veya kete modeli olsun bunu iki boyutlu ekrana yansitmak icin kullanilan iki yontem vardir
 
+Noktalari ekrana yansitmadan once koordinat duzlemimiz asagida goruldugu gibi 
+- X ekseni **saga** dogru pozitif
+- Y ekseni **yukari** dogru pozitif
+- Z ekseni ekranin **icine** dogru pozitif
 
-<h2> </h2>
+![koordinatDuzlemi](resimler/koordinatlar.png)
 
-***v0.1***
-![nokta bulutu](resimler/2026-04-20%2021-34-37.png)
-
-
-nokta koordinalari yukleniyor
+Ekrana yansıtılacak nokta bulutu
+![kup](resimler/kup.png)
 ```cpp
+//nokta koordinatlari yukleniyor
 void loadCube()
 {
     float incz = 0.20f;
@@ -35,6 +35,101 @@ void loadCube()
     }    
 }
 ```
+
+
+<h2>1-) Ortografik Izdusum </h2>
+
+Bu yontemde nesnenin z (derinlik) boyutu gormezden gelinerek izdusum alınır
+
+***main.cpp***
+```cpp
+
+struct Camera
+{
+    //Kamerayi kup bulutundan 3 birim geriye aliyoruz
+    Vector3 position = {0.0f, 0.0f, -3.0f};
+    float FOV_factor = 300;
+};
+
+Camera camera;
+
+std::vector<Vector3> modelPoints;
+std::vector<Vector2> projectedPoints;
+
+Vector2 projectOrtho(Vector3 vec)
+{
+    return Vector2
+    { 
+        //FOV_factor: gelen koordinatlar -1,1 gibi dar bir aralikta olucagi icin
+        //bu degerleri ekrana uygun sekilde buyutmemiz gerekiyor
+        vec.x * camera.FOV_factor,
+        vec.y * camera.FOV_factor
+    };
+}
+
+void update()
+{   
+    //Ekrana yansitilacak nokta dizisi bosaltiliyor     
+    projectedPoints.clear();
+
+    for (size_t i = 0; i < modelPoints.size(); i++)
+    {
+        Vector3 point = modelPoints[i];
+                
+        //Noktalari 3 birim kameradan uzaklastiriyoruz
+        point.z -= camera.position.z;
+
+        //Ekrana nokta bulutunun noktalari yansitiliyor
+        projectedPoints[i] = project(point);
+
+        //Yansitilan noktalar ekrana ortalaniyor
+        projPoint.x += rcontext.WindowWidth / 2;
+        projPoint.y += rcontext.WindowHeight / 2;
+
+        projectedPoints.emplace_back(projPoint);
+    }
+}
+
+void draw()
+{
+    //------------------------------//    
+
+    gp.clearColorBuffer(Color::BLACK);    
+    
+    for (size_t i = 0; i < projectedPoints.size(); i++)
+    {
+        gp.drawFilledRectangle(
+            projectedPoints[i].x,
+            projectedPoints[i].y,
+            3,
+            3,
+            Color::GREEN
+        );
+    }
+
+    gp.drawColorBuffer();
+    
+    //------------------------------//
+}
+```
+
+Proje boyunca asagidaki gibi model noktalari dinamik **vector3** dizisi icine konulup izdusum(ortografik veya perspektif) fonksiyonlarina aktarilacak, elde edilen izdusum noktalari **vector2** dinamik dizisi icine yerlestirilip  ekrana cizilicektir
+![noktalar](resimler/2026-04-28%2010-54-02.png)
+***v0.1***
+![nokta bulutu](resimler/2026-04-20%2021-34-37.png)
+
+<h2>2-) Perspektif Izdusumu</h2>
+
+
+![pers_2](resimler/perspektif_2.png)
+
+![pers_3](resimler/perspektif_3.png)
+![pers_4](resimler/perspektif_4.png)
+
+
+<h2> </h2>
+
+
 
 Blender perspektif ornegi ekle
 

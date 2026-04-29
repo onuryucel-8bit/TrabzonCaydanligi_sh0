@@ -83,3 +83,12 @@ void loadCubeCloud(std::vector<Vector3>& modelPoints, Vector3 position, float in
         }
     }
 }
+
+void loadTriangle(std::vector<Vector3>& modelPoints, std::vector<Face>& meshFaces)
+{
+    modelPoints.emplace_back(-1, -1, -1);  // 0
+    modelPoints.emplace_back(-1,  1, -1);  // 1
+    modelPoints.emplace_back( 1,  1, -1);  // 2
+       
+    meshFaces.emplace_back(0, 1, 2);    
+}

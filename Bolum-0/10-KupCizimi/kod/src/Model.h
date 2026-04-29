@@ -19,3 +19,5 @@ struct Face
 void loadCube(std::vector<Vector3>& modelPoints, std::vector<Face>& meshFaces);
 
 void loadCubeCloud(std::vector<Vector3>& modelPoints, Vector3 position, float inc);
+
+void loadTriangle(std::vector<Vector3>& modelPoints, std::vector<Face>& meshFaces);

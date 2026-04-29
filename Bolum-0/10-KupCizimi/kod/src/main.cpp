@@ -23,18 +23,47 @@ ImGuiIO* io;
 
 Camera camera;
 
-//ENUM kullan...
-
 bool f_running = true;
-bool f_proj = true;
-bool f_trigs = true;
-bool f_rotateCenter = false;
-bool f_crect = false;
-bool f_ralfa = false;
-
 
 float alfa = 0;
 
+enum class ProjectMod
+{
+    Ortho,
+    Perspective
+};
+
+enum RenderMod : uint8_t
+{
+    RenderMode_Vertex = 1 << 0,
+    RenderMode_Triangle = 1 << 1
+};
+
+enum class CullMode
+{
+    NONE,
+    ACTIVE
+};
+
+enum class ModelType
+{
+    Cube,
+    Triangle
+};
+
+ModelType modelType = ModelType::Cube;
+ProjectMod projectMod = ProjectMod::Perspective;
+uint8_t renderMod = RenderMod::RenderMode_Triangle;
+CullMode cullmode = CullMode::ACTIVE;
+
+int currentModel = 0;
+int lastModel = 0;
+const char* models[] = {    
+    "Kup",
+    "Ucgen"
+};
+
+float dotNormalCamera;
 
 //====================================//
 float mouseX = 0, mouseY = 0;
@@ -45,46 +74,36 @@ int screenWidth, screenHeight;
 std::vector<Vector3> modelPoints;
 std::vector<Face> meshFaces;
 
-std::vector<Vector3> axisPoints;
-
 std::vector<Triangle> renderTrigs;
 
-std::vector<Vector2> axisProjectPoints;
+std::vector<Vector3> transformedVertices;
 
 Vector3 position(0, 0, 0);
 Vector3 scale(1.0f, 1.0f, 1.0f);
 Vector3 rotate(0, 0, 0);
-Vector3 center(-3.0f, -3.0f, -3.0f);
+
+void loadModel(std::string modelName)
+{
+    modelPoints.clear();
+    meshFaces.clear();
+
+    if (modelName == "Kup")
+    {
+        loadCube(modelPoints, meshFaces);
+    }    
+    else if(modelName == "Ucgen")
+    {
+        loadTriangle(modelPoints, meshFaces);
+    }
+}
 
 Vector2 project(Vector3 vec)
 {
-    if (f_proj)
+    if (projectMod == ProjectMod::Perspective)
     {
         return camera.projectPerspective(vec);
     }
     return camera.projectOrtho(vec);
-}
-
-void loadAxis()
-{
-    axisPoints.emplace_back(5, 0, 0);
-    axisPoints.emplace_back(-5, 0, 0);
-
-    axisPoints.emplace_back(0, 5, 0);
-    axisPoints.emplace_back(0, -5, 0);
-
-    axisPoints.emplace_back(0, 0, 5);
-    axisPoints.emplace_back(0, 0, -5);
-}
-
-float degToRad(float deg)
-{
-    return deg * std::numbers::pi / 180.0;
-}
-
-float radToDeg(float rad)
-{
-    return rad * 180.0 / std::numbers::pi;
 }
 
 void initImgui()
@@ -137,19 +156,9 @@ void initSDL()
     SDL_SetTextureScaleMode(rcontext.canvas, SDL_SCALEMODE_NEAREST);
 
     loadCube(modelPoints, meshFaces);
-    loadAxis();
+   
     
-    renderTrigs.resize(modelPoints.size());
-
-    Vector3 sum(0, 0, 0);
-
-    for (auto& p : modelPoints)
-    {
-        sum = sum + p;
-    }
-
-    center = sum / (float)modelPoints.size();
-
+    renderTrigs.resize(modelPoints.size());   
 }
 
 void inputs()
@@ -191,6 +200,9 @@ void inputs()
 
 void update()
 {        
+    renderTrigs.clear();
+    transformedVertices.clear();
+
     for (size_t i = 0; i < meshFaces.size(); i++)
     {
         Face face = meshFaces[i];
@@ -202,7 +214,7 @@ void update()
         faceVertices[2] = modelPoints[face.c];
 
 
-        Triangle projectedTrig;
+        Vector3 transformedPoints[3];
 
         for (size_t j = 0; j < 3; j++)
         {
@@ -213,28 +225,59 @@ void update()
             point.y = point.y * scale.y;
             point.z = point.z * scale.z;
 
+            //dondurme
+            point = point.rotateX(rotate.x);
+            point = point.rotateY(rotate.y);
+            point = point.rotateZ(rotate.z);
 
-            if (f_ralfa)
-            {
-                //dondurme
-                point = point.rotateX(rotate.x);
-                point = point.rotateY(rotate.y);
-                point = point.rotateZ(rotate.z);
-            }
-            else
-            {
-                point = point.rotateY(alfa);
-                alfa += 0.00001f;
-            }
-            
             //tasima
             point = point + position;
 
             point.z -= camera.position.z;
 
-            //ekrana yansit
-            Vector2 projectedPoint = project(point);
+            transformedPoints[j] = point;
 
+            transformedVertices.emplace_back(point);
+        }
+
+        Vector3 vectorA = transformedPoints[0];
+        Vector3 vectorB = transformedPoints[1];
+        Vector3 vectorC = transformedPoints[2];
+
+        Vector3 vectorAB = vectorB - vectorA;
+        Vector3 vectorAC = vectorC - vectorA;
+
+        Vector3 normal = vectorAB.cross(vectorAC);
+        normal.normalize();
+
+        Vector3 cameraRay = camera.position - vectorA;
+
+        dotNormalCamera = normal.dot(cameraRay);
+
+        if (cullmode == CullMode::ACTIVE)
+        {
+            if (dotNormalCamera <= 1)
+            {
+                continue;
+            }
+        }
+
+
+
+        Triangle projectedTrig;
+
+        for (size_t j = 0; j < 3; j++)
+        {        
+            //ekrana yansit
+            Vector2 projectedPoint = project(transformedPoints[j]);
+
+            //ekran koordinati  3 boyutta ise y+ yukari bundan dolayi -projectPoint.y yaziyoruz
+            // --->x+
+            // |
+            // |
+            // v
+            // y+
+            // 
             // y ters cevir boylece yukarsi y + asagi y - olur
             projectedPoint.y = -projectedPoint.y;
             projectedPoint.x += rcontext.WindowWidth / 2;
@@ -255,22 +298,116 @@ void drawImgui()
     ImGui_ImplSDLRenderer3_NewFrame();
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    ImGui::Begin("Dunya Uzay Koordinatinda Noktalar");
+
+    if (ImGui::BeginTable("Noktalar", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
+    {
+        ImGui::TableSetupColumn("X");
+        ImGui::TableSetupColumn("Y");
+        ImGui::TableSetupColumn("Z");        
+        ImGui::TableHeadersRow();
+
+        for (size_t i = 0; i < transformedVertices.size(); i++)
+        {
+            Vector3& v = transformedVertices[i];
+
+            ImGui::TableNextRow();
+
+            ImGui::TableSetColumnIndex(0);
+            ImGui::Text("%.3f", v.x);
+
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Text("%.3f", v.y);
+
+            ImGui::TableSetColumnIndex(2);
+            ImGui::Text("%.3f", v.z);
     
-    ImGui::Begin("Kontrol Paneli");
-    
-    ImGui::Checkbox("Perspektif", &f_proj);
-    ImGui::Checkbox("Ucgenler", &f_trigs);
-    ImGui::Checkbox("Kose noktalari", &f_crect);
-    ImGui::Checkbox("Y dondur", &f_ralfa);
-    ImGui::Checkbox("Merkezi Donus", &f_rotateCenter);
+        }
+
+        ImGui::EndTable();
+    }
+
+
+    ImGui::End();
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+
+    ImGui::Begin("Kamera");
+
+    ImGui::RadioButton("Perspektif", (int*)&projectMod, (int)ProjectMod::Perspective);
+    ImGui::RadioButton("Ortografik", (int*)&projectMod, (int)ProjectMod::Ortho);
+
+    ImGui::Text("Ekran Boyutu (%i, %i)", screenWidth, screenHeight);
 
     ImGui::NewLine();
-    ImGui::Text("fare mx,my %f , %f",mouseX , mouseY);
+    ImGui::Text("Fare fx,fy (%f, %f)", mouseX, mouseY);
 
-    ImGui::SliderFloat("FOV_factor", &camera.FOV_factor, 0, 600);
+    ImGui::SliderFloat("FOV", &camera.FOV_factor, 0, 600);
+
+    ImGui::End();
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+    //------------------------------------------------------------------//
+
+    ImGui::Begin("Kontrol Paneli");
     
-   
+    ImGui::Text("Kamera * yuzey dik vektoru %f", dotNormalCamera);
 
+    if (ImGui::Combo("Modeller", &currentModel, models, IM_ARRAYSIZE(models)))
+    {
+        if (currentModel != lastModel)
+        {
+            loadModel(models[currentModel]);
+            lastModel = currentModel;
+        }
+    }
+    
+    static bool cullModecb = true;
+
+    if (ImGui::Checkbox("Arka Yuz Eleme", &cullModecb))
+    {
+        if (cullModecb)
+        {
+            cullmode = CullMode::ACTIVE;
+        }
+        else
+        {
+            cullmode = CullMode::NONE;
+        }
+    }
+    
+    static bool showTriangles = true;
+
+    if (ImGui::Checkbox("Ucgenler", &showTriangles))
+    {
+        if (showTriangles)
+        {
+            renderMod |= RenderMod::RenderMode_Triangle;
+        }
+        else
+        {
+            renderMod &= ~RenderMod::RenderMode_Triangle;
+        }
+    }
+
+    static bool showVertex = false;
+
+    if (ImGui::Checkbox("Noktalar", &showVertex))
+    {
+        if (showVertex)
+        {
+            renderMod |= RenderMod::RenderMode_Vertex;
+        }
+        else
+        {
+            renderMod &= ~RenderMod::RenderMode_Vertex;
+        }
+    }
+                  
     if (ImGui::Button("R##0"))
     {
         position.x = 0;
@@ -280,10 +417,7 @@ void drawImgui()
     ImGui::SliderFloat("pozisyon.x", &position.x, -2, 2);
     ImGui::SliderFloat("pozisyon.y", &position.y, -2, 2);
     ImGui::SliderFloat("pozisyon.z", &position.z, -2, 2);
-    
-    
-   
-
+           
     if (ImGui::Button("R##1"))
     {
         scale.x = 1;
@@ -293,9 +427,7 @@ void drawImgui()
     ImGui::SliderFloat("boyut.x", &scale.x, -2, 2);
     ImGui::SliderFloat("boyut.y", &scale.y, -2, 2);
     ImGui::SliderFloat("boyut.z", &scale.z, -2, 2);
-
    
-
     if (ImGui::Button("R##2"))
     {
         rotate.x = 0;
@@ -305,25 +437,7 @@ void drawImgui()
     ImGui::SliderFloat("dondurme.x", &rotate.x, -4, 4);
     ImGui::SliderFloat("dondurme.y", &rotate.y, -4, 4);
     ImGui::SliderFloat("dondurme.z", &rotate.z, -4, 4);
-
-   
-
-    if (ImGui::Button("R##3"))
-    {
-        Vector3 sum(0, 0, 0);
-
-        for (auto& p : modelPoints)
-        {
-            sum = sum + p;
-        }
-
-        center = sum / (float)modelPoints.size();
-    }
-    ImGui::SliderFloat("merkez.x", &center.x, -5, 5);
-    ImGui::SliderFloat("merkez.y", &center.y, -5, 5);
-    ImGui::SliderFloat("merkez.z", &center.z, -5, 5);
-
-
+     
     ImGui::End();
 
     ImGui::Render();
@@ -342,14 +456,14 @@ void draw()
     {
         Triangle trig = renderTrigs[i];
 
-        if (f_crect)
+        if ((renderMod & RenderMod::RenderMode_Vertex) == RenderMod::RenderMode_Vertex)
         {
             gp.drawFilledRectangle(trig.points[0].x, trig.points[0].y, 5, 5, Color::BLUE);
             gp.drawFilledRectangle(trig.points[1].x, trig.points[1].y, 5, 5, Color::BLUE);
             gp.drawFilledRectangle(trig.points[2].x, trig.points[2].y, 5, 5, Color::BLUE);
         }
         
-        if (f_trigs)
+        if ((renderMod & RenderMod::RenderMode_Triangle) == RenderMod::RenderMode_Triangle)
         {
             gp.drawTriangle(
                 trig.points[0].x, trig.points[0].y,

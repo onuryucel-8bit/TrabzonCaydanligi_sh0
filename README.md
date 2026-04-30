@@ -46,6 +46,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2> Eklenilecek | Duzeltilecek Basliklar</h2>
 
+- Butun cmake dosyalari DINAMIK baglanti yapmis STATIK baglamayi unutmusum...(Bolum-0 cmake dosyalari duzeltildi)
+
 - kodlari kontrol et gereksiz kisimlari cikart
 - baku/ dosyalarini atmayi unutma
 - 06-Vektorler ornek ekle

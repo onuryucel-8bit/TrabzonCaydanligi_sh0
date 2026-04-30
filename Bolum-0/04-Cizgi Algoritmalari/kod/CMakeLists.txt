@@ -10,11 +10,14 @@ project(TrabzonCaydanligi)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Dinamik baglantiyi kes
+set(SDL_SHARED OFF CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
+# Statik baglantiyi aktif hale getir
+set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
+
 # kutuphanelerin dosya yolu
 set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libsLocal)
 
-
-message(STATUS "SDL PATH: ${LIBS_LOCAL_DIR}/SDL3")
 #====================LIBS=============================================#
 #=====================================================================#
 
@@ -39,3 +42,4 @@ target_link_libraries(${PROJECT_NAME}
 
 #=====================================================================#
 #=====================================================================#
+

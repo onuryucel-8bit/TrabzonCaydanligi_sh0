@@ -39,13 +39,14 @@ void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
         sideLength = max( |deltax|, |deltay|)
         =========================
     */
+    //uzun kenari aliyoruz
     int sideLength = abs(deltaX) >= abs(deltaY) ? abs(deltaX) : abs(deltaY);
 
     //x,y koordinatlarinda adim sayisini hesapliyoruz
     float incX = deltaX / (float)sideLength;
     float incY = deltaY / (float)sideLength;
 
-
+    //Cizginin baslangic noktasi
     float currentX = x0;
     float currentY = y0;
 

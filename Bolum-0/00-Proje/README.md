@@ -1,5 +1,7 @@
 <h1> Temel atma</h1>
 
+[Hazir yapi](https://github.com/onuryucel-8bit/TrabzonCaydanligi_sh1/releases/tag/v0.2)
+
 [Windows icin kurulum](Windows/README.md)
 
 [Linux icin kurulum](Linux/README.md)

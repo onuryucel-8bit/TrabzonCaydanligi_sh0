@@ -256,7 +256,7 @@ void update()
 
         if (cullmode == CullMode::ACTIVE)
         {
-            if (dotNormalCamera <= 1)
+            if (dotNormalCamera <= 0)
             {
                 continue;
             }

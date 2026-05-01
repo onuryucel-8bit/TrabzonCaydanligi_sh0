@@ -131,6 +131,7 @@ Bu kadar dusuk fps olmasinin sebebi tek cekirdek uzerinde donuyor program, Relea
 - Eger carpim negatif ise ucgen kameraya ters veya dik durmaktadir
 
 ```cpp
+    //dontNormalCamera => global float
     dotNormalCamera = normal.dot(cameraRay);
     if (cullmode == CullMode::ACTIVE)
     {

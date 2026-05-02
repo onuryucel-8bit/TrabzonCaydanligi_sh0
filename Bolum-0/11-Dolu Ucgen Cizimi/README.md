@@ -80,21 +80,55 @@ $$
 \Large v_2 (150,200)
 $$
 
-2. Ucgenin orta noktasi (mx,my) noktalarini buluyoruz
+2. Ucgenin ikiye bolucegimiz kesim noktasini(mx, my) buluyoruz
 
 ![ucgen2](resimler/ucgen2.png)
+
 ![ucgen3](resimler/ucgen3.png)
-![ucgen4](resimler/ucgen4.png)
-![ucgen5](resimler/ucgen5.png)
+
+Perspektifte oldugu gibi ucgende benzerlik ile mx noktasini buluyoruz
+my ise y1 e esit
+
+**Ucgende Benzerlik**
+
 ![ucgen6](resimler/ucgen6.png)
+<h2> </h2>
 
 
 
+![ucgen4](resimler/ucgen4.png)
+
+**Temiz hali**
+![ucgen5](resimler/ucgen5.png)
+
+<h2> </h2>
 
 $$
 \Large
-\frac{(x2 - x0) * (y1 - y0)}{(y2 - y0) + x0}
+\frac{m_x - x_0}{x_2 - x_0} = \frac{y_1 - y_0}{y_2 - y_0}
 $$
+
+<h2> </h2>
+
+$$
+\Large
+m_x - x_0 = \frac{(x_2 - x_0)(y_1 - y_0)}{y_2 - y_0}
+$$
+
+<h2> </h2>
+
+$$
+\Large
+m_x = \frac{(x2 - x0) * (y1 - y0)}{(y2 - y0) } + x0
+$$
+
+<h2> </h2>
+
+$$
+\Large m_y = y_1
+$$
+
+<h2> </h2>
 
 ```cpp
  int my = y1;

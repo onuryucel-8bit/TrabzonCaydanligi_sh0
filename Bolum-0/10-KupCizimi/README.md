@@ -132,6 +132,7 @@ Bu kadar dusuk fps olmasinin sebebi tek cekirdek uzerinde donuyor program, Relea
 
 ```cpp
     //dontNormalCamera => global float
+    //float dotNormalCamera = normal.dot(cameraRay);
     dotNormalCamera = normal.dot(cameraRay);
     if (cullmode == CullMode::ACTIVE)
     {

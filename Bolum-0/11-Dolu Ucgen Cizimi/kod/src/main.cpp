@@ -36,7 +36,8 @@ enum class ProjectMod
 enum RenderMod : uint8_t
 {
     RenderMode_Vertex = 1 << 0,
-    RenderMode_Triangle = 1 << 1
+    RenderMode_Triangle = 1 << 1,
+    RenderMode_Triangle_Filled = 1 << 2
 };
 
 enum class CullMode
@@ -357,7 +358,7 @@ void drawImgui()
 
     ImGui::Begin("Kontrol Paneli");
     
-    
+    ImGui::Text("Kamera * yuzey dik vektoru %f", dotNormalCamera);
 
     if (ImGui::Combo("Modeller", &currentModel, models, IM_ARRAYSIZE(models)))
     {
@@ -384,12 +385,32 @@ void drawImgui()
         }
     }
     
+    static bool showFilledTriangles = false;
     static bool showTriangles = true;
+
+    if (ImGui::Checkbox("Dolu Ucgen", &showFilledTriangles))
+    {
+        if (showFilledTriangles)
+        {
+            renderMod &= 0x0;
+            showTriangles = false;
+
+            renderMod |= RenderMod::RenderMode_Triangle_Filled;            
+        }
+        else
+        {
+            renderMod &= ~RenderMod::RenderMode_Triangle_Filled;
+        }
+    }
+
+    
 
     if (ImGui::Checkbox("Ucgenler", &showTriangles))
     {
         if (showTriangles)
         {
+            renderMod &= 0x0;
+            showFilledTriangles = false;
             renderMod |= RenderMod::RenderMode_Triangle;
         }
         else
@@ -453,12 +474,20 @@ void draw()
     //------------------------------//    
 
     gp.clearColorBuffer(Color::BLACK);    
-
-    //gp.drawDots(Color::GREEN);
-
+    
     for (size_t i = 0; i < renderTrigs.size(); i++)
     {
         Triangle trig = renderTrigs[i];
+
+        if ((renderMod & RenderMod::RenderMode_Triangle_Filled) == RenderMod::RenderMode_Triangle_Filled)
+        {
+            gp.drawFilledTriangle(
+                trig.points[0].x, trig.points[0].y,
+                trig.points[1].x, trig.points[1].y,
+                trig.points[2].x, trig.points[2].y,
+                Color::GREEN
+            );
+        }
 
         if ((renderMod & RenderMod::RenderMode_Vertex) == RenderMod::RenderMode_Vertex)
         {

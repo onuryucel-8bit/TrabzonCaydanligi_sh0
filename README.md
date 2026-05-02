@@ -22,7 +22,7 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 08-Imgui
 - [x] 09-Perspektif ve Nokta Bulutu
 - [x] 10-Kup Cizimi
-- [ ] 11-Dolu Ucgen Cizimi
+- [x] 11-Dolu Ucgen Cizimi
 - [ ] 12-Derinlik
 - [ ] 13-Isik
 - [ ] 14-OBJ dosyasi

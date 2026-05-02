@@ -1,3 +1,6 @@
+
+![tombikUcgen](resimler/tombikUcgen.png)
+
 <h2>Ici Dolu Ucgen Cizimi</h2>
 
 kodu unutma
@@ -86,7 +89,7 @@ $$
 
 ![ucgen3](resimler/ucgen3.png)
 
-Perspektifte oldugu gibi ucgende benzerlik ile mx noktasini buluyoruz
+Perspektifte oldugu gibi ucgende benzerligin gucunu ile mx noktasini buluyoruz
 my ise y1 e esit
 
 **Ucgende Benzerlik**
@@ -130,6 +133,26 @@ $$
 
 <h2> </h2>
 
+$$
+\Large
+m_x = \frac{(150 - 100)(150 - 100)}{200 - 100} + 100
+$$
+
+<h2> </h2>
+
+
+$$
+\Large
+m_x = 125
+$$
+$$
+\Large
+m_y = 150
+$$
+
+<h2> </h2>
+
+
 ```cpp
  int my = y1;
  int mx = ((float)((x2 - x0) * (y1 - y0)) / (float)(y2 - y0)) + x0;
@@ -140,11 +163,11 @@ fillFlatTopTriangle(x1, y1, mx, my, x2, y2, color);
 
 ```
 
-<h2> Ust Ucgen </h2>
+<h2>  </h2>
 
 ```cpp
 void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
-{
+{ 
     float invSlopeLeft = (float)(x1 - x0) / (y1 - y0);
     float invSlopeRight = (float)(x2 - x0) / (y2 - y0);
 
@@ -160,7 +183,9 @@ void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, in
     }
 }
 ```
-1. Ters egimleri hesapliyoruz
+1. Ters egimleri hesapliyoruz 
+
+![ucgen7](resimler/ucgen7.png)
 
 ```cpp
 void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
@@ -170,13 +195,13 @@ void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, in
 
     ...
 ```
-
-2. Asagi AC AD bacaklarindan ters egim ile asagi dogru cizgi ciziyoruz
+4. Bu egim degerlerini kullanarak AB AC kenarlari arasinda cizgi ciziyoruz
 
 ```cpp
     float startx = x0;
     float endx = x0;
 
+    //for(y = A.y; y <= C.y; y++)
     for (int y = y0; y <= y2; y++)
     {
         drawLine(startx, y, endx, y, color);
@@ -184,4 +209,53 @@ void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, in
         startx += invSlopeLeft;
         endx += invSlopeRight;
     }
+}
 ```
+5. Ayni isleminin tersini alt ucgen icin uyguluyoruz
+
+```cpp
+void Graphics::fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
+{
+    float invSlopeLeft =  (float)(x2 - x0) / (y2 - y0);
+    float invSlopeRight = (float)(x2 - x1) / (y2 - y1);
+
+    float startx = x2;
+    float endx = x2;
+
+    for (int y = y2; y >= y0; y--)
+    {
+        drawLine(startx, y, endx, y, color);
+
+        startx -= invSlopeLeft;
+        endx -= invSlopeRight;
+    }
+}
+```
+
+Bu fonksiyonu cagirip izdusumu alinmis noktalardan ici dolu ucgenleri cizdirelim
+
+```cpp
+void draw()
+{
+
+    ...
+
+    for (size_t i = 0; i < renderTrigs.size(); i++)
+    {
+        Triangle trig = renderTrigs[i];
+
+        if ((renderMod & RenderMod::RenderMode_Triangle_Filled) == RenderMod::RenderMode_Triangle_Filled)
+        {
+            gp.drawFilledTriangle(
+                trig.points[0].x, trig.points[0].y,
+                trig.points[1].x, trig.points[1].y,
+                trig.points[2].x, trig.points[2].y,
+                Color::GREEN
+            );
+        }
+
+    ...
+```
+
+![doluKup](resimler/doluKup.gif)
+

@@ -128,7 +128,7 @@ void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, in
     ...
 ```
 
-2. Asagi dogru AC AD bacaklarindan asagi dogru cizgi ciziyoruz
+2. Asagi AC AD bacaklarindan ters egim ile asagi dogru cizgi ciziyoruz
 
 ```cpp
     float startx = x0;

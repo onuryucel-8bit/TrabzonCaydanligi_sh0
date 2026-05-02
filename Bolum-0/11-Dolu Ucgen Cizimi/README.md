@@ -80,7 +80,16 @@ $$
 \Large v_2 (150,200)
 $$
 
-1. Ucgeni ortadan ust ve alt olmak uzere $\Large v_1$ noktasinda boluyoruz. Olusan bu iki ucgeni sirasiyla verilen renk ile dolduruyoruz
+2. Ucgenin orta noktasi (mx,my) noktalarini buluyoruz
+
+![ucgen2](resimler/ucgen2.png)
+![ucgen3](resimler/ucgen3.png)
+![ucgen4](resimler/ucgen4.png)
+![ucgen5](resimler/ucgen5.png)
+![ucgen6](resimler/ucgen6.png)
+
+
+
 
 $$
 \Large

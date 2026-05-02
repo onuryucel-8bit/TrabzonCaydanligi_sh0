@@ -19,10 +19,9 @@ Girdimiz
 ![ucgen](resimler/ucgen.png)
 
 $$
-\Large
- v_0 (100,100)\\
- v_1 (150,200)\\
- v_2 (75, 150)
+\Large v_0 (100,100)\\
+\Large v_1 (150,200)\\
+\Large v_2 (75, 150)
 $$
 
 1. Ucgenin noktalarini y pozisyonuna gore siraliyoruz
@@ -68,10 +67,9 @@ void Graphics::drawFilledTriangle
 ```
 
 $$
-\Large
- v_0 (100,100)\\
- v_1 (75, 150)\\
- v_2 (150,200)
+\Large v_0 (100,100)\\
+\Large v_1 (75, 150)\\
+\Large v_2 (150,200)
 $$
 
 2. Ucgeni ortadan ust ve alt olmak uzere $\Large v_1$ noktasinda boluyoruz. Olusan bu iki ucgeni sirasiyla verilen renk ile dolduruyoruz

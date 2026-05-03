@@ -37,6 +37,8 @@ public:
 
 	void drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 	
+	void drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
+
 	/*
 	*	Merkez(v0) ucgenNoktalari( v1, v2, v3, .... [vn][vn] )
 	*/
@@ -49,6 +51,12 @@ public:
 	void drawDots(Color_t color);
 	
 private:
+
+	void swap(int& a, int& b);
+
+	void fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
+	void fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
+
 	RenderContext* m_context;
 };
 

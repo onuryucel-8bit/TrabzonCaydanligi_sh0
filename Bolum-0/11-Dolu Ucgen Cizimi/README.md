@@ -89,7 +89,7 @@ $$
 
 ![ucgen3](resimler/ucgen3.png)
 
-Perspektifte oldugu gibi ucgende benzerligin gucunu ile mx noktasini buluyoruz
+Perspektifte oldugu gibi ucgende benzerligin gucu ile mx noktasini buluyoruz
 my ise y1 e esit
 
 **Ucgende Benzerlik**

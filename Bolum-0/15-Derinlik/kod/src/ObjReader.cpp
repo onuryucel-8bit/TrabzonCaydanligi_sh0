@@ -1,54 +1,15 @@
-Kodun yapisini anlat(Gui - app - settings olarak program ayrildi)
+#include "ObjReader.h"
 
-
-- v: Model noktalari
-- vn: Model normalleri(arka yuz elemede hesapladigimiz yuzeye dik olan vektorler)
-- vt: Kaplama koordinatlari
-- f: Model noktalarinin baglanti(yuz[face]) indeksleri
-
-
-
-![obj1](resimler/obj1.png)
-
-![obj2](resimler/obj2.png)
-- f: v/vt/vn
-
-v:  model noktalarinin indeksleri
-
-Bu ikisini okumayacagiz su anlik gereksiz
-
-vt: kaplama indeksleri
-
-vn: normal indeksleri
-
-![obj3](resimler/obj3.png)
-
-
-<h2> </h2>
-
-```cpp
-class ObjReader
+ObjReader::ObjReader()
 {
-public:
-	ObjReader();
-	~ObjReader();
+}
 
-    void read(std::string path);
-	
-    //Model noktalari
-	std::vector<Vector3> vertices;
+ObjReader::~ObjReader()
+{
+}
 
-    //Indeks listesi
-	std::vector<Face> faces;
-private:
-    int parseIndex(std::string& str);
-};
-```
-
-```cpp
 void ObjReader::read(std::string path)
 {
-    //Listeleri temizliyoruz
     vertices.clear();
     faces.clear();
 
@@ -62,7 +23,6 @@ void ObjReader::read(std::string path)
         std::string prefix;
         ss >> prefix;
 
-        //Nokta verileri => Nokta listesi
         if (prefix == "v")
         {
             Vector3 vec;
@@ -117,19 +77,3 @@ int ObjReader::parseIndex(std::string& str)
     ss >> index;
     return index;
 }
-```
-
-```cpp
-void loadObjModel(std::string model)
-{
-    objr.read(cmake_PROJECT_RES + model);
-
-    modelPoints = objr.vertices;
-    meshFaces = objr.faces;
-
-    renderTrigs.clear();
-    renderTrigs.resize(meshFaces.size());
-}
-```
-
-![objdosyasi](resimler/objdosyalari.gif)

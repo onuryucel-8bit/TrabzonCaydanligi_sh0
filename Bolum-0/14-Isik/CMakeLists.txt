@@ -13,9 +13,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # kutuphanelerin dosya yolu
 set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libsLocal)
 
-# static SDL
-#set(SDL_SHARED OFF CACHE BOOL "" FORCE)
-#set(SDL_STATIC ON CACHE BOOL "" FORCE)
+# Dinamik baglantiyi kes
+set(SDL_SHARED OFF CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
+# Statik baglantiyi aktif hale getir
+set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
+
 
 
 #====================LIBS=============================================#

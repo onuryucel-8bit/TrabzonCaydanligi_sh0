@@ -1,0 +1,1 @@
+![derinlik](resimler/derinlik.gif)

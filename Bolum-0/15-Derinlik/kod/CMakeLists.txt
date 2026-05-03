@@ -10,14 +10,21 @@ project(TrabzonCaydanligi)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# kutuphanelerin dosya yolu
+set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libsLocal)
+
 # Dinamik baglantiyi kes
 set(SDL_SHARED OFF CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
 # Statik baglantiyi aktif hale getir
 set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
 
+
 # kutuphanelerin dosya yolu
 set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libsLocal)
+#-------------------------------#
 
+add_library(baku INTERFACE)
+target_include_directories(baku INTERFACE ${LIBS_LOCAL_DIR}/baku)
 
 #====================LIBS=============================================#
 #=====================================================================#
@@ -41,7 +48,10 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
     SDL3::SDL3
     imgui
+    baku
 )
 
 #=====================================================================#
 #=====================================================================#
+
+target_compile_definitions(${PROJECT_NAME} PUBLIC cmake_PROJECT_RES="${CMAKE_CURRENT_SOURCE_DIR}/res/")

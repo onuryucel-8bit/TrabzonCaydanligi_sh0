@@ -15,10 +15,11 @@ public:
 	~ObjReader();
 
     void read(std::string path);
-	int parseIndex(std::string& str);
 
 	std::vector<Vector3> vertices;
 	std::vector<Face> faces;
+	
 private:
+	int parseIndex(std::string& str);
 
 };

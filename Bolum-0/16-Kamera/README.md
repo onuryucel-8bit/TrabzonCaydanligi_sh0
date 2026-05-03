@@ -1,3 +1,6 @@
+
+<h2>Delta - t</h2>
+
 Program ana donguye girdiginden beri gecen sure
 
 ```cpp
@@ -37,3 +40,5 @@ while(f_running)
     ...
 }
 ```
+
+<h2>Kamera</h2>

@@ -68,6 +68,76 @@ void Graphics::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Colo
     drawLine(x2, y2, x0, y0, color);
 }
 
+void Graphics::drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
+{
+    //y0 < y1 < y2
+    if (y0 > y1)
+    {
+        swap(y0, y1);
+        swap(x0, x1);
+    }
+    if (y1 > y2)
+    {
+        swap(y1, y2);
+        swap(x1, x2);
+    }
+    if (y0 > y1)
+    {
+        swap(y0, y1);
+        swap(x0, x1);
+    }
+
+    int my = y1;
+    int mx = ((float)((x2 - x0) * (y1 - y0)) / (float)(y2 - y0)) + x0;
+
+    fillFlatBottomTriangle(x0, y0, x1, y1, mx, my, color);
+
+    fillFlatTopTriangle(x1, y1, mx, my, x2, y2, color);
+}
+
+/*
+           x0,y0
+             .
+            / \
+           /   \
+    x1,y1.      .x2,y2
+
+
+*/
+void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
+{
+    float invSlopeLeft = (float)(x1 - x0) / (y1 - y0);
+    float invSlopeRight = (float)(x2 - x0) / (y2 - y0);
+
+    float startx = x0;
+    float endx = x0;
+
+    for (int y = y0; y <= y2; y++)
+    {
+        drawLine(startx, y, endx, y, color);
+
+        startx += invSlopeLeft;
+        endx += invSlopeRight;
+    }
+}
+
+void Graphics::fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
+{
+    float invSlopeLeft = (float)(x2 - x0) / (y2 - y0);
+    float invSlopeRight = (float)(x2 - x1) / (y2 - y1);
+
+    float startx = x2;
+    float endx = x2;
+
+    for (int y = y2; y >= y0; y--)
+    {
+        drawLine(startx, y, endx, y, color);
+
+        startx -= invSlopeLeft;
+        endx -= invSlopeRight;
+    }
+}
+
 void Graphics::drawTriangleFan(std::vector<Vector2>& pointList, Color_t color)
 {
     if (pointList.size() < 6)
@@ -140,4 +210,11 @@ void Graphics::drawColorBuffer()
     //render canvas
     SDL_RenderTexture(m_context->renderer, m_context->canvas, NULL, NULL);
 
+}
+
+void Graphics::swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
 }

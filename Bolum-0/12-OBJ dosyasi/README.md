@@ -1,3 +1,6 @@
+Kodun yapisini anlat
+
+
 - v: Model noktalari
 - vn: Model normalleri(arka yuz elemede hesapladigimiz yuzeye dik olan vektorler)
 - vt: Kaplama koordinatlari
@@ -128,3 +131,5 @@ void loadObjModel(std::string model)
     renderTrigs.resize(meshFaces.size());
 }
 ```
+
+![objdosyasi](resimler/objdosyalari.gif)

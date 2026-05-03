@@ -1,0 +1,6 @@
+
+
+
+
+
+![isik](resimler/isik.gif)

@@ -1,0 +1,1 @@
+![kamera](resimler/kamera.gif)

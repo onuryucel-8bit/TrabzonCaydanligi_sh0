@@ -42,3 +42,4 @@ while(f_running)
 ```
 
 <h2>Kamera</h2>
+

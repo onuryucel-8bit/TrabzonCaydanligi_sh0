@@ -9,6 +9,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 ![donenElma](resimler/donenElma.gif)
 
+![sahne](resimler/sahne.png)
+
 <h2> </h2>
 
 - [x] 00-Proje  
@@ -23,10 +25,11 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 09-Perspektif ve Nokta Bulutu
 - [x] 10-Kup Cizimi
 - [x] 11-Dolu Ucgen Cizimi
-- [ ] 12-Derinlik
-- [ ] 13-Isik
-- [ ] 14-OBJ dosyasi
+- [ ] 12-OBJ dosyasi
+- [x] 13-Isik
+- [ ] 14-Derinlik
 - [ ] 15-Delta-t (update(dt))
+- [ ] 16-Kirpmalar (Frustum Culling)
 
 - bolum 2?
 

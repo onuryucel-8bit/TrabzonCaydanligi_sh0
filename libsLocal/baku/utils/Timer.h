@@ -14,7 +14,7 @@
  *        // .. do something
  *        perf.add_sample(timer);
  *    }
- *    cout << "Something took " << perf.average() << "±" << perf.stddev() << " seconds" << endl;
+ *    cout << "Something took " << perf.average() << "ï¿½" << perf.stddev() << " seconds" << endl;
  *
  * To make it easier to measure performances at any point of the code, a
  * global pool of counters is defined *statically* (there is no runtime cost
@@ -25,7 +25,7 @@
  *    PERF(42).add_sample(timer);
  *
  *    // Somewhere else, for instance at the end of main():
- *    cout << "Something took " << PERF(42).average() << "±" << PERF(42).stddev() << " seconds" << endl;
+ *    cout << "Something took " << PERF(42).average() << "ï¿½" << PERF(42).stddev() << " seconds" << endl;
  *
  * If only the index "42" is used in the code then only one global PerformanceCounter
  * is defined. Counter index can only be int, or at least something that might be cast

@@ -63,6 +63,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2>kaynakca</h2>
 
+https://www.youtube.com/watch?v=ih20l3pJoeU&t=970s
+
 https://plaut.github.io/fisheye_tutorial/
 
 https://www.youtube.com/@Dr.Vlasanek

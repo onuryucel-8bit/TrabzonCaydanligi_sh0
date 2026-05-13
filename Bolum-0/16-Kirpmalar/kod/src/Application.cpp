@@ -135,6 +135,14 @@ void Application::inputs(float dt)
             f_running = false;
             break;
 
+        case SDLK_Q:
+            appState.m_camera.pitchAngle += 0.1f;
+            break;
+
+        case SDLK_E:
+            appState.m_camera.pitchAngle  -= 0.1f;
+            break;
+
         case SDLK_UP:
             appState.m_camera.position.y += 10.0f * dt;
             break;
@@ -144,13 +152,21 @@ void Application::inputs(float dt)
             break;
 
         case SDLK_W:            
-            appState.m_camera.velocity = appState.m_camera.direction * 10.0f * dt;
+            appState.m_camera.velocity = appState.m_camera.direction * appState.m_camera.speed * dt;
             appState.m_camera.position = appState.m_camera.position + appState.m_camera.velocity;
             break;
 
         case SDLK_S:
-            appState.m_camera.velocity = appState.m_camera.direction * 10.0f * dt;
+            appState.m_camera.velocity = appState.m_camera.direction * appState.m_camera.speed * dt;
             appState.m_camera.position = appState.m_camera.position - appState.m_camera.velocity;
+            break;
+
+        case SDLK_P:
+            appState.m_camera.speed += 0.01f;
+            break;
+
+        case SDLK_O:
+            appState.m_camera.speed -= 0.01f;
             break;
 
         case SDLK_A:
@@ -160,6 +176,7 @@ void Application::inputs(float dt)
         case SDLK_D:
             appState.m_camera.yawAngle += 0.1f;
             break;
+
         }
     }
 
@@ -179,8 +196,13 @@ void Application::update(float dt)
 
     Vector3 upDirection = { 0,1,0 };
 
-    Vector3 target = { 0,0,1};
-    Matrix4x4 rotateCamera = Matrix4x4::makeRotateYMatrix(appState.m_camera.yawAngle);
+     Vector3 target = { 0,0,1};
+    Matrix4x4 rotateYCamera = Matrix4x4::makeRotateYMatrix(appState.m_camera.yawAngle);
+    Matrix4x4 rotateXCamera = Matrix4x4::makeRotateXMatrix(appState.m_camera.pitchAngle);
+
+    Matrix4x4 cameraRotation;
+
+    cameraRotation = rotateYCamera * rotateXCamera;
     appState.m_camera.direction = (rotateCamera * target.toVec4()).toVec3();
 
 

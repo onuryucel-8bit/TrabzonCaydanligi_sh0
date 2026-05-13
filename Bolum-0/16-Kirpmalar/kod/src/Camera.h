@@ -57,7 +57,7 @@ public:
     Plane frustumPlanes[6];
 
     float yawAngle = 0.0f;
-
+    float pitchAngle = 0.0f;
     //60deg
    
     float FOVx;

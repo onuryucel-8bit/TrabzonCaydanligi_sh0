@@ -25,9 +25,9 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - [x] 09-Perspektif ve Nokta Bulutu
 - [x] 10-Kup Cizimi
 - [x] 11-Dolu Ucgen Cizimi
-- [ ] 12-OBJ dosyasi
+- [x] 12-OBJ dosyasi
 - [x] 13-Isik
-- [ ] 14-Derinlik
+- [x] 14-Derinlik
 - [ ] 15-Delta-t (update(dt))
 - [ ] 16-Kirpmalar (Frustum Culling)
 

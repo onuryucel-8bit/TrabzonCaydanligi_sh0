@@ -1,5 +1,3 @@
-Kodun yapisini anlat(Gui - app - settings olarak program ayrildi)
-
 
 - v: Model noktalari
 - vn: Model normalleri(arka yuz elemede hesapladigimiz yuzeye dik olan vektorler)

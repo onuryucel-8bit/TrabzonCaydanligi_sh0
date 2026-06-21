@@ -30,7 +30,7 @@ void draw()
 Yapicagimiz sey ucgenleri en uzaktan yakina dogru siralayip cizmek (diger cozumler ise Z-buffer, bsp vb. [3D Rendering with Binary Space Partitions](https://www.youtube.com/watch?v=yTRzfKh4Tg0&t=231s))
 
 
-- Ucgenin z koordinatilarinin ortalamasi
+- Ucgenin z koordinatlarinin ortalamasi
 
 ```cpp
 if (appState.m_depthTest == DepthTest::PAINTER_AVERAGE)

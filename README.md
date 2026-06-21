@@ -1,10 +1,12 @@
+21.06.2026 | ...ne yazdigimi hatirlamayi birak cmake list poh gibi projeyi bastan yazmak gerekiyor(gui.cpp/h gibi o gun iyi fikirmis gibi gozuken sacmaliklari duzeltmem gerekiyor)
+
 <h2>Amaç</h2> 
 software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çevirmektir
 
 ...ne oldugunu acikla, half-life/quake/ eski oyunlardan ornekler yaz suraya
 
 
-\
+
 ![kup](resimler/kup.gif)
 
 ![donenElma](resimler/donenElma.gif)

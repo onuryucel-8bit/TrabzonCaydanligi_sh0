@@ -8,8 +8,6 @@
 
 [Processing](https://processing.org), proje icerisindeki bazi kisimlari aciklarken kullandigim arac (yuzeysel tanimi java + swing hizli pencere acma, cizim ve girdi icin kullaniyorum)
 
-![projeAcilimi](resimler/Adsız.png)
-
 Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.
 
 [sonraki bolum](../01-SDL%20Kurulumu/README.md) ==>

@@ -1,6 +1,6 @@
 <h1>Temel atma</h1>
 
-Cmake ve paket yonetim zimbirtisi(vcpkg, msys2, zart zurt paketcisi vb..) bilgisayarinizda kurulu ise bu bolumu es geciniz. Baslikla iliskili kodlar kod klasorunde calistirilabilir(suanlik degil 26.06.2026) durumdadir.
+Cmake ve paket yonetim zimbirtisi(vcpkg, msys2, zart zurt paketcisi vb..) bilgisayarinizda kurulu ise bu bolumu es geciniz. Baslikla iliskili kodlar kod klasorunde calistirilabilir (suanlik projeyi bastan asagi kod kisimlarini duzeltmekteyim 26.06.2026) durumdadir.
 
 [Hazir yapi](https://github.com/onuryucel-8bit/TrabzonCaydanligi_sh1/releases)
 

@@ -51,8 +51,6 @@ std::vector<Example> ornekler =
     {"logxory", logxory}
 };
 
-
-
 //Hizlica ana renkleri yazmak icin 32bit renk enum
 enum Color : uint32_t
 {
@@ -323,7 +321,7 @@ void draw()
     drawColorBuffer();
 }
 
-void update()
+void update(float dt)
 {
 
 }
@@ -356,7 +354,7 @@ int main()
 
         inputs();
 
-        update();
+        update(dt);
         
         SDL_RenderClear(renderer);
 

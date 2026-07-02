@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15...4.0)
+cmake_minimum_required(VERSION 3.15)
 project(imgui)
 
 add_library(imgui)
@@ -10,6 +10,10 @@ target_sources(imgui PRIVATE
 "${CMAKE_CURRENT_SOURCE_DIR}/imgui/imgui_widgets.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/imgui/backends/imgui_impl_sdl3.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/imgui/backends/imgui_impl_sdlrenderer3.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/imgui/implot.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/imgui/implot_demo.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/imgui/implot_items.cpp"
 )
 
 target_include_directories(imgui PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/imgui")

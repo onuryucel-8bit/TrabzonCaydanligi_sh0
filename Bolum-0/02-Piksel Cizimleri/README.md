@@ -1,3 +1,5 @@
+![cizimler](resimler/cizimler.gif)
+
 https://lodev.org/cgtutor/xortexture.html
 
 ***xor kaplama***
@@ -98,6 +100,6 @@ for (int y = 0; y < rcontext.WindowHeight; y++)
 
 ![](resimler/2026-04-16%2020-21-40.png)
 
-<== [onceki bolum](../02-TemelYapi/README.md)
+<== [onceki bolum](../01-Temel%20Yapi/README.md)
 
-[sonraki bolum](../04-Cizgi%20Algoritmalari/README.md) ==>
+[sonraki bolum](../03-Cizgi%20Algoritmalari/README.md) ==>

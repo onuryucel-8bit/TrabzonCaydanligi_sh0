@@ -12,4 +12,4 @@ Cmake ve paket yonetim zimbirtisi(vcpkg, msys2, zart zurt paketcisi vb..) bilgis
 
 Projenin bulundugu klasore sag tiklayip Visual studio ile aciyoruz projeyi derleyip calistiriyoruz.
 
-[sonraki bolum](../01-SDL%20Kurulumu/README.md) ==>
+[sonraki bolum](../01-Temel%20Yapi/README.md) ==>

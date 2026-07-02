@@ -168,6 +168,6 @@ int draw()
 }
 ```
 
-<== [onceki bolum](../01-SDL%20Kurulumu/README.md) 
+<== [onceki bolum](../00-Proje/README.md) 
 
-[sonraki bolum](../03-Cizimler/README.md) ==>
+[sonraki bolum](../02-Piksel%20Cizimleri/README.md) ==>

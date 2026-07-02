@@ -1,5 +1,7 @@
 21.06.2026 | ...ne yazdigimi hatirlamayi birak cmake list poh gibi projeyi bastan yazmak gerekiyor(gui.cpp/h gibi o gun iyi fikirmis gibi gozuken sacmaliklari duzeltmem gerekiyor)
 
+01.07.2026 | brensham algoritmasini ekle
+
 <h2>Amaç</h2> 
 software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çevirmektir
 

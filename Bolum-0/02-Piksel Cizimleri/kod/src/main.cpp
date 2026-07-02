@@ -81,7 +81,7 @@ void xorKaplama()
 
             Color_t color = (0xff << 24) | (xorColor << 16) | (xorColor << 8) | xorColor;
 
-            drawPixel(x, y, color);
+            drawPixel(x, y, color);            
         }
     }
 }

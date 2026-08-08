@@ -4,6 +4,7 @@ Cizgi cizdirme algoritmalari
 - Xiaolin Wu
 - Gupta-Sproull 
 
+https://zingl.github.io/bresenham.html
 
 ```cpp
 

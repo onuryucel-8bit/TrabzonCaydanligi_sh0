@@ -88,6 +88,8 @@ void drawPixel(int x, int y, Color_t color)
     colorBuffer[y * WindowWidth + x] = color;
 }
 
+//https://zingl.github.io/bresenham.html
+
 void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
 {
     int deltaX = x1 - x0;
@@ -127,10 +129,19 @@ void ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
     }
 }
 
-void brensham(int x0, int y0, int x1, int y1, Color_t color)
-{
-    
-    
+void bresenhamLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
+{    
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2; /* error value e_xy */
+
+    for (;;) {  /* loop */
+        drawPixel(x0, y0, color);
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+        if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+    }
 }
 
 void drawLine(int x0, int y0, int x1, int y1, Color_t color)
@@ -141,9 +152,10 @@ void drawLine(int x0, int y0, int x1, int y1, Color_t color)
     }
     else if (lineAlgoType == LineAlgoType::Brensham)
     {
-        brensham(x0, y0, x1, y1, color);
+        bresenhamLineAlgo(x0, y0, x1, y1, color);
     }
 }
+
 
 //===========================================================================//
 //===========================================================================//
@@ -238,7 +250,7 @@ void drawImgui()
 
     ImGui::Begin("Kontrol Paneli");
 
-    ImGui::RadioButton("DDA algoritmasi", (int*)&lineAlgoType, (int)(lineAlgoType));
+    ImGui::RadioButton("DDA algoritmasi", (int*)&lineAlgoType, (int)(LineAlgoType::DDA));
     ImGui::RadioButton("Brensham algoritmasi", (int*)&lineAlgoType, (int)(LineAlgoType::Brensham));
 
     static int current = 0;

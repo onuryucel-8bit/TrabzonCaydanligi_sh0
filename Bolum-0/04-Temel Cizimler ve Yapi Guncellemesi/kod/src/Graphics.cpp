@@ -1,10 +1,9 @@
 #include "Graphics.h"
-#include "Graphics.h"
-#include "Graphics.h"
 
 Graphics::Graphics(RenderContext& context)
+    :m_context(context)
 {
-    m_context = &context;
+
 }
 
 Graphics::~Graphics()
@@ -13,17 +12,17 @@ Graphics::~Graphics()
 
 void Graphics::clearColorBuffer(Color_t color)
 {
-    for (size_t i = 0; i < m_context->WindowWidth * m_context->WindowHeight; i++)
+    for (size_t i = 0; i < m_context.WindowWidth * m_context.WindowHeight; i++)
     {
-        m_context->colorBuffer[i] = color;
+        m_context.colorBuffer[i] = color;
     }
 }
 
 void Graphics::drawPixel(int x, int y, Color_t color)
 {
-    if (x >= 0 && x < m_context->WindowWidth && y >= 0 && y < m_context->WindowHeight)
+    if (x >= 0 && x < m_context.WindowWidth && y >= 0 && y < m_context.WindowHeight)
     {
-        m_context->colorBuffer[y * m_context->WindowWidth + x] = color;
+        m_context.colorBuffer[y * m_context.WindowWidth + x] = color;
     }
 }
 
@@ -56,9 +55,31 @@ void Graphics::ddaLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
     }
 }
 
+void Graphics::bresenhamLineAlgo(int x0, int y0, int x1, int y1, Color_t color)
+{
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2; /* error value e_xy */
+
+    for (;;) {  /* loop */
+        drawPixel(x0, y0, color);
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
+        if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+    }
+}
+
 void Graphics::drawLine(int x0, int y0, int x1, int y1, Color_t color)
 {
-    ddaLineAlgo(x0, y0, x1, y1, color);
+    if (m_lineAlgoType == LineAlgoType::DDA)
+    {
+        ddaLineAlgo(x0, y0, x1, y1, color);
+    }
+    else
+    {
+        bresenhamLineAlgo(x0, y0, x1, y1, color);
+    }
 }
 
 void Graphics::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
@@ -114,13 +135,13 @@ void Graphics::drawFilledRectangle(int x, int y, int width, int height, Color_t 
 
 void Graphics::drawGrid(Color_t color)
 {
-    for (size_t y = 0; y < m_context->WindowHeight; y++)
+    for (size_t y = 0; y < m_context.WindowHeight; y++)
     {
-        for (size_t x = 0; x < m_context->WindowWidth; x++)
+        for (size_t x = 0; x < m_context.WindowWidth; x++)
         {
             if (x % 64 == 0 || y % 64 == 0)
             {
-                m_context->colorBuffer[y * m_context->WindowWidth + x] = color;
+                m_context.colorBuffer[y * m_context.WindowWidth + x] = color;
             }
         }
     }
@@ -128,21 +149,26 @@ void Graphics::drawGrid(Color_t color)
 
 void Graphics::drawDots(Color_t color)
 {
-    for (size_t y = 0; y < m_context->WindowHeight; y+= 40)
+    for (size_t y = 0; y < m_context.WindowHeight; y+= 40)
     {
-        for (size_t x = 0; x < m_context->WindowWidth; x+= 40)
+        for (size_t x = 0; x < m_context.WindowWidth; x+= 40)
         {
-            m_context->colorBuffer[y * m_context->WindowWidth + x] = color;
+            m_context.colorBuffer[y * m_context.WindowWidth + x] = color;
         }
     }
+}
+
+void Graphics::setLineAlgo(LineAlgoType lineAlgoType)
+{
+    m_lineAlgoType = lineAlgoType;
 }
 
 void Graphics::drawColorBuffer()
 {
     //load colorbuffer
-    SDL_UpdateTexture(m_context->canvas, NULL, m_context->colorBuffer, (int)(m_context->WindowWidth * sizeof(Color_t)));
+    SDL_UpdateTexture(m_context.canvas, NULL, m_context.colorBuffer, (int)(m_context.WindowWidth * sizeof(Color_t)));
 
     //render canvas
-    SDL_RenderTexture(m_context->renderer, m_context->canvas, NULL, NULL);
+    SDL_RenderTexture(m_context.renderer, m_context.canvas, NULL, NULL);
 
 }

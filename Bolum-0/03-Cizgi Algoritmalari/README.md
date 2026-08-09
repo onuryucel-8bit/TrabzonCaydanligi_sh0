@@ -81,6 +81,6 @@ void draw()
 }
 
 ```
-<== [onceki bolum](../03-Piksel%20Cizimleri/README.md)
+<== [onceki bolum](../02-Piksel%20Cizimleri/README.md)
 
-[sonraki bolum](../05-Temel%20Cizimler%20ve%20Yapi%20Guncellemesi/README.md) ==>
+[sonraki bolum](../04-Temel%20Cizimler%20ve%20Yapi%20Guncellemesi/README.md) ==>

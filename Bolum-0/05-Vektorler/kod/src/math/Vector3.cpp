@@ -18,6 +18,11 @@ Vector3::~Vector3()
 {
 }
 
+Vector4 Vector3::toVec4()
+{
+	return Vector4(x, y, z, 1.0f);
+}
+
 Vector3 Vector3::operator+(const Vector3& vec)
 {
 	return Vector3(x + vec.x, y + vec.y, z + vec.z);
@@ -38,22 +43,50 @@ Vector3 Vector3::operator/(float s)
 	return Vector3(x / s, y / s, z / s);
 }
 
-
-float Vector3::length()
-{
-	return std::sqrt(x * x + y * y + z * z);
-}
-
-
 void Vector3::normalize()
-{
-	float len = length();
+{	
+	float len = std::sqrt(x * x + y * y + z * z);
 	if (len > 0.0f)
 	{
 		x /= len;
 		y /= len;
 		z /= len;
-	}
+	}	
+}
+
+Vector3 Vector3::rotateX(float alfa)
+{
+	return Vector3
+	(
+		x,
+		y * cos(alfa) - z * sin(alfa),
+		y * sin(alfa) + z * cos(alfa)
+	);
+}
+
+Vector3 Vector3::rotateY(float alfa)
+{
+	return Vector3
+	(
+		x * cos(alfa) + z * sin(alfa),
+		y,
+		x * -sin(alfa) + z * cos(alfa)
+	);
+}
+
+Vector3 Vector3::rotateZ(float alfa)
+{
+	return Vector3
+	(
+		x * cos(alfa) - y * sin(alfa),
+		x * sin(alfa) + y * cos(alfa),
+		z
+	);
+}
+
+float Vector3::length(Vector3& vec)
+{
+	return std::sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
 Vector3 Vector3::cross(const Vector3& vec)

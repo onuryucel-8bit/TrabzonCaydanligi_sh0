@@ -60,3 +60,7 @@ if(sonuc > 0.0f)
 <h2> </h2>
 - nfs2 underground drift
 
+
+<== [onceki bolum](../04-Temel%20Cizimler%20ve%20Yapi%20Guncellemesi/README.md)
+
+[sonraki bolum](../05-Vektorler/README.md) ==>

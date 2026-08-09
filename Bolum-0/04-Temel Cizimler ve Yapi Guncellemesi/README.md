@@ -1,6 +1,6 @@
 <h2>Yapi Guncellemesi</h2>
 
-Simdi su cizim fonksiyonlarini alip ayri bir dosya icerisine atalim ki kod okurken ve ekleme yaparken kafa agrisi vermesin.
+Simdi su cizim fonksiyonlarini alip ayri bir dosya icerisine atalim ki kodu okurken ve ekleme yaparken kafa agrisi vermesin.
 
 ***Graphics.h***
 ```cpp
@@ -39,12 +39,12 @@ struct RenderContext
 	const int WindowHeight = 600;
 };
 ```
-- Main: Pencere yonetimi, girdi islemleri ve pozisyon guncelleme gibi fonksiyonlarin tutuldugu ana yapi olacaktir
+- Application: Pencere yonetimi, girdi islemleri ve pozisyon guncelleme gibi fonksiyonlarin tutuldugu ana yapi olacaktir
 
 - Graphics: piksel, cizgi cizme, ucgen cizme ve benzeri grafiksel fonksiyonlarin bulundugu yapi olacaktir
 
-\
-![yapi](resimler/yapi.png)
+
+
 
 
 <h2>Cizimler</h2>
@@ -149,3 +149,10 @@ void Graphics::drawTriangleFan(std::vector<int>& pointList, Color_t color)
 }
 
 ```
+
+![cizgi](resimler/cizimler.png)
+
+
+<== [onceki bolum](../03-Cizgi%20Algoritmalari/README.md)
+
+[sonraki bolum](../05-Vektorler/README.md) ==>

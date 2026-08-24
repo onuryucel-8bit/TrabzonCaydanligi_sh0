@@ -20,8 +20,8 @@ set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
 #====================LIBS=============================================#
 #=====================================================================#
 
-# kutuphanelerin dosya yolu(/proje/bolum/baslik/kod)
-set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs)
+# kutuphanelerin dosya yolu(/proje/bolum/baslik/kod/ornekler)
+set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../libs)
 
 # kutuphaneler
 find_package(SDL3 CONFIG REQUIRED)

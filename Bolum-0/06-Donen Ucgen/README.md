@@ -107,6 +107,60 @@ $$
 
 #### [desmos ucgen ornegi](https://www.desmos.com/calculator/cemr6p7ctp)
 
+donen nokta
+
+**main.cpp**
+
+```cpp
+void Application::update(float dt)
+{
+    if (f_merkezDonus)
+    {
+        float merkezx = (float)rcontext.WindowWidth / 2.0f;
+        float merkezy = (float)rcontext.WindowHeight / 2.0f;
+
+        //noktayi ekranin ortasina tasi
+        float px = nokta.x - merkezx;
+        float py = nokta.y - merkezy;
+
+        //dondur 
+        float rx = px * cos(alfa) - py * sin(alfa);
+        float ry = px * sin(alfa) + py * cos(alfa);
+
+        //noktayi ekran uzayina geri donustur
+        nokta.x = rx + merkezx;
+        nokta.y = ry + merkezy;
+    }
+    else
+    {       
+        //dondur
+        float rx = nokta.x * cos(alfa) - nokta.y * sin(alfa);
+        float ry = nokta.x * sin(alfa) + nokta.y * cos(alfa);
+
+        nokta.x = rx;
+        nokta.y = ry;
+    }
+        
+    //usengeclikten f(x) => alfa++ => g(x)
+    //normalde alfa += RADIAN_D90 gibi bisey yazilmasi daha iyi olur
+    alfa = radToDeg(alfa);
+
+    alfa += 0.00001f;
+
+    alfa = degToRad(alfa);
+
+    
+    alfa = alfa - 2 * std::numbers::pi * (int)(alfa / (2 * std::numbers::pi));
+
+    if (alfa < 0)
+    {
+        alfa += 2 * std::numbers::pi;
+    }
+    
+}
+```
+
+
 **main.cpp**
 ```cpp
 

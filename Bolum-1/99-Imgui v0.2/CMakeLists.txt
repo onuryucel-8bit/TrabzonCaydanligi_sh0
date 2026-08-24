@@ -23,7 +23,6 @@ if(IMGUI_USE_SDL3)
     target_link_libraries(imgui PUBLIC SDL3::SDL3)
 endif()
 
-
 if(IMGUI_USE_GLFW)
 
     target_sources(imgui PRIVATE 
@@ -31,6 +30,14 @@ if(IMGUI_USE_GLFW)
     "${CMAKE_CURRENT_SOURCE_DIR}/imgui/backends/imgui_impl_opengl3.cpp"
     )
     target_link_libraries(imgui PUBLIC glfw)
+endif()
+
+if(IMGUI_USE_OPENGL3)
+    find_package(OpenGL REQUIRED)
+    target_sources(imgui PRIVATE 
+        "${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp"
+    )
+    target_link_libraries(imgui PUBLIC OpenGL::GL)
 endif()
 
 target_include_directories(imgui PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/imgui")

@@ -1,6 +1,11 @@
-21.06.2026 | ...ne yazdigimi hatirlamayi birak cmake list poh gibi projeyi bastan yazmak gerekiyor(gui.cpp/h gibi o gun iyi fikirmis gibi gozuken sacmaliklari duzeltmem gerekiyor)
+23.08.2026 | donen ucgen kismina donusum ile iliskili kod ornegi ekle ve README.md kismina duzeltme/ekleme yapilmasi gerekiyor
 
 01.07.2026 | brensham algoritmasini ekle
+
+21.06.2026 | ...ne yazdigimi hatirlamayi birak cmake list poh gibi projeyi bastan yazmak gerekiyor(gui.cpp/h gibi o gun iyi fikirmis gibi gozuken sacmaliklari duzeltmem gerekiyor)
+
+
+
 
 <h2>Amaç</h2> 
 software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çevirmektir

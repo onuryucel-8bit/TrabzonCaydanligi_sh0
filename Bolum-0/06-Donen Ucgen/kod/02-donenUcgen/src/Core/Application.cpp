@@ -111,10 +111,7 @@ void Application::setup()
 //=============================================================================//
 
 void Application::update(float dt)
-{
-    // float x2 = x * cos(theta) - y * sin(theta);
-    // float y2 = x * sin(theta) + y * cos(theta);
-
+{    
     //ekranin ortasi
     float cx = rcontext.WindowWidth / 2.0f;
     float cy = rcontext.WindowHeight / 2.0f;

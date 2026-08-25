@@ -1,3 +1,5 @@
+24.08.2026 | donen ucgen basligi icine tasima, olcekleme vektorleri ve bunlarin matrise donusumunu yaz
+
 23.08.2026 | donen ucgen kismina donusum ile iliskili kod ornegi ekle ve README.md kismina duzeltme/ekleme yapilmasi gerekiyor
 
 01.07.2026 | brensham algoritmasini ekle

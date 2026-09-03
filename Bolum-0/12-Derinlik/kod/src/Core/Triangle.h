@@ -7,4 +7,5 @@ struct Triangle
 {
     Vector2 points[3];
     Color_t color;
+    float depthTestValue;
 };

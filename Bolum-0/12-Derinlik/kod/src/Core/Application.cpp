@@ -162,6 +162,8 @@ void Application::update(float dt)
             transformedPoints[j] = vertexWorldPos;
         }
 
+        //---Arka yuz eleme---
+
         Vector3 vectorA = transformedPoints[0];
         Vector3 vectorB = transformedPoints[1];
         Vector3 vectorC = transformedPoints[2];
@@ -183,6 +185,7 @@ void Application::update(float dt)
                 continue;
             }
         }
+        //------------------------//
 
         Triangle projectedTrig;
 
@@ -229,8 +232,39 @@ void Application::update(float dt)
         //-----------------------------------------------//
 
 
+        //---Derinlik---/
+        if (m_depthTest == DepthTest::PAINTER_AVERAGE)
+        {
+            projectedTrig.depthTestValue = (vectorA.z + vectorB.z + vectorC.z) / 3;
+        }
+        else if (m_depthTest == DepthTest::PAINTER_DISTANCE)
+        {
+            Vector3 trigCenter;
+            trigCenter.x = (vectorA.x + vectorB.x + vectorC.x) / 3;
+            trigCenter.y = (vectorA.y + vectorB.y + vectorC.y) / 3;
+            trigCenter.z = (vectorA.z + vectorB.z + vectorC.z) / 3;
+
+            Vector3 distance;
+
+            distance = trigCenter - m_camera.m_position;
+
+            projectedTrig.depthTestValue = distance.x * distance.x + distance.y * distance.y + distance.z * distance.z;
+        }
+
         izdusumUcgenleri.emplace_back(projectedTrig);
     }             
+
+    if (m_depthTest == DepthTest::PAINTER_AVERAGE ||
+        m_depthTest == DepthTest::PAINTER_DISTANCE)
+    {
+        std::sort(izdusumUcgenleri.begin(), izdusumUcgenleri.end(),
+            [](const Triangle& a, const Triangle& b)
+            {
+                return a.depthTestValue > b.depthTestValue;
+            }
+        );
+    }
+
 }
 
 void Application::inputs()
@@ -350,6 +384,9 @@ void Application::drawImgui()
 
     m_color = (0xff << 24) | (r << 16) | (g << 8) | b;
 
+    ImGui::RadioButton("Isik kapat", (int*)&m_lightMod, (int)(LightMod::NONE));
+    ImGui::RadioButton("Duz isik", (int*)&m_lightMod, (int)(LightMod::FLAT));
+
     ImGui::Text("Isik renk 0x%08X", m_color);
 
     ImGui::SliderFloat("isik.x", &m_lightDirection.x, -10, 10);
@@ -367,6 +404,11 @@ void Application::drawImgui()
 
     ImGui::RadioButton("DDA algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::DDA));
     ImGui::RadioButton("Brensham algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::Brensham));
+
+    ImGui::RadioButton("Derinlik kapat", (int*)&m_depthTest, (int)(DepthTest::NONE));
+    ImGui::RadioButton("Derinlik ressam ortalama", (int*)&m_depthTest, (int)(DepthTest::PAINTER_AVERAGE));
+    ImGui::RadioButton("Derinlik ressam uzaklik", (int*)&m_depthTest, (int)(DepthTest::PAINTER_DISTANCE));
+    
 
     ImGui::RadioButton("Perspektif", (int*)&m_camera.m_projectMod, (int)(ProjectMod::Perspective));
     ImGui::RadioButton("Ortho", (int*)&m_camera.m_projectMod, (int)(ProjectMod::Ortho));

@@ -5,7 +5,7 @@
 #include <chrono>
 #include <cstdint>
 #include <vector>
-
+#include <algorithm>
 //===========================//
 #include "SDL3/SDL.h"
 
@@ -58,6 +58,13 @@ enum class LightMod
 	FLAT
 };
 
+enum class DepthTest
+{
+	NONE,
+	PAINTER_AVERAGE,
+	PAINTER_DISTANCE
+};
+
 class Application
 {
 public:
@@ -103,7 +110,7 @@ private:
 	uint8_t m_renderMod;
 	CullMod m_cullmode = CullMod::ACTIVE;
 
-	float m_cullValue = 1.0f;
+	float m_cullValue = 0.0f;
 	bool f_arkaPlan = true;
 
 	int currentModel = 0;
@@ -125,6 +132,9 @@ private:
 	Light light;
 	Vector3 m_lightDirection;
 	LightMod m_lightMod = LightMod::FLAT;
+
+	DepthTest m_depthTest = DepthTest::PAINTER_DISTANCE;
+
 	//--------------------------------------------//
 	//--------------------------------------------//
 	RenderContext m_context;

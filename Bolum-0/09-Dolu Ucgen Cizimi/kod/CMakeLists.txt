@@ -48,6 +48,7 @@ target_link_libraries(${PROJECT_NAME}
     SDL3::SDL3
     imgui
     baku
+    Tracy::TracyClient
 )
 
 #=====================================================================#

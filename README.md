@@ -1,3 +1,5 @@
+02.09.2026 | 12-| OBJ yukleme bolumune tracy kurulumunu anlatan yazi ekle
+
 24.08.2026 | donen ucgen basligi icine tasima, olcekleme vektorleri ve bunlarin matrise donusumunu yaz
 
 23.08.2026 | donen ucgen kismina donusum ile iliskili kod ornegi ekle ve README.md kismina duzeltme/ekleme yapilmasi gerekiyor

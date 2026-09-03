@@ -32,6 +32,8 @@ void Application::run()
 
     while (f_running)
     {
+        ZoneScoped;
+
         //------------Delta time--------------------//
         TimePoint currentTime = Clock::now();
 
@@ -54,6 +56,8 @@ void Application::run()
 
         //tampon bellekleri degistir
         SDL_RenderPresent(m_context.renderer);
+
+        FrameMark;
     }
 }
 

@@ -1,3 +1,5 @@
+04.09.2026 | 13-| Kaplama kismi icin SDL3_image eklendi, tiny_objloader.h eklendi
+
 02.09.2026 | 12-| OBJ yukleme bolumune tracy kurulumunu anlatan yazi ekle
 
 24.08.2026 | donen ucgen basligi icine tasima, olcekleme vektorleri ve bunlarin matrise donusumunu yaz
@@ -75,6 +77,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle
 
 <h2>kaynakca</h2>
+
+https://www.youtube.com/@LucianCiobanu
 
 https://www.youtube.com/watch?v=ih20l3pJoeU&t=970s
 

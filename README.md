@@ -1,3 +1,5 @@
+05.09.2026 | 13-| Kaplamalar, ara deger hesaplamasi ile iliskili fonskiyonlar ve yazilar ekle
+
 04.09.2026 | 13-| Kaplama kismi icin SDL3_image eklendi, tiny_objloader.h eklendi
 
 02.09.2026 | 12-| OBJ yukleme bolumune tracy kurulumunu anlatan yazi ekle
@@ -77,6 +79,14 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle
 
 <h2>kaynakca</h2>
+
+Interpolation, Color, and Barycentric Coordinates
+
+https://www.youtube.com/watch?v=y2sNnI4NrDc
+
+https://www.youtube.com/watch?v=wiYTxjJjfxs
+
+https://www.youtube.com/watch?v=DuQDx0ZIxa8
 
 https://www.youtube.com/@LucianCiobanu
 

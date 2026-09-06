@@ -19,7 +19,7 @@ Application::Application()
             
     m_renderMod = RenderMod::RenderMod_Triangle_Filled;
 
-    gp.loadTexture("colorstone", "colorstone.png");
+    gp.loadTexture("colorstone", "colorstone.png"); 
     
 }
 
@@ -28,9 +28,7 @@ Application::~Application()
 }
 
 void Application::run()
-{
-    //loadCube();
-
+{   
     initSDL();
     initImgui();   
 
@@ -138,18 +136,10 @@ void Application::update(float dt)
     Matrix4x4 worldMatrix = T * Rz * Ry * Rx * S;
 
     
-    for (size_t i = 0; i < m_vertexAttributes.vertices.size(); i += 3)
-    {
-        //Face yuz
-        Vector3 p =
-        {
-            m_vertexAttributes.vertices[i + 0],
-            m_vertexAttributes.vertices[i + 1],
-            m_vertexAttributes.vertices[i + 2],
-        };
-
+    for (size_t i = 0; i < m_vertices.size(); i++)
+    {                                
         //oclek-tasima-dondurme islemlerini yap
-        Vector4 nokta = p.toVec4();
+        Vector4 nokta = m_vertices[i].pos.toVec4();
         nokta = worldMatrix * nokta;
 
         //vec4 => vec3
@@ -157,23 +147,20 @@ void Application::update(float dt)
 
         //noktalari kameradan .z kadar uzaklastir
         vertexWorldPos.z -= m_camera.m_position.z;
-
+        
         //noktalari kaydet
-        transformedVertices.push_back(vertexWorldPos);
-
+        transformedVertices.push_back({ vertexWorldPos, m_vertices[i].texCoords});
     }
         
-    std::vector<tinyobj::index_t>& indexBufferObject = m_shapes[0].mesh.indices;
-    
+    std::vector<tinyobj::index_t>& indexBufferObject = m_shapes[0].mesh.indices;    
 
     for (size_t i = 0; i < indexBufferObject.size(); i += 3)
     {
-        Vector3 vectorA = transformedVertices[indexBufferObject[i + 0].vertex_index];
-        Vector3 vectorB = transformedVertices[indexBufferObject[i + 1].vertex_index];
-        Vector3 vectorC = transformedVertices[indexBufferObject[i + 2].vertex_index];
+        Vector3 vectorA = transformedVertices[indexBufferObject[i + 0].vertex_index].pos;
+        Vector3 vectorB = transformedVertices[indexBufferObject[i + 1].vertex_index].pos;
+        Vector3 vectorC = transformedVertices[indexBufferObject[i + 2].vertex_index].pos;
 
-
-        //---Arka yuz eleme------//
+        ////---Arka yuz eleme------//
         Vector3 vectorAB = vectorB - vectorA;
         Vector3 vectorAC = vectorC - vectorA;
 
@@ -195,6 +182,10 @@ void Application::update(float dt)
 
         Triangle projectedTrig;
 
+        projectedTrig.texcoords[0] = transformedVertices[indexBufferObject[i + 0].vertex_index].texCoords;
+        projectedTrig.texcoords[1] = transformedVertices[indexBufferObject[i + 1].vertex_index].texCoords;
+        projectedTrig.texcoords[2] = transformedVertices[indexBufferObject[i + 1].vertex_index].texCoords;        
+
         Vector3 verts[3] = { vectorA, vectorB, vectorC };
 
         //-----Izdusum--------//
@@ -215,9 +206,11 @@ void Application::update(float dt)
             projectedPoint.x += cx;
             projectedPoint.y += cy;
 
+
+
             projectedTrig.points[j] = projectedPoint;
         }
-       
+                       
         //-----------------------------------------------//
         //-----------------------------------------------//
         //--------isik-----------
@@ -267,6 +260,8 @@ void Application::update(float dt)
         izdusumUcgenleri.emplace_back(projectedTrig);
     }             
 
+
+    //derinlik icin siralama yap
     if (m_depthTest == DepthTest::PAINTER_AVERAGE ||
         m_depthTest == DepthTest::PAINTER_DISTANCE)
     {
@@ -322,16 +317,29 @@ void Application::draw()
         Triangle trig = izdusumUcgenleri[i];
 
         if ((m_renderMod & RenderMod::RenderMod_Vertex) == RenderMod::RenderMod_Vertex)
-        {
-            
+        {            
             gp.drawFilledRectangle(trig.points[0].x, trig.points[0].y, 5, 5, Color::RED);
             gp.drawFilledRectangle(trig.points[1].x, trig.points[1].y, 5, 5, Color::RED);
             gp.drawFilledRectangle(trig.points[2].x, trig.points[2].y, 5, 5, Color::RED);
         }
 
-        if ((m_renderMod & RenderMod::RenderMod_Triangle_Filled) == RenderMod::RenderMod_Triangle_Filled)
+        if ((m_renderMod & RenderMod::RenderMod_Textured) == RenderMod::RenderMod_Textured)
         {
-           
+            gp.drawTexturedTriangle(
+                trig.points[0].x   , trig.points[0].y,
+                trig.texcoords[0].x, trig.texcoords[0].y,
+
+                trig.points[1].x, trig.points[1].y,
+                trig.texcoords[1].x, trig.texcoords[1].y,
+
+                trig.points[2].x, trig.points[2].y,
+                trig.texcoords[2].x, trig.texcoords[2].y,
+                "colorstone"
+            );
+        }
+
+        if ((m_renderMod & RenderMod::RenderMod_Triangle_Filled) == RenderMod::RenderMod_Triangle_Filled)
+        {           
             gp.drawFilledTriangle(
                 trig.points[0].x, trig.points[0].y,
                 trig.points[1].x, trig.points[1].y,
@@ -408,12 +416,15 @@ void Application::drawImgui()
 
     ImGui::End();
     //===================================================//
-    //===================================================//
+    //===================================================//   
     //===================================================//    
-    
+
+#pragma region Ucak Motoru
+
     ImGui::Begin("Ucak Motoru");
 
     ImGui::Text("FPS %f", FPS);
+    ImGui::Text("Gorunen Ucgen Adeti %d", izdusumUcgenleri.size());
 
     ImGui::RadioButton("DDA algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::DDA));
     ImGui::RadioButton("Brensham algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::Brensham));
@@ -473,9 +484,25 @@ void Application::drawImgui()
         }
     }
 
+    static bool showTexture = false;
+
+    if (ImGui::Checkbox("Kaplama", &showTexture))
+    {
+        if (showTexture)
+        {
+            m_renderMod |= RenderMod::RenderMod_Textured;
+        }
+        else
+        {
+            m_renderMod &= ~RenderMod::RenderMod_Textured;
+        }
+    }
+
     ImGui::Checkbox("f_arkaPlan", &f_arkaPlan);
 
     ImGui::End();
+#pragma endregion
+
     //===================================================//
     //===================================================//
     //===================================================//
@@ -594,9 +621,10 @@ void Application::createTexture()
 
 void Application::loadObjModel(std::string model)
 {
+    std::cout << "Model yukleniyor\n";
+
     model = cmake_PROJECT_MODELLER + model;
-    
-    
+        
     std::vector<tinyobj::material_t> materials;
 
     std::string err;
@@ -607,8 +635,39 @@ void Application::loadObjModel(std::string model)
     {
         std::cout << err << "\n";
     }
+
+    m_vertices.clear();
+
+    for (const tinyobj::shape_t shape : m_shapes)
+    {
+        
+        for (size_t i = 0; i < m_vertexAttributes.vertices.size() / 3; i++)
+        {
+            //nokta
+            Vector3 pos = 
+            {
+                m_vertexAttributes.vertices[3 * i + 0],
+                m_vertexAttributes.vertices[3 * i + 1],
+                m_vertexAttributes.vertices[3 * i + 2]
+            };
+
+            Vector2 texCoords = { 0.0f, 0.0f };
+
+            //eger kaplama varsa yukle
+            if (!m_vertexAttributes.texcoords.empty() && (2 * i + 1) < m_vertexAttributes.texcoords.size()) 
+            {
+                texCoords.x = m_vertexAttributes.texcoords[2 * i + 0];
+                texCoords.y = m_vertexAttributes.texcoords[2 * i + 1];
+            }
+
+            m_vertices.push_back({ pos, texCoords });
+        }
+    }
+
     
-    transformedVertices.resize(m_vertexAttributes.vertices.size() / 3);
+
+    //transformedVertices.clear();
+    //transformedVertices.resize(m_vertexAttributes.vertices.size() / 3);
 
     //m_objReader.read(model);
 

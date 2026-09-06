@@ -36,8 +36,6 @@ add_subdirectory(${LIBS_LOCAL_DIR}/tracy tracy_build)
 add_library(baku INTERFACE)
 target_include_directories(baku INTERFACE ${LIBS_LOCAL_DIR}/baku)
 
-
-
 #=====================================================================#
 #=====================================================================#
 

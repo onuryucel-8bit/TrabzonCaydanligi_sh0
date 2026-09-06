@@ -17,6 +17,8 @@
 #include "makroVeTanimlar/TracyLib.h"
 
 #include "tiny_obj_loader.h"
+#include "magic_enum/magic_enum.hpp"
+
 //===========================//
 
 #include "math/Angle.h"
@@ -52,7 +54,8 @@ enum RenderMod : uint8_t
 {
 	RenderMod_Vertex = 1 << 0,
 	RenderMod_Triangle = 1 << 1,
-	RenderMod_Triangle_Filled = 1 << 2
+	RenderMod_Triangle_Filled = 1 << 2,
+	RenderMod_Textured = 1 << 3
 };
 
 enum class LightMod
@@ -66,6 +69,12 @@ enum class DepthTest
 	NONE,
 	PAINTER_AVERAGE,
 	PAINTER_DISTANCE
+};
+
+struct Vertex
+{
+	Vector3 pos;
+	Vector2 texCoords;
 };
 
 class Application
@@ -96,7 +105,8 @@ private:
 	tinyobj::attrib_t m_vertexAttributes;
 	std::vector<tinyobj::shape_t> m_shapes;
 
-	std::vector<Vector3> transformedVertices;
+	std::vector<Vertex> transformedVertices;
+	std::vector<Vertex> m_vertices;
 
 
 	std::vector<Vector3> modelNoktalari;

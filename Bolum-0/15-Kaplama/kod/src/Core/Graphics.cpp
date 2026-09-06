@@ -232,9 +232,107 @@ void Graphics::drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2
     fillFlatTopTriangle(x1, y1, mx, my, x2, y2, color);
 }
 
-void Graphics::drawTexturedTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
+void Graphics::drawTexturedTriangle(
+    int x0, int y0, float u0, float v0,
+    int x1, int y1, float u1, float v1,
+    int x2, int y2, float u2, float v2,
+    std::string textureId)
 {
+    ZoneScopedN(__FUNCTION__);
+
+    //y0 < y1 < y2
+    if (y0 > y1)
+    {
+        swap(y0, y1);
+        swap(x0, x1);
+
+        swap(u0, u1);
+        swap(v0, v1);
+    }
+    if (y1 > y2)
+    {
+        swap(y1, y2);
+        swap(x1, x2);
+
+        swap(u1, u2);
+        swap(v1, v2);
+    }
+    if (y0 > y1)
+    {
+        swap(y0, y1);
+        swap(x0, x1);
+
+        swap(u0, u1);
+        swap(v0, v1);
+    }
+
+
+
+
+    //-----------------------------Ust--------------------------------//
+    float invSlopeLeft = 0;
+    float invSlopeRight = 0;
+
+    if (y1 - y0 != 0)
+    {
+        invSlopeLeft  = (float)(x1 - x0) / abs(y1 - y0);
+    }
+    if (y2 - y0 != 0)
+    {
+        invSlopeRight = (float)(x2 - x0) / abs(y2 - y0);
+    }
+
+    for (int y = y0; y < y1; y++)
+    {
+        //y = ax + b dogrusal denklem
+        float startx = (y - y1) * invSlopeLeft + x1;
+        float endx   = (y - y0) * invSlopeRight + x0;
+
+        if (endx < startx)
+        {
+            swap(startx, endx);
+        }
+
+        for (int x = startx; x < endx; x++)
+        {
+            int tex_x = floor(u0 * m_textureMap[textureId].width);
+            int tex_y = floor(v0 * m_textureMap[textureId].height);
+
+            drawPixel(x, y, m_textureMap[textureId].data[tex_y * m_textureMap[textureId].width + tex_x]);
+        }
+    }
+
+    //-------------------------------Alt--------------------------------//
+    invSlopeLeft = 0;
+    invSlopeRight = 0;
+
+    if (y2 - y1 != 0)
+    {
+        invSlopeLeft = (float)(x2 - x1) / abs(y2 - y1);
+    }
+    if (y2 - y0 != 0)
+    {
+        invSlopeRight = (float)(x2 - x0) / abs(y2 - y0);
+    }
+
+    for (int y = y1; y < y2; y++)
+    {
+        float startx = (y - y1) * invSlopeLeft  + x1;
+        float endx   = (y - y0) * invSlopeRight + x0;
+
+        if (endx < startx)
+        {
+            swap(startx, endx);
+        }
+
+        for (int x = startx; x < endx; x++)
+        {
+            drawPixel(x, y, Color::RED);
+        }
+    }
+
 }
+
 
 /*
            x0,y0
@@ -245,6 +343,7 @@ void Graphics::drawTexturedTriangle(int x0, int y0, int x1, int y1, int x2, int 
 
 
 */
+
 void Graphics::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color)
 {
     float invSlopeLeft = (float)(x1 - x0) / (y1 - y0);
@@ -301,6 +400,13 @@ void Graphics::drawColorBuffer()
 void Graphics::swap(int& a, int& b)
 {
     int temp = a;
+    a = b;
+    b = temp;
+}
+
+void Graphics::swap(float& a, float& b)
+{
+    float temp = a;
     a = b;
     b = temp;
 }

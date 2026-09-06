@@ -7,10 +7,12 @@
 #include <iostream>
 
 #include "SDL3_image/SDL_image.h"
+#include "magic_enum/magic_enum.hpp"
 
 #include "makroVeTanimlar/TracyLib.h"
 
 #include "TemelTanimlar/Defs.h"
+
 
 enum Color : uint32_t
 {
@@ -71,7 +73,11 @@ public:
 	
 	void drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 
-	void drawTexturedTriangle(int x0, int y0, int x1, int y1, int x2, int y2);
+	void drawTexturedTriangle(
+		int x0, int y0, float u0, float v0,
+		int x1, int y1, float u1, float v1,
+		int x2, int y2, float u2, float v2,
+		std::string textureId);
 
 	void setLineAlgo(LineAlgoType lineAlgoType);
 	
@@ -80,6 +86,8 @@ public:
 
 private:
 	void swap(int& a, int& b);
+	void swap(float& a, float& b);
+
 	void fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 	void fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, Color_t color);
 

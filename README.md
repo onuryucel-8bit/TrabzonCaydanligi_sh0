@@ -1,4 +1,6 @@
-07.09.2026 | spdlog eklendi
+07.09.2026 
+```
+		   | spdlog eklendi
 		   | anasinin ceyizlik duduklu tencerisinde asfalt pisirip anasinin koy evine asfalt cektigim 
 		   | BLENDER i .obj dosyasinin disari atarken UV koordinatinin sifir noktasi sol alt tarafmis
 		   |		   
@@ -8,6 +10,7 @@
 		   |	|			|
 		   |	.-----------.
 		   |  (u,v)(0,0)
+```
 
 06.09.2026 | magic_enum kullanilmadiysa projeden cikart (eklenme sebebi std::cout << "format" << SDL_GetPixelFormatName(surface->format) << "\n";)
 			 SDL in bunun icin fonksiyonu varmis

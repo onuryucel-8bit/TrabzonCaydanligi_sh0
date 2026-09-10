@@ -126,7 +126,8 @@ private:
 
 	int currentModel = 0;
 	int lastModel = 0;
-	const char* models[14] = {
+	const char* models[15] = {
+		"model.obj",
 		"ucgenZpozitif.obj",
 		"ucgen.obj",
 		"kupKaplama_standart1x1.obj",
@@ -141,6 +142,23 @@ private:
 		"bottle_02.obj",
 		"apple.obj",
 		"amphora_01.obj"
+	};
+
+	std::string m_currentTextureId = "dama";
+
+	int currentTexture = 0;
+	int lastTexture = 0;
+	const char* textureid[9] =
+	{
+		"dama",
+		"tombili",
+		"cizgi",
+		"colorstone",
+		"container",
+		"graystone",
+		"redbrick",
+		"wall",
+		"wood"
 	};
 
 	Light light;

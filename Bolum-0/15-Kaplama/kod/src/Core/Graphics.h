@@ -53,7 +53,7 @@ public:
 
 	void loadTexture(std::string id, std::string path);
 	void useTexture(std::string textureName);
-	void unbindTexture();
+	
 
 	void clearColorBuffer(Color_t color);
 	void drawColorBuffer();
@@ -69,8 +69,7 @@ public:
 		Vector2 a, Vector2 b, Vector2 c,
 		float u0, float v0,
 		float u1, float v1,
-		float u2, float v2,
-		std::string textureid);
+		float u2, float v2);
 
 	void drawLine(int x0, int y0, int x1, int y1, Color_t color = Color::GREEN);
 	
@@ -98,8 +97,7 @@ public:
 	void drawTexturedTriangle_Barycentric(
 		int x0, int y0, float u0, float v0,
 		int x1, int y1, float u1, float v1,
-		int x2, int y2, float u2, float v2,
-		std::string textureId);
+		int x2, int y2, float u2, float v2);
 	
 	void setLineAlgo(LineAlgoType lineAlgoType);
 	
@@ -124,7 +122,6 @@ private:
 	RenderContext& m_context;
 	std::unordered_map<std::string, TextureData> m_textureMap;
 
-	std::string m_currentTextureId;
-	bool f_textureActive;
+	std::string m_currentTextureId;	
 };
 

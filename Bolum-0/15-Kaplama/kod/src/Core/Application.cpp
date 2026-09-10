@@ -19,10 +19,22 @@ Application::Application()
             
     m_renderMod = RenderMod::RenderMod_Triangle_Filled;
 
-    //gp.loadTexture("dama", "colorstone.png");
+    
     gp.loadTexture("dama", "dama.png");
     gp.loadTexture("cizgi", "cizgi.png");
-    
+    gp.loadTexture("tombili","tombili.jpg");    
+    gp.loadTexture("colorstone","colorstone.png");
+    gp.loadTexture("container","container.jpg");
+    gp.loadTexture("graystone","graystone.png");
+    gp.loadTexture("redbrick","redbrick.png");
+    gp.loadTexture("wall","wall.jpg");
+    gp.loadTexture("wood", "wood.png");
+ 
+    m_currentTextureId = "dama";
+    currentTexture = 0;
+
+    gp.useTexture(m_currentTextureId);
+
 }
 
 Application::~Application()
@@ -378,7 +390,7 @@ void Application::draw()
         }
 
         if ((m_renderMod & RenderMod::RenderMod_Textured) == RenderMod::RenderMod_Textured)
-        {
+        {           
             gp.drawTexturedTriangle_Barycentric(
                 trig.points[0].x   , trig.points[0].y,
                 trig.texcoords[0].x, trig.texcoords[0].y,
@@ -387,8 +399,7 @@ void Application::draw()
                 trig.texcoords[1].x, trig.texcoords[1].y,
 
                 trig.points[2].x, trig.points[2].y,
-                trig.texcoords[2].x, trig.texcoords[2].y,
-                "dama"
+                trig.texcoords[2].x, trig.texcoords[2].y              
             );
         }
 
@@ -408,7 +419,7 @@ void Application::draw()
                 trig.points[0].x, trig.points[0].y,
                 trig.points[1].x, trig.points[1].y,
                 trig.points[2].x, trig.points[2].y,
-                Color::RED
+                Color::GREEN
             );
         }
         
@@ -558,6 +569,27 @@ void Application::drawImgui()
 
     ImGui::End();
 #pragma endregion
+
+    //===================================================//
+    //===================================================//
+    //===================================================//
+
+
+    ImGui::Begin("Gazete Kagiti");
+
+    if (ImGui::Combo("Kaplamalar", &currentTexture, textureid, IM_ARRAYSIZE(textureid)))
+    {
+        if (currentTexture != lastTexture)
+        {
+            m_currentTextureId = textureid[currentTexture];
+
+            gp.useTexture(m_currentTextureId);
+
+            lastTexture = currentTexture;
+        }
+    }
+    
+    ImGui::End();
 
     //===================================================//
     //===================================================//

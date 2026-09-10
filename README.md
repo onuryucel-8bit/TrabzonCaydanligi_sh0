@@ -45,6 +45,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 ![sahne](resimler/sahne.png)
 
+![kaplama](resimler/kaplama.gif)
+
 <h2> </h2>
 
 - [x] 00-Proje  

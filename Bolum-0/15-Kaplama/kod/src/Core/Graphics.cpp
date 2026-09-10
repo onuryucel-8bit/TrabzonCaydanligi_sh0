@@ -2,8 +2,7 @@
 
 Graphics::Graphics(RenderContext& context)
     :m_context(context)
-{
-    f_textureActive = false;       
+{   
     m_TEST_tex_y = 0;
 }
 
@@ -50,13 +49,7 @@ void Graphics::loadTexture(std::string id, std::string path)
 
 void Graphics::useTexture(std::string textureName)
 {
-    m_currentTextureId = textureName;
-    f_textureActive = true;
-}
-
-void Graphics::unbindTexture()
-{
-    f_textureActive = false;
+    m_currentTextureId = textureName;    
 }
 
 void Graphics::clearColorBuffer(Color_t color)
@@ -87,8 +80,7 @@ void Graphics::drawTexel(
     Vector2 a, Vector2 b, Vector2 c,
     float u0, float v0,
     float u1, float v1,
-    float u2, float v2,
-    std::string textureid)
+    float u2, float v2)
 {
     Vector2 p(x,y);
 
@@ -101,12 +93,21 @@ void Graphics::drawTexel(
     float interpolated_u = u0 * alfa + u1 * beta + u2 * gamma;
     float interpolated_v = v0 * alfa + v1 * beta + v2 * gamma;
 
-    int tex_x = abs((int)(interpolated_u * m_textureMap[textureid].width));
-    int tex_y = abs((int)(interpolated_v * m_textureMap[textureid].height));
+    //int tex_x = abs((int)(interpolated_u * m_textureMap[textureid].width));
+    //int tex_y = abs((int)(interpolated_v * m_textureMap[textureid].height));
 
-    int coords = tex_y * m_textureMap[textureid].width + tex_x;
+    int texWidth = m_textureMap[m_currentTextureId].width;
+    int texHeight = m_textureMap[m_currentTextureId].height;
 
-    drawPixel(x, y, m_textureMap[textureid].data[coords]);
+
+    int tex_x = std::clamp(static_cast<int>(interpolated_u * (texWidth - 1)), 0, texWidth - 1);
+    int tex_y = std::clamp(static_cast<int>(interpolated_v * (texHeight - 1)), 0, texHeight - 1);
+
+    //int tex_y = std::clamp(static_cast<int>(interpolated_v * (m_textureMap[textureid].height - 1)), 0, m_textureMap[textureid].height - 1);
+
+    int coords = tex_y * texWidth + tex_x;
+    
+    drawPixel(x, y, m_textureMap[m_currentTextureId].data[coords]);
 }
 
 
@@ -456,8 +457,7 @@ void Graphics::drawTexturedTriangle(
 void Graphics::drawTexturedTriangle_Barycentric(
     int x0, int y0, float u0, float v0,
     int x1, int y1, float u1, float v1,
-    int x2, int y2, float u2, float v2,
-    std::string textureId)
+    int x2, int y2, float u2, float v2)
 {
     ZoneScopedN(__FUNCTION__);
 
@@ -534,7 +534,7 @@ void Graphics::drawTexturedTriangle_Barycentric(
         for (int x = startx; x < endx; x++)
         {           
             //drawPixel(x, y, Color::BLUE);
-            drawTexel(x, y, a, b, c, u0, v0, u1, v1, u2, v2, textureId);
+            drawTexel(x, y, a, b, c, u0, v0, u1, v1, u2, v2);
         }
     }
 
@@ -563,9 +563,11 @@ void Graphics::drawTexturedTriangle_Barycentric(
 
         for (int x = startx; x < endx; x++)
         {
-            drawTexel(x, y, a, b, c, u0, v0, u1, v1, u2, v2, textureId);
+            drawTexel(x, y, a, b, c, u0, v0, u1, v1, u2, v2);
         }
     }
+
+    //spdlog::info("ucgen gazeteye sariliyor...");
 
 }
 

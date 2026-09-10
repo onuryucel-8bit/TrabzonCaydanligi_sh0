@@ -17,7 +17,7 @@
 #include "makroVeTanimlar/TracyLib.h"
 
 #include "tiny_obj_loader.h"
-#include "magic_enum/magic_enum.hpp"
+
 
 //===========================//
 
@@ -31,12 +31,10 @@
 #include "math/Matrix2x2.h"
 
 #include "TemelTanimlar/Defs.h"
-#include "TemelTanimlar/Face.h"
 #include "TemelTanimlar/Triangle.h"
 
 #include "Graphics.h"
 #include "Camera.h"
-#include "ObjReader.h"
 #include "Light/Light.h"
 
 
@@ -111,19 +109,14 @@ private:
 
 	std::vector<Vector3> modelNoktalari;
 	std::vector<Triangle> izdusumUcgenleri;
-	std::vector<Face> yuzeyListesi;
 	
 	Vector3 alfa;
 	Vector3 pozisyon;
 	Vector3 olcek;
-
-	//ekranin ortasi
-	//float cx = m_context.fizikselGenislik / 2.0f;
-	//float cy = m_context.fizikselYukseklik / 2.0f;
+	
 	Vector2 ekranOrtasi;
 	
-	Camera m_camera;
-	ObjReader m_objReader;
+	Camera m_camera;	
 
 	uint8_t m_renderMod;
 	CullMod m_cullmode = CullMod::ACTIVE;
@@ -133,7 +126,10 @@ private:
 
 	int currentModel = 0;
 	int lastModel = 0;
-	const char* models[11] = {
+	const char* models[14] = {
+		"ucgenZpozitif.obj",
+		"ucgen.obj",
+		"kupKaplama_standart1x1.obj",
 		"kasa.obj",
 		"kup.obj",
 		"tuzluk.obj",
@@ -144,7 +140,7 @@ private:
 		"bowl_01.obj",
 		"bottle_02.obj",
 		"apple.obj",
-		"amphora_01.obj",
+		"amphora_01.obj"
 	};
 
 	Light light;
@@ -152,7 +148,7 @@ private:
 	LightMod m_lightMod = LightMod::FLAT;
 
 	DepthTest m_depthTest = DepthTest::PAINTER_DISTANCE;
-
+	
 	//--------------------------------------------//
 	//--------------------------------------------//
 	RenderContext m_context;

@@ -11,10 +11,22 @@ project(TrabzonCaydanligi)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+#=====================================================================#
+#===========Kutuphane ve diger zamazingo ayarlari=====================#
+#=====================================================================#
+
 # Dinamik baglantiyi kes
 set(SDL_SHARED OFF CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
 # Statik baglantiyi aktif hale getir
 set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
+
+
+#spdlog => fmt icin
+#static_assert(!FMT_UNICODE || use_utf8,
+#              "Unicode support requires compiling with /utf-8");
+if (MSVC)
+    add_compile_options(/utf-8)
+endif()
 
 
 #====================LIBS=============================================#

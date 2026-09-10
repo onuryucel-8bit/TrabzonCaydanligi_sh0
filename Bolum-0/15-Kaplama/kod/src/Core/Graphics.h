@@ -5,13 +5,19 @@
 #include <string>
 #include <unordered_map>
 #include <iostream>
+#include <algorithm>
+#include <cmath>
 
 #include "SDL3_image/SDL_image.h"
-#include "magic_enum/magic_enum.hpp"
+#include "spdlog/spdlog.h"
+
 
 #include "makroVeTanimlar/TracyLib.h"
 
 #include "TemelTanimlar/Defs.h"
+
+#include "math/Vector2.h"
+#include "math/Vector3.h"
 
 
 enum Color : uint32_t
@@ -34,7 +40,9 @@ struct TextureData
 	int width;
 	int height;
 
-	Color_t* data;
+	//Color_t* data;
+
+	std::unique_ptr<Color_t[]> data;
 };
 
 class Graphics
@@ -55,6 +63,14 @@ public:
 	* @param color renk degeri(uint32_t)
 	*/
 	void drawPixel(int x, int y, Color_t color = Color::GREEN);
+
+	void drawTexel(
+		int x, int y,
+		Vector2 a, Vector2 b, Vector2 c,
+		float u0, float v0,
+		float u1, float v1,
+		float u2, float v2,
+		std::string textureid);
 
 	void drawLine(int x0, int y0, int x1, int y1, Color_t color = Color::GREEN);
 	
@@ -79,12 +95,23 @@ public:
 		int x2, int y2, float u2, float v2,
 		std::string textureId);
 
+	void drawTexturedTriangle_Barycentric(
+		int x0, int y0, float u0, float v0,
+		int x1, int y1, float u1, float v1,
+		int x2, int y2, float u2, float v2,
+		std::string textureId);
+	
 	void setLineAlgo(LineAlgoType lineAlgoType);
 	
 
     inline static LineAlgoType m_lineAlgoType;
 
+
+	inline static int m_TEST_tex_y;
+
 private:
+	Vector3 barycentricWeights(Vector2 a, Vector2 b, Vector2 c, Vector2 p);
+
 	void swap(int& a, int& b);
 	void swap(float& a, float& b);
 

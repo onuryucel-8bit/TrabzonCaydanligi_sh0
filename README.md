@@ -1,3 +1,17 @@
+07.09.2026 | spdlog eklendi
+		   | anasinin ceyizlik duduklu tencerisinde asfalt pisirip anasinin koy evine asfalt cektigim 
+		   | BLENDER i .obj dosyasinin disari atarken UV koordinatinin sifir noktasi sol alt tarafmis
+		   |		   
+		   |    .-----------.(uv)(1,1)
+		   |    |		    |
+		   |    |			|
+		   |	|			|
+		   |	.-----------.
+		   |  (u,v)(0,0)
+
+06.09.2026 | magic_enum kullanilmadiysa projeden cikart (eklenme sebebi std::cout << "format" << SDL_GetPixelFormatName(surface->format) << "\n";)
+			 SDL in bunun icin fonksiyonu varmis
+
 05.09.2026 | 13-| Kaplamalar, ara deger hesaplamasi ile iliskili fonskiyonlar ve yazilar ekle
 
 04.09.2026 | 13-| Kaplama kismi icin SDL3_image eklendi, tiny_objloader.h eklendi
@@ -80,13 +94,13 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2>kaynakca</h2>
 
-Interpolation, Color, and Barycentric Coordinates
+#### [How to make a Graphic Accelerator (AKA a 1980s GPU) from scratch] (https://www.youtube.com/watch?v=p5QsaBWuUnY)
 
-https://www.youtube.com/watch?v=y2sNnI4NrDc
+#### [Interpolation, Color, and Barycentric Coordinates](https://www.youtube.com/watch?v=y2sNnI4NrDc)
 
-https://www.youtube.com/watch?v=wiYTxjJjfxs
+#### [In Video Games, The Player Never Moves](https://www.youtube.com/watch?v=wiYTxjJjfxs)
 
-https://www.youtube.com/watch?v=DuQDx0ZIxa8
+#### [The Math of Computer Graphics - TEXTURES and SAMPLERS](https://www.youtube.com/watch?v=DuQDx0ZIxa8)
 
 https://www.youtube.com/@LucianCiobanu
 

@@ -15,11 +15,13 @@ Application::Application()
     m_lightDirection.z = -5.0f;
 
     
-    loadObjModel("kup.obj");
+    loadObjModel("ucgenZpozitif.obj");
             
     m_renderMod = RenderMod::RenderMod_Triangle_Filled;
 
-    gp.loadTexture("colorstone", "colorstone.png"); 
+    //gp.loadTexture("dama", "colorstone.png");
+    gp.loadTexture("dama", "dama.png");
+    gp.loadTexture("cizgi", "cizgi.png");
     
 }
 
@@ -135,30 +137,82 @@ void Application::update(float dt)
     
     Matrix4x4 worldMatrix = T * Rz * Ry * Rx * S;
 
-    
-    for (size_t i = 0; i < m_vertices.size(); i++)
-    {                                
-        //oclek-tasima-dondurme islemlerini yap
-        Vector4 nokta = m_vertices[i].pos.toVec4();
-        nokta = worldMatrix * nokta;
-
-        //vec4 => vec3
-        Vector3 vertexWorldPos = nokta.toVec3();
-
-        //noktalari kameradan .z kadar uzaklastir
-        vertexWorldPos.z -= m_camera.m_position.z;
-        
-        //noktalari kaydet
-        transformedVertices.push_back({ vertexWorldPos, m_vertices[i].texCoords});
-    }
-        
-    std::vector<tinyobj::index_t>& indexBufferObject = m_shapes[0].mesh.indices;    
-
-    for (size_t i = 0; i < indexBufferObject.size(); i += 3)
+    // Loop over shapes
+    for (size_t s = 0; s < m_shapes.size(); s++)
     {
-        Vector3 vectorA = transformedVertices[indexBufferObject[i + 0].vertex_index].pos;
-        Vector3 vectorB = transformedVertices[indexBufferObject[i + 1].vertex_index].pos;
-        Vector3 vectorC = transformedVertices[indexBufferObject[i + 2].vertex_index].pos;
+        // Loop over faces(polygon)
+        size_t index_offset = 0;
+        for (size_t f = 0; f < m_shapes[s].mesh.num_face_vertices.size(); f++)
+        {
+            size_t fv = size_t(m_shapes[s].mesh.num_face_vertices[f]);
+
+            // Loop over vertices in the face.
+            for (size_t v = 0; v < fv; v++)
+            {
+                // access to vertex
+                tinyobj::index_t idx = m_shapes[s].mesh.indices[index_offset + v];
+
+                tinyobj::real_t vx = m_vertexAttributes.vertices[3 * size_t(idx.vertex_index) + 0];
+                tinyobj::real_t vy = m_vertexAttributes.vertices[3 * size_t(idx.vertex_index) + 1];
+                tinyobj::real_t vz = m_vertexAttributes.vertices[3 * size_t(idx.vertex_index) + 2];
+
+                Vector3 pos(vx, vy, vz);
+
+                // Check if `normal_index` is zero or positive. negative = no normal data
+                /*if (idx.normal_index >= 0)
+                {
+                    tinyobj::real_t nx = m_vertexAttributes.normals[3 * size_t(idx.normal_index) + 0];
+                    tinyobj::real_t ny = m_vertexAttributes.normals[3 * size_t(idx.normal_index) + 1];
+                    tinyobj::real_t nz = m_vertexAttributes.normals[3 * size_t(idx.normal_index) + 2];
+                }*/
+
+                Vector2 texcoords;
+
+                // Check if `texcoord_index` is zero or positive. negative = no texcoord data
+                if (idx.texcoord_index >= 0)
+                {
+                    tinyobj::real_t tx = m_vertexAttributes.texcoords[2 * size_t(idx.texcoord_index) + 0];
+                    tinyobj::real_t ty = m_vertexAttributes.texcoords[2 * size_t(idx.texcoord_index) + 1];
+
+                    texcoords.x = tx;
+                    texcoords.y = ty;
+                }
+                
+                // Optional: vertex colors
+                // tinyobj::real_t red   = attrib.colors[3*size_t(idx.vertex_index)+0];
+                // tinyobj::real_t green = attrib.colors[3*size_t(idx.vertex_index)+1];
+                // tinyobj::real_t blue  = attrib.colors[3*size_t(idx.vertex_index)+2];
+
+                //m_vertices.push_back({ pos, texcoords });
+
+
+
+                //oclek-tasima-dondurme islemlerini yap
+                Vector4 nokta = pos.toVec4();
+                nokta = worldMatrix * nokta;
+
+                //vec4 => vec3
+                Vector3 vertexWorldPos = nokta.toVec3();
+
+                //noktalari kameradan .z kadar uzaklastir
+                vertexWorldPos.z -= m_camera.m_position.z;
+
+                //noktalari kaydet
+                transformedVertices.push_back({ vertexWorldPos, texcoords });
+
+            }
+            index_offset += fv;
+
+            // per-face material
+            //m_shapes[s].mesh.material_ids[f];
+        }
+    }
+     
+    for (size_t i = 0; i < transformedVertices.size(); i += 3)
+    {
+        Vector3 vectorA = transformedVertices[i + 0].pos;
+        Vector3 vectorB = transformedVertices[i + 1].pos;
+        Vector3 vectorC = transformedVertices[i + 2].pos;
 
         ////---Arka yuz eleme------//
         Vector3 vectorAB = vectorB - vectorA;
@@ -182,9 +236,9 @@ void Application::update(float dt)
 
         Triangle projectedTrig;
 
-        projectedTrig.texcoords[0] = transformedVertices[indexBufferObject[i + 0].vertex_index].texCoords;
-        projectedTrig.texcoords[1] = transformedVertices[indexBufferObject[i + 1].vertex_index].texCoords;
-        projectedTrig.texcoords[2] = transformedVertices[indexBufferObject[i + 1].vertex_index].texCoords;        
+        projectedTrig.texcoords[0] = transformedVertices[i + 0].texCoords;
+        projectedTrig.texcoords[1] = transformedVertices[i + 1].texCoords;
+        projectedTrig.texcoords[2] = transformedVertices[i + 2].texCoords;        
 
         Vector3 verts[3] = { vectorA, vectorB, vectorC };
 
@@ -325,7 +379,7 @@ void Application::draw()
 
         if ((m_renderMod & RenderMod::RenderMod_Textured) == RenderMod::RenderMod_Textured)
         {
-            gp.drawTexturedTriangle(
+            gp.drawTexturedTriangle_Barycentric(
                 trig.points[0].x   , trig.points[0].y,
                 trig.texcoords[0].x, trig.texcoords[0].y,
 
@@ -334,7 +388,7 @@ void Application::draw()
 
                 trig.points[2].x, trig.points[2].y,
                 trig.texcoords[2].x, trig.texcoords[2].y,
-                "colorstone"
+                "dama"
             );
         }
 
@@ -423,8 +477,10 @@ void Application::drawImgui()
 
     ImGui::Begin("Ucak Motoru");
 
-    ImGui::Text("FPS %f", FPS);
+    ImGui::Text("FPS %f", FPS);   
     ImGui::Text("Gorunen Ucgen Adeti %d", izdusumUcgenleri.size());
+
+    ImGui::SliderInt("Graphics::m_TEST_tex_y", &Graphics::m_TEST_tex_y, 0, 15);
 
     ImGui::RadioButton("DDA algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::DDA));
     ImGui::RadioButton("Brensham algoritmasi", (int*)&Graphics::m_lineAlgoType, (int)(LineAlgoType::Brensham));
@@ -621,7 +677,8 @@ void Application::createTexture()
 
 void Application::loadObjModel(std::string model)
 {
-    std::cout << "Model yukleniyor\n";
+    std::cout << "============================\n"
+              << "Model yukleniyor\n";
 
     model = cmake_PROJECT_MODELLER + model;
         
@@ -636,44 +693,6 @@ void Application::loadObjModel(std::string model)
         std::cout << err << "\n";
     }
 
-    m_vertices.clear();
-
-    for (const tinyobj::shape_t shape : m_shapes)
-    {
-        
-        for (size_t i = 0; i < m_vertexAttributes.vertices.size() / 3; i++)
-        {
-            //nokta
-            Vector3 pos = 
-            {
-                m_vertexAttributes.vertices[3 * i + 0],
-                m_vertexAttributes.vertices[3 * i + 1],
-                m_vertexAttributes.vertices[3 * i + 2]
-            };
-
-            Vector2 texCoords = { 0.0f, 0.0f };
-
-            //eger kaplama varsa yukle
-            if (!m_vertexAttributes.texcoords.empty() && (2 * i + 1) < m_vertexAttributes.texcoords.size()) 
-            {
-                texCoords.x = m_vertexAttributes.texcoords[2 * i + 0];
-                texCoords.y = m_vertexAttributes.texcoords[2 * i + 1];
-            }
-
-            m_vertices.push_back({ pos, texCoords });
-        }
-    }
-
-    
-
-    //transformedVertices.clear();
-    //transformedVertices.resize(m_vertexAttributes.vertices.size() / 3);
-
-    //m_objReader.read(model);
-
-    //modelNoktalari = m_objReader.vertices;
-    //yuzeyListesi = m_objReader.faces;
-
-    //izdusumUcgenleri.clear();
-    //izdusumUcgenleri.resize(yuzeyListesi.size());
+    std::cout << "m_shapes.size():" << m_shapes.size() << "\n"
+              << "m_vertexAttributes.vertices.size()" << m_vertexAttributes.vertices.size() << "\n";  
 }

@@ -3,6 +3,7 @@
 #include <cstdint>
 #include "SDL3/SDL.h"
 
+//SDL_PIXELFORMAT_ARGB8888
 using Color_t = uint32_t;
 
 struct RenderContext

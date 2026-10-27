@@ -1,3 +1,5 @@
+26.10.2026  ...kaplamalarda standart1x1 kupunu kullan diğerlerinin uv koordinatlari tam oturmuyor
+
 07.09.2026 
 ```
 		   | spdlog eklendi

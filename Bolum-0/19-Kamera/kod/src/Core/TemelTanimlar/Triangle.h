@@ -1,0 +1,12 @@
+#pragma once
+
+#include "math/Vector2.h"
+#include "Defs.h"
+
+struct Triangle
+{
+    Vector4 points[3];
+    Vector2 texcoords[3];
+    Color_t color;
+    float depthTestValue;
+};

@@ -1,0 +1,3 @@
+kamera icindeki fonksiyonlari temizle poligon kirpmasini sonraki klasor icinde yap sacma salak biseyden dolayi release calismiyor
+
+suanlik kirpma hic acimasi yok sponza nin taban kismini olusturan ucgenlerin bir noktasi kamera arkasina dustugu an testere ile kesip atiyor

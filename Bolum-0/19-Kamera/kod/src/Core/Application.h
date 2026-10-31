@@ -40,7 +40,6 @@
 
 
 
-
 //#define DEBUG_FULLSCREEN
 
 enum class CullMod

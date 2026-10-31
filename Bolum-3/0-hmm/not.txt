@@ -1,0 +1,5 @@
+1- ctrl + k => ctrl + s
+
+2- shader toy yaz
+
+3- preview tusunu ata ctrl + x

@@ -35,6 +35,19 @@
 
 
 <h2>Amaç</h2> 
+31.10.2026
+Grafik programla ile iliskili seyleri Turkceye cevirmeye evrildi is
+
+- Bolum-0 yazilim tabanli goruntuleme
+- Bolum-1 OpenGL
+- Bolum-2 ShaderToy
+
+- Logisim ile ekran karti yapimi
+- Raycasting
+- Raytracing
+- voxel comanche rendering 
+
+----------------
 software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çevirmektir
 
 ...ne oldugunu acikla, half-life/quake/ eski oyunlardan ornekler yaz suraya
@@ -108,6 +121,16 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 #### [In Video Games, The Player Never Moves](https://www.youtube.com/watch?v=wiYTxjJjfxs)
 
 #### [The Math of Computer Graphics - TEXTURES and SAMPLERS](https://www.youtube.com/watch?v=DuQDx0ZIxa8)
+
+https://www.youtube.com/watch?v=f4s1h2YETNY&t=175s
+
+https://inspirnathan.com/posts/47-shadertoy-tutorial-part-1/
+
+https://www.youtube.com/watch?v=JjzAMS1ihZI
+
+https://en.wikipedia.org/wiki/Guard-band_clipping
+
+https://hambup.me/pipeline/01_framebuffer/
 
 https://www.youtube.com/@LucianCiobanu
 

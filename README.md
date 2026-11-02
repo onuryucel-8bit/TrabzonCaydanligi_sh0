@@ -1,3 +1,21 @@
+02.11.2026 70~60fps sponza simdilik yeterli
+
+01.11.2026 sdl image vcpkg kurulum kisminda yok...
+
+```
+# png, jpg varsayilan paket icinde gelmiyor. ayri ayri indirmek gerekiyor
+
+# cekirdek
+# vcpkg install sdl3-image
+# png, jpg
+# vcpkg install sdl3-image[jpeg,png]:x64-windows" --recurse
+
+# https://www.youtube.com/watch?v=v3tNrSaBAV4&t=220s
+# https://vcpkg.link/ports/sdl3-image 
+find_package(SDL3_image CONFIG REQUIRED)
+```
+
+
 26.10.2026  ...kaplamalarda standart1x1 kupunu kullan diğerlerinin uv koordinatlari tam oturmuyor
 
 07.09.2026 

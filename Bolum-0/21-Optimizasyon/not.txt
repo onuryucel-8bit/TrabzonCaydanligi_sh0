@@ -1,0 +1,53 @@
+release simdi calisiyor, sebebi klasik c++ yukardan asagi okumasindan dolayi m_aspect m_context in yukarsinda 
+kaldigi icin tanimsiz oluyormuş
+
+bir önceki kod ile tracy karsilastirmasi yap
+
+Camera m_camera;
+Light light;
+RenderContext m_context;
+Graphics gp;
+
+bool f_running = true;
+
+float FPS = 0;
+float dt = 0;
+
+//60 derece
+float m_fov = std::numbers::pi / 3.0f;
+float m_aspect = (float)m_context.mantiksalGenislik / (float)m_context.mantiksalYukseklik;;
+float m_znear = 0.5f;
+float m_zfar = 1000.0f;
+
+}
+
+1-clearColorBuffer => std::fill
+
+void Graphics::clearColorBuffer(Color_t color)
+{
+    ZoneScopedN(__FUNCTION__);
+
+    //const size_t totalPixels = static_cast<size_t>(m_context.fizikselGenislik) * m_context.fizikselYukseklik;
+    //std::fill(m_context.colorBuffer, m_context.colorBuffer + totalPixels, color);
+
+    for (size_t i = 0; i < m_context.fizikselGenislik * m_context.fizikselYukseklik; i++)
+    {
+        m_context.colorBuffer[i] = color;
+    }
+}
+
+2-glm ye geçiş
+
+3-ressam algoritmasi cikarildi, çizgi algoritmasi direk brensehem i cagiriyor
+
+4-zbuffer => std::fill() fonksiyonuna gecildi
+
+5-zbuffer_doluUcgen secenegi cikarildi, artik ucgen cizimi direk zbuffer kullaniyor 
+
+6-drawpixel() fonksiyonu inline yapildi, programa roket takilmis gibi sponza 20fps e cikti
+
+7-drawfilledTriangle cikarildi
+
+8-swap => std::swap()
+
+9-vector2,3,4 => glm

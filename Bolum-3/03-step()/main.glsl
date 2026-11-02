@@ -58,23 +58,26 @@ x -1 <--------.----------> x 1
     */
 
     //koordinatlari birim haline getir
-    vec2 uv = fragCoord/iResolution.xy * 2.0 - 1.0;
+    //vec2 uv = fragCoord/iResolution.xy * 2.0 - 1.0;
 
     //farkli ekran boyutlari icin uv.x = ires.x/ires.y
     //cikti 800x600, 1600x900 ...vb. boyutlardaki ekranlarda
     //bozulmaya ugramasin diye bolme yapiyoruz
-    uv.x *= iResolution.x / iResolution.y;
+    //uv.x *= iResolution.x / iResolution.y;
 
     //kisa hali
-    //vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
+    vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
 
-    float d = length(uv);
+    vec3 col = vec3(0);
 
-    d -= 0.5;
-    d = abs(d);
+    //if(uv.x > 0.4)
+    //{
+        //col = vec3(1,0,0);
+    //}
 
-    d = step(0.1,d);
-
+    //yukardaki if blogu ile ayni seyi yapiyor
+    col = vec3(step(0.5, uv.x),0,0);
+    
     //ekrana yolla
-    fragColor = vec4(d,d,d,1.0);
+    fragColor = vec4(col,1.0);
 }

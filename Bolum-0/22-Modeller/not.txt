@@ -1,0 +1,16 @@
+-artik birden fazla model yuklenebiliyor
+-q e ile aralarinda gecis yapilabilir
+
+-ortalama dik vektor ile isik hesabi ne kadar mantikli?
+
+-fps neden dusuk? bir önceki koda kıyasla
+
+-avx bayragi ekledim
+
+target_compile_options(${PROJECT_NAME} PRIVATE
+    /utf-8
+    /arch:AVX2
+    $<$<CONFIG:Release>:/O2 /Ot>        
+)
+
+https://gist.github.com/MangaD/1fad63756ad8c946ce01dd1d52eff173

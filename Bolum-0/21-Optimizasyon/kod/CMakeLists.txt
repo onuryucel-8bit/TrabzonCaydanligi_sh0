@@ -60,6 +60,7 @@ if (MSVC)
 #/Ot (a default setting) tells the compiler to favor optimizations for speed over optimizations for size.
     target_compile_options(${PROJECT_NAME} PRIVATE
         /utf-8
+        #/arch:native
         $<$<CONFIG:Release>:/O2 /Ot>        
     )
 endif()

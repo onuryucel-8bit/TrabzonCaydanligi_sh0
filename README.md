@@ -132,6 +132,12 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 
 <h2>kaynakca</h2>
 
+https://gist.github.com/MangaD/1fad63756ad8c946ce01dd1d52eff173
+
+https://www.youtube.com/watch?v=Y_vvC2G7vRo&list=PLEETnX-uPtBUbVOok816vTl1K9vV1GgH5
+
+https://www.geeksforgeeks.org/dsa/back-face-detection-method/
+
 #### [How to make a Graphic Accelerator (AKA a 1980s GPU) from scratch] (https://www.youtube.com/watch?v=p5QsaBWuUnY)
 
 #### [Interpolation, Color, and Barycentric Coordinates](https://www.youtube.com/watch?v=y2sNnI4NrDc)

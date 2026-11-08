@@ -1,0 +1,2 @@
+AMDuProf baya guzelmis tracy ile iyi is goruyor
+~60 fps if bloğu drawTrig() 5.0 harcaniyor bir tek orasi sikinti

@@ -1,0 +1,42 @@
+#pragma once
+
+#include <cmath>
+
+#include "Vector4.h"
+#include "Vector2.h"
+
+class Vector4;
+
+class Vector3
+{
+public:
+	Vector3();
+	Vector3(float x_, float y_, float z_);
+	~Vector3();
+
+	Vector4 toVec4();
+
+	[[nodiscard]] Vector3 operator+ (const Vector3& vec);
+	[[nodiscard]] Vector3 operator- (const Vector3& vec);
+	[[nodiscard]] Vector3 operator* (float s);
+	[[nodiscard]] Vector3 operator/ (float s);
+
+	void normalize();
+
+	Vector3 rotateX(float alfa);
+	Vector3 rotateY(float alfa);
+	Vector3 rotateZ(float alfa);
+	
+	float dot(const Vector3& vec);
+	Vector3 cross(const Vector3& vec);
+
+	static float length(Vector3& vec);
+
+	Vector2 toVec2();
+
+	float x, y, z;
+
+private:
+
+};
+

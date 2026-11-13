@@ -1,0 +1,3 @@
+-pencere init() fonksiyonunu sinif icine cekildi 13.11.2026
+
+-pencere buyutuldugunde cizim alani buyultme eklendi,e .. uyku :| 0_0

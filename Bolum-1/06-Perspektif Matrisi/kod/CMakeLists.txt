@@ -16,15 +16,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #=====================================================================#
 
 # glfw ayarlari
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+#set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+#set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+#set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+#set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
-# Dinamik baglantiyi kes
-# set(SDL_SHARED OFF CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
-# Statik baglantiyi aktif hale getir
-# set(SDL_STATIC ON CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
+# Dinamik baglantiyi ac
+set(SDL_SHARED ON CACHE BOOL "Dinamik bagla:: Dinamik zimbirti" FORCE)
+# Statik baglantiyi kes
+set(SDL_STATIC OFF CACHE BOOL "Statik bagla:: Statik Dolma Pilavi" FORCE)
 
 
 #====================LIBS=============================================#
@@ -37,13 +37,17 @@ set(LIBS_LOCAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs)
 find_package(OpenGL REQUIRED)
 
 #vcpkg install glfw3
-find_package(glfw3 REQUIRED)
+#find_package(glfw3 REQUIRED)
 
 # imgui ayarlari
-# sdl kapat
-set(IMGUI_USE_SDL3 OFF CACHE BOOL "" FORCE)
+# sdl ac
+set(IMGUI_USE_SDL3 ON CACHE BOOL "" FORCE)
 # glfw ile bagla
-set(IMGUI_USE_GLFW ON CACHE BOOL "" FORCE)
+set(IMGUI_USE_GLFW OFF CACHE BOOL "" FORCE)
+
+
+
+find_package(SDL3 CONFIG REQUIRED)
 
 add_subdirectory(${LIBS_LOCAL_DIR}/imgui-docking imgui_build)
 
@@ -99,7 +103,7 @@ target_link_libraries(${PROJECT_NAME}
     glad
 	OpenGL::GL
     imgui
-	glfw
+	SDL3::SDL3
 	baku
     Tracy::TracyClient    
 )
@@ -107,9 +111,16 @@ target_link_libraries(${PROJECT_NAME}
 #===================MAKROLAR==========================================#
 #=====================================================================#
 
+#hangi imgui baglantisi kullaniliyorsa onun makrosunu ekle
+if(IMGUI_USE_SDL3)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE cmake_IMGUI_USE_SDL3)
+elseif(IMGUI_USE_GLFW)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE cmake_IMGUI_USE_GLFW)
+endif()
+
+
 # kod => baslik => bolum /../../../
 target_compile_definitions(${PROJECT_NAME} PUBLIC cmake_PROJECT_MODELLER="${CMAKE_CURRENT_SOURCE_DIR}/../../../modeller/")
 target_compile_definitions(${PROJECT_NAME} PUBLIC cmake_PROJECT_KAPLAMALAR="${CMAKE_CURRENT_SOURCE_DIR}/../../../kaplamalar/")
 
 target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC cmake_PROJECT_RES="${CMAKE_CURRENT_SOURCE_DIR}/res/")
-

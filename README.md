@@ -1,3 +1,5 @@
+10.11.2026 imgui cmake sdl-glfw icin ayar eklendi varsayilan olarak sdl-imgui bagliyor
+
 02.11.2026 70~60fps sponza simdilik yeterli
 
 01.11.2026 sdl image vcpkg kurulum kisminda yok...
@@ -131,6 +133,8 @@ software renderer(yazılım tabanlı çizim) denilen zamazingoyu Türkçeye çev
 - 04-Cizgi Algoritmalari/ diger algoritmalari ekle
 
 <h2>kaynakca</h2>
+
+https://sibras.github.io/OpenGL4-Tutorials/docs/Tutorials/01-Tutorial1/
 
 https://gist.github.com/MangaD/1fad63756ad8c946ce01dd1d52eff173
 
